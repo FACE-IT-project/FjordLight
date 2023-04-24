@@ -1,11 +1,18 @@
 Package: FjordLight
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
+Version: 0.2
+Date: 2023-04-19
+Title: Available Light on the fjords Floor
+Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>
+Maintainer: Bernard Gentili <bernard.gentili@orange.fr>
+Depends: R (>= 3.3.0), ncdf4, raster, RCurl
+Description: Satellite data collected between 1998 and 2018
+	(SeaWiFS, MODIS, MERIS, VIIRS),
+	in conjonction with GEBCO gridded bathymetric data (15 arc seconds),
+	are used to estimate, at a nearly global scale,
+	the irradiance reaching the bottom of the coastal ocean.
+License: file LICENSE
+URL: https://doi.pangaea.de/10.1594/PANGAEA.910898,
+        http://obs-vlfr.fr/Pfunction/, https://obs-vlfr.fr
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2023-04-19 18:17:18 UTC; gentili
