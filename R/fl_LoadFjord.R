@@ -1,9 +1,10 @@
-fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", verbose = FALSE) {
+fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE) {
 	### read data from ncfile
 	ncfile <- paste(dirdata, paste(fjord, "nc", sep = "."), sep = "/")
 	nc <- nc_open(ncfile, verbose = verbose)
 	dims <- names(nc$dim)
 	vars <- names(nc$var)
+	if(!TS) vars <- vars[! vars %in% "PARbottom"]
 	vars_attributes <- list()
 	for(d in dims) {
 		assign(d, ncvar_get(nc, d))

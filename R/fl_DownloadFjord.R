@@ -1,5 +1,5 @@
 fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
-	options(timeout = 600)
+	options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_Fjords/"
 	fjords <- fl_ListFjords()
 	if(! fjord %in% fjords) stop(paste(fjord, "not available"))

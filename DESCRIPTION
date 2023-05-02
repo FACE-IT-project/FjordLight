@@ -1,6 +1,6 @@
 Package: FjordLight
-Version: 0.2
-Date: 2023-04-19
+Version: 0.3
+Date: 2023-04-30
 Title: Available Light on the fjords Floor
 Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>
 Maintainer: Bernard Gentili <bernard.gentili@orange.fr>
@@ -10,9 +10,9 @@ Description: Satellite data collected between 1998 and 2018
 	in conjonction with GEBCO gridded bathymetric data (15 arc seconds),
 	are used to estimate, at a nearly global scale,
 	the irradiance reaching the bottom of the coastal ocean.
-License: file LICENSE
+License: GPL (>= 2)
 URL: https://doi.pangaea.de/10.1594/PANGAEA.910898,
         http://obs-vlfr.fr/Pfunction/, https://obs-vlfr.fr
 RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2023-04-19 18:17:18 UTC; gentili
+Packaged: 2023-05-01 09:26:41 UTC; gentili

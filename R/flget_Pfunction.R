@@ -13,7 +13,7 @@ flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mod
 	with(fjord, {
 		if(period == "Monthly") {
 			if(!is.na(month)){
-				if(!(month %in% Months)) return(paste("bad month", ": available months", paste(months, collapse = " ")))
+				if(!(month %in% Months)) return(paste("bad month", ": available months", paste(Months, collapse = " ")))
 			} else {
 				return("you have to indicate the month\n")
 			}
@@ -21,7 +21,7 @@ flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mod
 	
 		if(period == "Yearly") {
 			if(!is.na(year)){
-				if(!(year %in% Years)) return(paste("bad year", ": available years", paste(years, collapse = " ")))
+				if(!(year %in% Years)) return(paste("bad year", ": available years", paste(Years, collapse = " ")))
 			} else {
 				return("you have to indicate the year\n")
 			}
