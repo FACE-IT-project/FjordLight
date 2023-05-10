@@ -1,0 +1,24 @@
+---
+title: "Fjord light"
+format: html
+editor: visual
+---
+
+```{r}
+library(geosphere)
+library(tidyverse)
+```
+
+## day length
+
+```{r}
+dt <- seq.Date(from = as.Date("2023-01-01"), to = as.Date("2023-12-31"), by = 1)
+  
+# calculate monthly daylength at 79N (Ny-Ålesund)
+dl <- geosphere::daylength(79, 1:365)
+dl <- dplyr::mutate(dt = dt)
+
+
+```
+
+
