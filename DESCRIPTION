@@ -1,18 +1,20 @@
 Package: FjordLight
 Version: 0.3
 Date: 2023-04-30
-Title: Available Light on the fjords Floor
-Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>
+Title: Available Light on the Fjords Floor
+Type: Package
+Description: Satellite data collected between 2003 and 2022
+	(SeaWiFS, MODIS, MERIS, VIIRS),
+	in conjonction with IBCAO gridded bathymetric data (200 m)
+	and Norwegian mapping authority data (50-150 m),
+	are used to estimate the irradiance reaching the bottom of 
+	a series of representative EU Arctic fjords.
+Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>, Robert Schlegel <robert.schlegel@imev-mer.fr>
 Maintainer: Bernard Gentili <bernard.gentili@orange.fr>
 Depends: R (>= 3.3.0), ncdf4, raster, RCurl
-Description: Satellite data collected between 1998 and 2018
-	(SeaWiFS, MODIS, MERIS, VIIRS),
-	in conjonction with GEBCO gridded bathymetric data (15 arc seconds),
-	are used to estimate, at a nearly global scale,
-	the irradiance reaching the bottom of the coastal ocean.
 License: GPL (>= 2)
-URL: https://doi.pangaea.de/10.1594/PANGAEA.910898,
-        http://obs-vlfr.fr/Pfunction/, https://obs-vlfr.fr
-RoxygenNote: 6.1.1
+Encoding: UTF-8
+URL: https://github.com/FACE-IT-project/FjordLight
+RoxygenNote: 7.2.3
 NeedsCompilation: no
 Packaged: 2023-05-01 09:26:41 UTC; gentili

@@ -1,3 +1,29 @@
+#' Download fjord PAR data as NetCDF files.
+#'
+#' @param fjord Expects a character vector for one of the 8 available fjords.
+#' See \code{\link{fl_ListFjords()}} for the list of possible choices.
+#' @param dirdata The directory where the user would like to download the data.
+#' Default is "FjordLight.d".
+#'
+#' @details
+#' This functions queries the FTP server where the NetCDF files are stored. It will
+#' retrieve the one file that matches the name provided to it via the \code{fjord}
+#' argument. Note that these files can be multiple gigabytes in size.
+#'
+#' @return The downloaded NetCDF file contains the following variables:
+#'   \item{bathymetry}{depth [m]}
+#'   \item{land}{elevation [m]}
+#'   \item{area}{PixelArea_km2 [m]}
+#'   \item{AreaOfCoastalZone}{Surface of Sea floor with a depth of between 0 and 200 meters [km2]}
+#'   etc...
+#'
+#' @author Bernard Gentili, Robert W. Schlegel
+#'
+#' @export
+#'
+#' @examples
+#' fl_DownloadFjord("kong", dirdata = "data/PAR")
+#'
 fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_Fjords/"
