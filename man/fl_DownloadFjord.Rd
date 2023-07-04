@@ -2,12 +2,13 @@
 % Please edit documentation in R/fl_DownloadFjord.R
 \name{fl_DownloadFjord}
 \alias{fl_DownloadFjord}
-\title{Calculate yearly means for event metrics.}
+\title{Download fjord PAR data as NetCDF files.}
 \usage{
 fl_DownloadFjord(fjord, dirdata = "FjordLight.d")
 }
 \arguments{
-\item{fjord}{Expects a character vector for one of the 8 available fjords.}
+\item{fjord}{Expects a character vector for one of the 8 available fjords.
+See \code{\link{fl_ListFjords()}} for the list of possible choices.}
 
 \item{dirdata}{The directory where the user would like to download the data.
 Default is "FjordLight.d".}
@@ -21,7 +22,7 @@ The downloaded NetCDF file contains the following variables:
   etc...
 }
 \description{
-Calculate yearly means for event metrics.
+Download fjord PAR data as NetCDF files.
 }
 \details{
 This functions queries the FTP server where the NetCDF files are stored. It will
@@ -29,7 +30,9 @@ retrieve the one file that matches the name provided to it via the \code{fjord}
 argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
+\dontrun{
 fl_DownloadFjord("kong", dirdata = "data/PAR")
+}
 
 }
 \author{
