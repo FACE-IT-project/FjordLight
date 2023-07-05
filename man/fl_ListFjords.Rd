@@ -11,16 +11,13 @@ A list of currently 8 different character vectors representing a range of fjords
 in the EU Arctic.
 }
 \description{
-Simply lists the names of fjords with available data.
-}
-\details{
 Run this to determine which character vectors to use when downloading data
-via \code{\link{fl_DownloadFjord()}}, or a range of other uses within \code{FjordLight}.
+via \code{\link{fl_DownloadFjord}}, or a range of other uses within \code{FjordLight}.
 }
 \examples{
 fl_ListFjords()
 
 }
 \author{
-Bernard Gentili, Robert W. Schlegel
+Bernard Gentili
 }

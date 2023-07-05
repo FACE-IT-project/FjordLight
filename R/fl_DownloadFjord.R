@@ -1,14 +1,13 @@
 #' Download fjord PAR data as NetCDF files.
 #'
-#' @param fjord Expects a character vector for one of the 8 available fjords.
-#' See \code{\link{fl_ListFjords()}} for the list of possible choices.
-#' @param dirdata The directory where the user would like to download the data.
-#' Default is "FjordLight.d".
-#'
-#' @details
 #' This functions queries the FTP server where the NetCDF files are stored. It will
 #' retrieve the one file that matches the name provided to it via the \code{fjord}
 #' argument. Note that these files can be multiple gigabytes in size.
+#'
+#' @param fjord Expects a character vector for one of the 8 available fjords.
+#' See \code{\link{fl_ListFjords}} for the list of possible choices.
+#' @param dirdata The directory where the user would like to download the data.
+#' Default is "FjordLight.d".
 #'
 #' @return The downloaded NetCDF file contains the following variables:
 #'   \item{bathymetry}{depth [m]}
@@ -17,7 +16,7 @@
 #'   \item{AreaOfCoastalZone}{Surface of Sea floor with a depth of between 0 and 200 meters [km2]}
 #'   etc...
 #'
-#' @author Bernard Gentili, Robert W. Schlegel
+#' @author Bernard Gentili
 #'
 #' @export
 #'
@@ -39,7 +38,7 @@ fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	localf <- paste(dirdata, ncfile, sep = "/")
 	if(! file.exists(localf)) {
 		cat("---> downloading fjord", fjord, "\n")
-		download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf)
+		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf)
 		cat(fjord, "downloaded in directory", dirdata, "\n")
 	} else {
 		cat(fjord, "already downloaded in directory", dirdata, "\n")

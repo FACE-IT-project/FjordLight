@@ -8,7 +8,7 @@ fl_DownloadFjord(fjord, dirdata = "FjordLight.d")
 }
 \arguments{
 \item{fjord}{Expects a character vector for one of the 8 available fjords.
-See \code{\link{fl_ListFjords()}} for the list of possible choices.}
+See \code{\link{fl_ListFjords}} for the list of possible choices.}
 
 \item{dirdata}{The directory where the user would like to download the data.
 Default is "FjordLight.d".}
@@ -22,9 +22,6 @@ The downloaded NetCDF file contains the following variables:
   etc...
 }
 \description{
-Download fjord PAR data as NetCDF files.
-}
-\details{
 This functions queries the FTP server where the NetCDF files are stored. It will
 retrieve the one file that matches the name provided to it via the \code{fjord}
 argument. Note that these files can be multiple gigabytes in size.
@@ -36,5 +33,5 @@ fl_DownloadFjord("kong", dirdata = "data/PAR")
 
 }
 \author{
-Bernard Gentili, Robert W. Schlegel
+Bernard Gentili
 }
