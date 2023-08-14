@@ -80,19 +80,20 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 		}
 		varname <- "PARbottom"
 
-		proj.lonlat.def = "+init=epsg:4326"
+		proj.lonlat.def = 4326
 
 		g <- fjord[[varname]]
-		s <- stack()
+		s <- raster::stack()
 		layernames <- NULL
 		for(y in year) {
 			for(m in month) {
 				h <- g[, , Months == m, Years == y]
-				r <- raster(list(x = longitude, y = latitude, z= h))
-				layername <- paste(varname, formatC(y, format = "d", width = 4, flag = "0"), formatC(m, format = "d", width = 2, flag = "0"), sep = ".")
+				r <- raster::raster(list(x = longitude, y = latitude, z = h))
+				layername <- paste(varname, formatC(y, format = "d", width = 4, flag = "0"),
+				                   formatC(m, format = "d", width = 2, flag = "0"), sep = ".")
 				layernames <- append(layernames, layername)
 				names(r) <- layername
-				s <- stack(s, r)
+				s <- raster::stack(s, r)
 			}
 		}
 		if(PLOT) {
@@ -102,7 +103,7 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 			return(s)
 		}
 		if(mode == "3col") {
-			dum <- as.data.frame(cbind(xyFromCell(s, 1:ncell(s)), as.matrix(s)))
+			dum <- as.data.frame(cbind(raster::xyFromCell(s, 1:raster::ncell(s)), raster::as.matrix(s)))
 			names(dum) <- c("longitude", "latitude", layernames)
 			return(dum)
 		}

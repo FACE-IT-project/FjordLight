@@ -51,23 +51,23 @@ flget_bathymetry <- function(fjord, what = "s", mode = "raster", PLOT = FALSE) {
 	if("c" %in% w) CZ <- TRUE else CZ <- FALSE
 	with(fjord, {
 
-		proj.lonlat.def = "+init=epsg:4326"
+		proj.lonlat.def = 4326
 
 		l <- fjord[["land"]]
-		l <- raster(list(x = longitude, y = latitude, z = l))
+		l <- raster::raster(list(x = longitude, y = latitude, z = l))
 		b <- fjord[["bathymetry"]]
-		b <- raster(list(x = longitude, y = latitude, z = b))
+		b <- raster::raster(list(x = longitude, y = latitude, z = b))
 
 		if(BATHY) {
-			if(CZ) {vb <- values(b); vb[vb < -200] <- NA; values(b) <- vb}
+			if(CZ) {vb <- raster::values(b); vb[vb < -200] <- NA; raster::values(b) <- vb}
 			if(!CZ) names(b) <- "bathymetry" else names(b) <- "Coastal_Zone"
 			if(LAND) {
 				r <- b
-				vr <- values(r)
-				vl <- values(l)
+				vr <- raster::values(r)
+				vl <- raster::values(l)
 				i <- is.na(vr)
 				vr[i] <- vl[i]
-				values(r) <- vr
+				raster::values(r) <- vr
 			} else {
 				r <- b
 			}
@@ -81,12 +81,12 @@ flget_bathymetry <- function(fjord, what = "s", mode = "raster", PLOT = FALSE) {
 				flplot_land(r, b, name)
 			}
 		}
-		crs(r) <- proj.lonlat.def
+		raster::crs(r) <- proj.lonlat.def
 		if(mode == "raster") {
 			return(r)
 		}
 		if(mode == "3col") {
-			dum <- as.data.frame(cbind(xyFromCell(r, 1:ncell(r)), values(r)))
+			dum <- as.data.frame(cbind(raster::xyFromCell(r, 1:raster::ncell(r)), raster::values(r)))
 			names(dum) <- c("longitude", "latitude", "depth")
 			return(dum)
 		}
