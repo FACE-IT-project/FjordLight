@@ -4,14 +4,14 @@
 \alias{flplot_land}
 \title{Plot land data found within NetCDF files downloaded by \code{FjordLight}.}
 \usage{
-flplot_land(r, b, name)
+flplot_land(r, l, name)
 }
 \arguments{
 \item{r}{The bathymetry data in a raster format.}
 
-\item{name}{The name of the chosen fjord.}
-
 \item{l}{The land data in the same format.}
+
+\item{name}{The name of the chosen fjord.}
 }
 \value{
 A base R plot of the land data will be provided.

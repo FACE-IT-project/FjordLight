@@ -4,10 +4,10 @@ Date: 2023-08-14
 Title: Available Light on the Fjords Floor
 Type: Package
 Description: Satellite data collected between 2003 and 2022
-	(SeaWiFS, MODIS, MERIS, VIIRS),
-	in conjunction with IBCAO gridded bathymetry data (200 m)
+	('SeaWiFS', 'MODIS', 'MERIS', 'VIIRS'),
+	in conjunction with 'IBCAO' 'gridded' 'bathymetry' data (200 m)
 	and Norwegian mapping authority data (50-150 m),
-	are used to estimate the irradiance reaching the bottom of 
+	are used to estimate the 'irradiance' reaching the bottom of 
 	a series of representative EU Arctic fjords.
 Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>, Robert Schlegel <robert.schlegel@imev-mer.fr>
 Maintainer: Robert Schlegel <robert.schlegel@imev-mer.fr>

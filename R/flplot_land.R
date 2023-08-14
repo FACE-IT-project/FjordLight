@@ -13,7 +13,7 @@
 #'
 #' @author Bernard Gentili
 #'
-flplot_land <- function(r, b, name) {
+flplot_land <- function(r, l, name) {
 	vr <- raster::values(r)
 	plot(r, col = grDevices::terrain.colors(255),
 		colNA = "transparent", main = paste(name, names(r)),
@@ -21,5 +21,5 @@ flplot_land <- function(r, b, name) {
 		legend.args = list(text = "",
 			side = 4, cex = 1.5, line = 3.5)
 	)
-	plot(b, add = TRUE, col = grDevices::grey(0:100/100), legend = FALSE)
+	plot(l, add = TRUE, col = grDevices::grey(0:100/100), legend = FALSE)
 }
