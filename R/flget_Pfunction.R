@@ -6,6 +6,8 @@
 #' data should be extracted to, and if the user would like to plot the data in the process.
 #'
 #' @param fjord Expects the object loaded via \code{\link{fl_LoadFjord}}.
+#' @param type Whether the p function should show values for the \code{coastal} zone (< 200 m deep),
+#' or the \code{shallow} zone (< 50 m deep).
 #' @param period Here the user determines which time period of data should be loaded. To load
 #' the total average values (default) use \code{"Global"}. One may chose instead to load the
 #' \code{"Yearly"} or \code{"Monthly"} values. Note that monthly values here represent the
@@ -66,10 +68,16 @@
 #' legend("topleft", legend = c("Global", "2012", "July"), lty = 1, col = 1:3, lwd = 2)
 #' }
 #'
-flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mode = "function", PLOT = FALSE, add = FALSE, ...) {
+flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
+                            mode = "function", PLOT = FALSE, add = FALSE, ...) {
 	if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
-	available.period <- c("Monthly", "Yearly", "Global")
+  available.type <- c("coastal", "shallow")
+  available.period <- c("Clim", "Yearly", "Global")
 	available.mode <- c("function", "2col")
+	if(! type %in% available.type) {
+	  cat("wrong type, choose among :", available.type, "\n")
+	  return (invisible(NULL))
+	}
 	if(! mode %in% available.mode) {
 		cat("wrong mode, choose among :", available.mode, "\n")
 		return (invisible(NULL))
@@ -79,7 +87,7 @@ flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mod
 		return (invisible(NULL))
 	}
 	with(fjord, {
-		if(period == "Monthly") {
+		if(period == "Clim") {
 			if(!is.na(month)){
 				if(!(month %in% Months)) return(paste("bad month", ": available months", paste(Months, collapse = " ")))
 			} else {
@@ -94,7 +102,7 @@ flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mod
 				return("you have to indicate the year\n")
 			}
 		}
-		varname <- paste(period, "Pfunction", sep = "")
+	  varname <- paste(period, "P", type, sep = "")
 		g <- fjord[[varname]]
 		if(period != "Global") {
 			if(!is.na(month) & is.na(year)) g <- g[, Months == month]
@@ -104,13 +112,13 @@ flget_Pfunction <- function(fjord, period = "Global", month = NA, year = NA, mod
 		if(PLOT) flplot_Pfunction(irradianceLevel, g, period, month, year, add = add, ...)
 
 		if(mode == "2col") {
-			layername <- "Pfunction"
-			if(is.na(month) & is.na(year)) layername <- paste(layername, "Global", sep = "_")
-			if(!is.na(month)) layername <- paste(layername, month.abb[month], sep = "_")
-			if(!is.na(year)) layername <- paste(layername, year, sep = "_")
-			ret <- data.frame(irradianceLevel, g)
-			names(ret) <- c("irradianceLevel", layername)
-			return(ret)
+		  layername <- paste("P", type, sep = "")
+		  if(is.na(month) & is.na(year)) layername <- paste(layername, "Global", sep = "_")
+		  if(!is.na(month)) layername <- paste(layername, month.abb[month], sep = "_")
+		  if(!is.na(year)) layername <- paste(layername, year, sep = "_")
+		  ret <- data.frame(irradianceLevel, g)
+		  names(ret) <- c("irradianceLevel", layername)
+		  return(ret)
 		}
 		if(mode == "function") {
 			f1 <- approxfun(log10(irradianceLevel), g, rule = 1)

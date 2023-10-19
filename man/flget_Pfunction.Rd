@@ -6,6 +6,7 @@
 \usage{
 flget_Pfunction(
   fjord,
+  type = "coastal",
   period = "Global",
   month = NA,
   year = NA,
@@ -17,6 +18,9 @@ flget_Pfunction(
 }
 \arguments{
 \item{fjord}{Expects the object loaded via \code{\link{fl_LoadFjord}}.}
+
+\item{type}{Whether the p function should show values for the \code{coastal} zone (< 200 m deep),
+or the \code{shallow} zone (< 50 m deep).}
 
 \item{period}{Here the user determines which time period of data should be loaded. To load
 the total average values (default) use \code{"Global"}. One may chose instead to load the

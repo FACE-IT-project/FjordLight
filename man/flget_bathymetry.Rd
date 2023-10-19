@@ -4,7 +4,7 @@
 \alias{flget_bathymetry}
 \title{Extract and/or plot bathymetry data from a NetCDF file downloaded by \code{FjordLight}.}
 \usage{
-flget_bathymetry(fjord, what = "s", mode = "raster", PLOT = FALSE)
+flget_bathymetry(fjord, what = "o", mode = "raster", PLOT = FALSE)
 }
 \arguments{
 \item{fjord}{Expects the object loaded via \code{\link{fl_LoadFjord}}.}

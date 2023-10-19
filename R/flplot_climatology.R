@@ -42,7 +42,7 @@ flplot_climatology <- function(r, l, name, optics, period, month, year) {
     text = expression(PAR[bottom]~(mol.photons~m^2~day^-1))
     lab.breaks = c("", as.character(10^seq(-4, 1, 1)), "")
   }
-  if(optics == "kdpar"){
+  if(optics == "Kpar"){
     vr <- raster::values(r)
     brks <- seq(0.08, 0.5, by = 0.02)
     cols <- cs_BuYlRd(length(brks) - 1)

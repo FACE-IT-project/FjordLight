@@ -24,7 +24,7 @@ flplot_PARbottomMonthlyTS <- function(r) {
   text = expression(mol.photons~m^2~day^-1)
   lab.breaks = c("", as.character(10^seq(-4, 1, 1)), "")
   vr[vr < brks[2]] <- brks[1]; vr[vr > brks[length(brks) - 1]] <- brks[length(brks)]; raster::values(r) <- vr
-  names(r) <- sub("PARbottom", "Pb", names(r))
+  names(r) <- sub("MonthlyPARbottom", "Pb", names(r))
   raster::plot(r, zlim = range(brks), maxnl = raster::nlayers(r),
                breaks = brks, col = cols,
                xlab = "", ylab = "", colNA = "transparent",

@@ -14,5 +14,5 @@
 #' fl_ListFjords()
 #'
 fl_ListFjords <- function() {
-	sub("\\.nc$", "", unlist(strsplit(RCurl::getURL("ftp://ftp.obs-vlfr.fr/pub/gentili/NC_Fjords/", dirlistonly = TRUE), "\n")))
+	sub("\\.nc$", "", unlist(strsplit(RCurl::getURL("ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords/", dirlistonly = TRUE), "\n")))
 }

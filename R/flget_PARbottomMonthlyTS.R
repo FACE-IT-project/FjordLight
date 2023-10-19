@@ -57,8 +57,8 @@
 #' }
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
-	if(is.null(fjord$PARbottom)) {
-		cat("PARbottom monthly time series not loaded\n")
+	if(is.null(fjord$MonthlyPARbottom)) {
+		cat("MonthlyPARbottom monthly time series not loaded\n")
 		return (invisible(NULL))
 	}
 	available.mode <- c("raster", "3col")
@@ -78,7 +78,7 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 		} else {
 			year <- Years
 		}
-		varname <- "PARbottom"
+		varname <- "MonthlyPARbottom"
 
 		proj.lonlat.def = 4326
 

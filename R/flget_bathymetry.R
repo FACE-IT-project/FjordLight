@@ -44,23 +44,31 @@
 #' sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
 #' }
 #'
-flget_bathymetry <- function(fjord, what = "s", mode = "raster", PLOT = FALSE) {
-	w <- unlist(strsplit(what, ""))
-	if("l" %in% w) LAND <- TRUE else LAND <- FALSE
-	if("c" %in% w | "s" %in% w) BATHY <- TRUE else BATHY <- FALSE
-	if("c" %in% w) CZ <- TRUE else CZ <- FALSE
+flget_bathymetry <- function(fjord, what = "o", mode = "raster", PLOT = FALSE) {
+  availwhat <- c("o", "c", "s", "lo", "lc", "ls", "ol", "cl", "sl")
+  if(! what %in% availwhat) {
+    cat("argument \"what\" is a string of one or two letters\n")
+    cat("one letter is mandatory and to be chosen between \"o\" (for ocean) \"c\" (for coastal 0-200m) \"s\" (for shallow 0-50m)\n")
+    cat("the second letter (optional) is \"l\" if you want to plot land elevation\n")
+  }
+  w <- unlist(strsplit(what, ""))
+  if("l" %in% w) LAND <- TRUE else LAND <- FALSE
+  if("s" %in% w | "c" %in% w | "o" %in% w) BATHY <- TRUE else BATHY <- FALSE
+  if("c" %in% w) CZ <- TRUE else CZ <- FALSE
+  if("s" %in% w) SH <- TRUE else SH <- FALSE
 	with(fjord, {
 
 		proj.lonlat.def = 4326
 
-		l <- fjord[["land"]]
+		l <- fjord[["elevation"]]
 		l <- raster::raster(list(x = longitude, y = latitude, z = l))
-		b <- fjord[["bathymetry"]]
+		b <- fjord[["depth"]]
 		b <- raster::raster(list(x = longitude, y = latitude, z = b))
 
 		if(BATHY) {
-			if(CZ) {vb <- raster::values(b); vb[vb < -200] <- NA; raster::values(b) <- vb}
-			if(!CZ) names(b) <- "bathymetry" else names(b) <- "Coastal_Zone"
+		  names(b) <- "Site_Depth"
+		  if(CZ) {vb <- raster::values(b); vb[vb < -200] <- NA; raster::values(b) <- vb; names(b) <- "Coastal_Zone_Depth"}
+		  if(SH) {vb <- raster::values(b); vb[vb < -50 ] <- NA; raster::values(b) <- vb; names(b) <- "Shallow_Zone_Depth"}
 			if(LAND) {
 				r <- b
 				vr <- raster::values(r)
@@ -76,7 +84,7 @@ flget_bathymetry <- function(fjord, what = "s", mode = "raster", PLOT = FALSE) {
 			}
 		} else {
 			r <- l
-			names(r) <- "land"
+			names(r) <- "Land_Elevation"
 			if(PLOT) {
 				flplot_land(r, b, name)
 			}

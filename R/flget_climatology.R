@@ -56,13 +56,13 @@
 #' print(PbG)
 #' # PAR0m and kdpar for year 2012 as 3 columns data frame
 #' P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
-#' k2012 <- flget_climatology(fjorddata, "kdpar", "Yearly", year = 2012, mode = "3col")
+#' k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
 #' }
 #'
 flget_climatology <- function(fjord, optics = "PARbottom", period = "Global", month = NA, year = NA, mode = "raster", PLOT = FALSE) {
   if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
-  available.optics <- c("PARbottom", "PAR0m", "kdpar")
-  available.period <- c("Monthly", "Yearly", "Global")
+  available.optics <- c("PARbottom", "PAR0m", "Kpar")
+  available.period <- c("Clim", "Yearly", "Global")
   available.mode <- c("raster", "3col")
   if(! mode %in% available.mode) {
     cat("wrong mode, choose among :", available.mode, "\n")
@@ -78,7 +78,7 @@ flget_climatology <- function(fjord, optics = "PARbottom", period = "Global", mo
   }
 
   with(fjord, {
-    if(period == "Monthly")
+    if(period == "Clim")
       if(!is.na(month)){
         if(!(month %in% Months)) return(paste("bad month", ": available months", paste(Months, collapse = " ")))
       } else {
@@ -106,7 +106,7 @@ flget_climatology <- function(fjord, optics = "PARbottom", period = "Global", mo
     names(r) <- layername
     raster::crs(r) <- proj.lonlat.def
     if(PLOT) {
-      l <- fjord[["land"]]
+      l <- fjord[["elevation"]]
       l <- raster::raster(list(x = longitude, y = latitude, z = l))
       flplot_climatology(r, l, name, optics, period, month, year)
     }

@@ -75,7 +75,7 @@ PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
 print(PbG)
 # PAR0m and kdpar for year 2012 as 3 columns data frame
 P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
-k2012 <- flget_climatology(fjorddata, "kdpar", "Yearly", year = 2012, mode = "3col")
+k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
 }
 
 }

@@ -43,7 +43,7 @@ fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = 
 	nc <- ncdf4::nc_open(ncfile, verbose = verbose)
 	dims <- names(nc$dim)
 	vars <- names(nc$var)
-	if(!TS) vars <- vars[! vars %in% "PARbottom"]
+	if(!TS) vars <- vars[! vars %in% "MonthlyPARbottom"]
 	vars_attributes <- list()
 	for(d in dims) {
 		assign(d, ncdf4::ncvar_get(nc, d))
