@@ -1,7 +1,6 @@
-# FjordLight
+# FjordLight <img src="logo.png" width=200 align="right" />
 
 [![R-CMD-check](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml)
-
 [![Codecov test coverage](https://codecov.io/gh/FACE-IT-project/FjordLight/branch/main/graph/badge.svg)](https://app.codecov.io/gh/FACE-IT-project/FjordLight?branch=main)
 
 This package was created to aid in accessing the fjord PAR data products created by Bernard Gentili in collaboration with several other people. An ESSD paper currently in prep will contain more details.
