@@ -32,7 +32,7 @@ fjorddata <- fl_LoadFjord(fjord, dirdata = "~/pCloudDrive/FACE-IT_data/PAR/")
 # Load geo-parameters
 geo_params <- flget_geoparameters(fjorddata)
 
-Convert to a data.frame if desired
+# Convert to a data.frame if desired
 geo_params_df <- t(as.data.frame(geo_params))
 }
 
