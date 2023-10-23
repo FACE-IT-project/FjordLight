@@ -1,3 +1,3 @@
-# FjordLight 0.5
+# FjordLight 0.5 (2023-10-23)
 
-* Initial CRAN submission.
+* Implementing __`testhat`__ and __`pkgdown`__.

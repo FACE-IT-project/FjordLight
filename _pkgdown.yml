@@ -1,0 +1,37 @@
+navbar:
+  structure:
+    left:
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    reference:
+      text: Reference
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/FACE-IT-project/FjordLight/
+      aria-label: github
+
+reference:
+- title: All functions
+  contents:
+  - '`cs_BuYlRd`'
+  - '`cs_blue`'
+  - '`cs_blye`'
+  - '`fl_DownloadFjord`'
+  - '`fl_ListFjords`'
+  - '`fl_LoadFjord`'
+  - '`fl_topocolorscale`'
+  - '`flget_PARbottomMonthlyTS`'
+  - '`flget_Pfunction`'
+  - '`flget_area`'
+  - '`flget_bathymetry`'
+  - '`flget_climatology`'
+  - '`flget_geoparameters`'
+
+articles: ~
+
