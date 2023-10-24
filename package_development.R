@@ -1,6 +1,6 @@
 # package_development.R
-# Saturday, July 29th, 2023
-# The code used to develop the heatwave3 package
+# Monday, October 23rd, 2023
+# The code used to develop the FjordLight package
 
 
 # Getting started ---------------------------------------------------------
