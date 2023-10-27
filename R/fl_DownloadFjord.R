@@ -27,7 +27,7 @@
 #'
 fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	options(timeout = 0)
-	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords/"
+	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords"
 	fjords <- fl_ListFjords()
 	if(! fjord %in% fjords) stop(paste(fjord, "not available"))
 	if(! file.exists(dirdata)) {
