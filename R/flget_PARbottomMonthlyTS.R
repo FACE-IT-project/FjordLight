@@ -58,8 +58,7 @@
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
 
-  Months <- 3:10
-  Years <- 2003:2022
+  Months <- 3:10; Years <- 2003:2022
 
   if(is.null(fjord$MonthlyPARbottom)) {
 		cat("MonthlyPARbottom monthly time series not loaded\n")

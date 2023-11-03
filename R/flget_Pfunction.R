@@ -70,7 +70,10 @@
 #'
 flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
                             mode = "function", PLOT = FALSE, add = FALSE, ...) {
-	if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
+
+  Months <- 3:10; Years <- 2003:2022
+
+  if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
   available.type <- c("coastal", "shallow")
   available.period <- c("Clim", "Yearly", "Global")
 	available.mode <- c("function", "2col")

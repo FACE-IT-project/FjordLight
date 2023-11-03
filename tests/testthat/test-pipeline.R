@@ -59,7 +59,7 @@ test_that("flget_geoparameters works", {
 
 # PARbottom ---------------------------------------------------------------
 
-test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
+test_that("flget_PARbottomMonthlyTS functions correctly", {
   dat_no_TS <- fl_LoadFjord("kong")
   dat_TS <- fl_LoadFjord("kong", TS = TRUE)
   res_rast <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, mode = "raster")
@@ -81,6 +81,28 @@ test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
 
 # P-functions -------------------------------------------------------------
 
+test_that("P-functions error messages signal correctly", {
+  dat_no_TS <- fl_LoadFjord("kong")
+  # TODO: These should rather be errors, not character vectors or NULL
+  expect_type(flget_Pfunction(dat_no_TS, month = 4, year = 4), "character")
+  expect_null(flget_Pfunction(dat_no_TS, type = "mango"))
+  expect_null(flget_Pfunction(dat_no_TS, mode = "banana"))
+  expect_null(flget_Pfunction(dat_no_TS, period = "papaya"))
+  expect_type(flget_Pfunction(dat_no_TS, period = "Clim"), "character")
+  expect_type(flget_Pfunction(dat_no_TS, period = "Clim", month = 1), "character")
+  expect_type(flget_Pfunction(dat_no_TS, period = "Yearly"), "character")
+  expect_type(flget_Pfunction(dat_no_TS, period = "Yearly", year = 2000), "character")
+
+  res_year <- flget_Pfunction(dat_no_TS, period = "Yearly", year = 2010, mode = "2col")
+  res_month <- flget_Pfunction(dat_no_TS, period = "Clim", month = 4, mode = "2col")
+  res_func <- flget_Pfunction(dat_no_TS, period = "Clim", month = 4, mode = "function")
+  # NB: This also fully tests flplot_Pfunction
+  res_plot <- flget_Pfunction(dat_TS, year = 2010, mode = "2col", PLOT = TRUE)
+  expect_s3_class(res_year, "data.frame")
+  expect_s3_class(res_month, "data.frame")
+  expect_type(res_func, "closure")
+  expect_s3_class(res_plot, "data.frame")
+})
 
 
 # Remove test files
