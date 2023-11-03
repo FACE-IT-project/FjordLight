@@ -46,8 +46,8 @@ flplot_climatology <- function(r, l, name, optics, period, month, year) {
     vr <- raster::values(r)
     brks <- seq(0.08, 0.5, by = 0.02)
     cols <- cs_BuYlRd(length(brks) - 1)
-    text.leg <- expression(K[PAR]~(m^{-1}))
-    lab.breaks = c("", brks[-c(1, length(brks))], "")
+    text.leg <- expression(K[PAR]~(m^-1))
+    lab.breaks <- c("", brks[-c(1, length(brks))], "")
   }
   vr[vr < brks[2]] <- brks[1]; vr[vr > brks[length(brks) - 1]] <- brks[length(brks)]; raster::values(r) <- vr
   raster::plot(r, zlim = range(brks),

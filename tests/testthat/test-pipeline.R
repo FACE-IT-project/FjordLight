@@ -93,6 +93,8 @@ test_that("flget_PARbottomMonthlyTS functions correctly", {
   expect_null(flget_climatology(dat_no_TS, mode = "banana"))
   expect_null(flget_climatology(dat_no_TS, optics = "papaya"))
   expect_null(flget_climatology(dat_no_TS, period = "mango"))
+
+  expect_type(flget_climatology(dat_no_TS, month = 4, year = 2012), "character")
   expect_type(flget_climatology(dat_no_TS, period = "Clim"), "character")
   expect_type(flget_climatology(dat_no_TS, period = "Clim", month = 1), "character")
   expect_type(flget_climatology(dat_no_TS, period = "Yearly"), "character")

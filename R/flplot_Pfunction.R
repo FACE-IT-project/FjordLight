@@ -31,7 +31,7 @@ flplot_Pfunction <- function(irrLev, g, period, month, year, Main = NULL, add = 
 		graphics::lines(irrLev, g, ...)
 	} else {
 		plot(irrLev, g, xlim = rev(range(irrLev)),
-		     xlab = expression(E~"mol photons"~m^{-2}~d^{-1}),
+		     xlab = expression(E~"mol photons"~m^-2~d^-1),
 		     ylab = expression("% of the surface receiving more than E"),
 		     main = Main, log = "x", type = "l", ...)
 	}
