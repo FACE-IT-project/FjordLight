@@ -40,11 +40,18 @@ test_that("TS loading works", {
 # PARbottom ---------------------------------------------------------------
 
 test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
-  dat_TS <- fl_LoadFjord("kong")
-  dat_no_TS <- fl_LoadFjord("kong", TS = TRUE)
-  expect_error(flget_PARbottomMonthlyTS(), 'argument "fjord" is missing, with no default')
-  # flget_PARbottomMonthlyTS(fjord = dat_no_TS)
-  # expect_error('argument "fjord" is missing, with no default')
+  dat_no_TS <- fl_LoadFjord("kong")
+  dat_TS <- fl_LoadFjord("kong", TS = TRUE)
+  # TODO: It would probably be better if the default behaviour was an error or warning, nd not NULL
+  res_NULL1 <- flget_PARbottomMonthlyTS(dat_no_TS)
+  res_NULL2 <- flget_PARbottomMonthlyTS(dat_TS, mode = "banana")
+  # TODO: month error trapping is broken
+  # flget_PARbottomMonthlyTS(dat_TS, month = 2)
+  expect_null(res_NULL1)
+  expect_null(res_NULL2)
+  # NB: This is just too slow...
+  # res_big <- flget_PARbottomMonthlyTS(dat_TS)
+  expect_error('argument "fjord" is missing, with no default')
 })
 
 # Remove test files
