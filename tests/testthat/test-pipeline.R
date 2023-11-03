@@ -40,8 +40,11 @@ test_that("TS loading works", {
 # PARbottom ---------------------------------------------------------------
 
 test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
-  dat_no_TS <- flget_PARbottomMonthlyTS()
-  expect_error(fl_DownloadFjord(fjord = "banana"), "banana not available")
+  dat_TS <- fl_LoadFjord("kong")
+  dat_no_TS <- fl_LoadFjord("kong", TS = TRUE)
+  expect_error(flget_PARbottomMonthlyTS(), 'argument "fjord" is missing, with no default')
+  # flget_PARbottomMonthlyTS(fjord = dat_no_TS)
+  # expect_error('argument "fjord" is missing, with no default')
 })
 
 # Remove test files
