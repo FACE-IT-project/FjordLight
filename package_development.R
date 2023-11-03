@@ -80,7 +80,7 @@ use_package(package = "example_package")
 use_testthat()
 
 # Then to test a function:
-use_test("fl_LoadFjord")
+use_test("flget_PARbottomMonthlyTS")
 
 # After creating this documentation one will need to edit it
 # Example:
