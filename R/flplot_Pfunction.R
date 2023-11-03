@@ -27,11 +27,14 @@ flplot_Pfunction <- function(irrLev, g, period, month, year, Main = NULL, add = 
 		if(!is.na(month)) Main = paste("Pfunction", month.name[month])
 		if(!is.na(year)) Main = paste("Pfunction", year)
 	}
-	xlab <- expression(E~"mol photons"~m^{-2}~d^{-1})
-	ylab <- expression("% of the surface receiving more than E")
+	# xlab <- expression(E~"mol photons"~m^{-2}~d^{-1})
+	# ylab <- expression("% of the surface receiving more than E")
 	if(add) {
 		graphics::lines(irrLev, g, ...)
 	} else {
-		plot(irrLev, g, xlim = rev(range(irrLev)), xlab = xlab, ylab = ylab, main = Main, log = "x", type = "l", ...)
+		plot(irrLev, g, xlim = rev(range(irrLev)),
+		     xlab = expression(E~"mol photons"~m^{-2}~d^{-1}),
+		     ylab = expression("% of the surface receiving more than E"),
+		     main = Main, log = "x", type = "l", ...)
 	}
 }
