@@ -57,6 +57,54 @@ test_that("flget_geoparameters works", {
 })
 
 
+# Bathymetry --------------------------------------------------------------
+
+test_that("P-functions error messages signal correctly", {
+  dat_no_TS <- fl_LoadFjord("kong")
+
+  # TODO: This is problematic. This first one should return an error, not a raster
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "banana"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "o"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "c"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "s"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "l"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "lo"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "lc"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "ls"), "RasterLayer")
+  # TODO: Rather force specific character vectors so these options don't exist
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "ol"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "cl"), "RasterLayer")
+  expect_s4_class(flget_bathymetry(dat_no_TS, what = "sl"), "RasterLayer")
+
+  expect_s3_class(flget_bathymetry(dat_no_TS, what = "l", mode = "3col", PLOT = TRUE), "data.frame")
+  expect_s3_class(flget_bathymetry(dat_no_TS, what = "o", mode = "3col", PLOT = TRUE), "data.frame")
+})
+
+
+# PARclim -----------------------------------------------------------------
+
+test_that("flget_PARbottomMonthlyTS functions correctly", {
+  dat_no_TS <- fl_LoadFjord("kong")
+
+  # Default
+  expect_s4_class(flget_climatology(dat_no_TS), "RasterLayer")
+
+  # TODO: It would probably be better if the default behaviour was an error or warning, not NULL
+  expect_null(flget_climatology(dat_no_TS, mode = "banana"))
+  expect_null(flget_climatology(dat_no_TS, optics = "papaya"))
+  expect_null(flget_climatology(dat_no_TS, period = "mango"))
+  expect_type(flget_climatology(dat_no_TS, period = "Clim"), "character")
+  expect_type(flget_climatology(dat_no_TS, period = "Clim", month = 1), "character")
+  expect_type(flget_climatology(dat_no_TS, period = "Yearly"), "character")
+  expect_type(flget_climatology(dat_no_TS, period = "Yearly", year = 2000), "character")
+
+  expect_s3_class(flget_climatology(dat_no_TS, period = "Clim", month = 8, mode = "3col"), "data.frame")
+  # NB: This also fully tests flplot_PARbottomMonthlyTS
+  expect_s4_class(flget_climatology(dat_no_TS, period = "Yearly", year = 2010, PLOT = TRUE), "RasterLayer")
+
+})
+
+
 # PARbottom ---------------------------------------------------------------
 
 test_that("flget_PARbottomMonthlyTS functions correctly", {
@@ -97,7 +145,7 @@ test_that("P-functions error messages signal correctly", {
   res_month <- flget_Pfunction(dat_no_TS, period = "Clim", month = 4, mode = "2col")
   res_func <- flget_Pfunction(dat_no_TS, period = "Clim", month = 4, mode = "function")
   # NB: This also fully tests flplot_Pfunction
-  res_plot <- flget_Pfunction(dat_TS, year = 2010, mode = "2col", PLOT = TRUE)
+  res_plot <- flget_Pfunction(dat_no_TS, year = 2010, mode = "2col", PLOT = TRUE)
   expect_s3_class(res_year, "data.frame")
   expect_s3_class(res_month, "data.frame")
   expect_type(res_func, "closure")

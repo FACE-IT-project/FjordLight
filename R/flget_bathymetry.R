@@ -80,13 +80,13 @@ flget_bathymetry <- function(fjord, what = "o", mode = "raster", PLOT = FALSE) {
 				r <- b
 			}
 			if(PLOT) {
-				flplot_bathymetry(b, l, name)
+			  flplot_bathymetry(b, l, name)
 			}
 		} else {
 			r <- l
 			names(r) <- "Land_Elevation"
 			if(PLOT) {
-				flplot_land(r, b, name)
+			  flplot_land(r, name)
 			}
 		}
 		raster::crs(r) <- proj.lonlat.def
