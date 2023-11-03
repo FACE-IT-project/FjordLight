@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 FjordLight.d/
+tests/testthat/test_file

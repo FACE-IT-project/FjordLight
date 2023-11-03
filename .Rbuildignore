@@ -9,3 +9,4 @@
 ^pkgdown$
 ^logo.png
 ^package_development.R
+^data-raw$

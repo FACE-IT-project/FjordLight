@@ -80,7 +80,7 @@ use_package(package = "example_package")
 use_testthat()
 
 # Then to test a function:
-use_test("fl_DownloadFjord")
+use_test("fl_LoadFjord")
 
 # After creating this documentation one will need to edit it
 # Example:
@@ -99,7 +99,7 @@ devtools::check()
 # Importing data ----------------------------------------------------------
 
 # First run:
-# use_data_raw()
+use_data_raw()
 
 # Then go and throw the data in the "data-raw" folder that was created
 
