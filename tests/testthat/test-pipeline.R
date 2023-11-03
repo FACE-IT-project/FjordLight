@@ -42,16 +42,17 @@ test_that("TS loading works", {
 test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
   dat_no_TS <- fl_LoadFjord("kong")
   dat_TS <- fl_LoadFjord("kong", TS = TRUE)
-  # TODO: It would probably be better if the default behaviour was an error or warning, nd not NULL
-  res_NULL1 <- flget_PARbottomMonthlyTS(dat_no_TS)
-  res_NULL2 <- flget_PARbottomMonthlyTS(dat_TS, mode = "banana")
-  # TODO: month error trapping is broken
-  # flget_PARbottomMonthlyTS(dat_TS, month = 2)
-  expect_null(res_NULL1)
-  expect_null(res_NULL2)
-  # NB: This is just too slow...
-  # res_big <- flget_PARbottomMonthlyTS(dat_TS)
-  expect_error('argument "fjord" is missing, with no default')
+  res_rast <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, mode = "raster")
+  res_df <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, mode = "3col")
+  res_plot <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, PLOT = TRUE)
+  # TODO: It would probably be better if the default behaviour was an error or warning, not NULL
+  expect_null(flget_PARbottomMonthlyTS(dat_no_TS))
+  expect_type(flget_PARbottomMonthlyTS(dat_TS, month = 1), "character")
+  expect_type(flget_PARbottomMonthlyTS(dat_TS, year = 2000), "character")
+  expect_null(flget_PARbottomMonthlyTS(dat_TS, mode = "banana"))
+  expect_s4_class(res_rast, "RasterStack")
+  expect_s3_class(res_df, "data.frame")
+  expect_s4_class(res_plot, "RasterStack")
 })
 
 # Remove test files

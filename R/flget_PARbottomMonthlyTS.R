@@ -57,7 +57,11 @@
 #' }
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
-	if(is.null(fjord$MonthlyPARbottom)) {
+
+  Months <- 3:10
+  Years <- 2003:2022
+
+  if(is.null(fjord$MonthlyPARbottom)) {
 		cat("MonthlyPARbottom monthly time series not loaded\n")
 		return (invisible(NULL))
 	}
@@ -68,13 +72,13 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 	}
 	with(fjord, {
 		if(!is.null(month)){
-			if(!all(month %in% Months)) return(paste("bad month(s)", ": available months", paste(months, collapse = " ")))
+			if(!all(month %in% Months)) return(paste("bad month(s)", ": available months", paste(Months, collapse = " ")))
 		} else {
 			month <- Months
 		}
 
 		if(!is.null(year)){
-			if(!all(year %in% Years)) return(paste("bad year(s)", ": available years", paste(years, collapse = " ")))
+			if(!all(year %in% Years)) return(paste("bad year(s)", ": available years", paste(Years, collapse = " ")))
 		} else {
 			year <- Years
 		}
