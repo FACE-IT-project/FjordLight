@@ -37,6 +37,26 @@ test_that("TS loading works", {
 })
 
 
+# Area --------------------------------------------------------------------
+
+test_that("flget_area works", {
+  dat_no_TS <- fl_LoadFjord("kong")
+  res_rast <- flget_area(dat_no_TS, mode = "raster")
+  res_df <- flget_area(dat_no_TS, mode = "3col")
+  expect_s4_class(res_rast, "RasterLayer")
+  expect_s3_class(res_df, "data.frame")
+})
+
+
+# Geo-parameters ----------------------------------------------------------
+
+test_that("flget_geoparameters works", {
+  dat_no_TS <- fl_LoadFjord("kong")
+  res_geo <- flget_geoparameters(dat_no_TS)
+  expect_type(res_geo, "double")
+})
+
+
 # PARbottom ---------------------------------------------------------------
 
 test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
@@ -44,6 +64,8 @@ test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
   dat_TS <- fl_LoadFjord("kong", TS = TRUE)
   res_rast <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, mode = "raster")
   res_df <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, mode = "3col")
+  res_df_years <- flget_PARbottomMonthlyTS(dat_TS, month = 4, mode = "3col")
+  # NB: This also fully tests flplot_PARbottomMonthlyTS
   res_plot <- flget_PARbottomMonthlyTS(dat_TS, month = 4, year = 2010, PLOT = TRUE)
   # TODO: It would probably be better if the default behaviour was an error or warning, not NULL
   expect_null(flget_PARbottomMonthlyTS(dat_no_TS))
@@ -52,8 +74,14 @@ test_that("flget_PARbottomMonthlyTS error messages signal correctly", {
   expect_null(flget_PARbottomMonthlyTS(dat_TS, mode = "banana"))
   expect_s4_class(res_rast, "RasterStack")
   expect_s3_class(res_df, "data.frame")
+  expect_s3_class(res_df_years, "data.frame")
   expect_s4_class(res_plot, "RasterStack")
 })
+
+
+# P-functions -------------------------------------------------------------
+
+
 
 # Remove test files
 unlink("./FjordLight.d", recursive = TRUE)
