@@ -38,7 +38,6 @@
 #' }
 #'
 fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE) {
-	### read data from ncfile
 	ncfile <- paste(dirdata, paste(fjord, "nc", sep = "."), sep = "/")
 	nc <- ncdf4::nc_open(ncfile, verbose = verbose)
 	dims <- names(nc$dim)

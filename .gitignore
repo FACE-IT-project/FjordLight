@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-inst/doc
+FjordLight.d/
+tests/testthat/test_file
