@@ -142,7 +142,7 @@ use_code_of_conduct(contact = "robert.schlegel@imev-mer.fr")
 # Vignettes ---------------------------------------------------------------
 
 # Now to create some better documentation
-# use_vignette(name = "gridded_event_detection")
+use_vignette(name = "fl_example")
 
 
 # pkgdown -----------------------------------------------------------------
