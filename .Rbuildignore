@@ -12,5 +12,6 @@
 ^data-raw$
 ^FjordLight.d/
 ^FjordLight.d/kong.nc
+^tests/testthat/test_file/kong.nc
 ^doc$
 ^Meta$

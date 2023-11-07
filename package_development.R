@@ -226,7 +226,7 @@ devtools::check_win_release()
 # rhub::local_check_linux(image = "rhub/debian-gcc-devel")
 
 # Online check
-# rhub::check(platform = "debian-gcc-devel")
+rhub::check(platform = "debian-gcc-devel")
 
 # Then use the gear button in the top right pane to 'Build Source Package'
 
