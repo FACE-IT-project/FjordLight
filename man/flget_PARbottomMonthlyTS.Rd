@@ -56,7 +56,7 @@ fl_DownloadFjord(fjord_code)
 fjorddata <- fl_LoadFjord(fjord_code, TS = TRUE) # NB: TS = TRUE
 
 # Years 2003 to 2004 - months July to August
-mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = TRUE)
+mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
 print(mts)
 
 }
