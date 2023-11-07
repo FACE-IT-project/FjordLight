@@ -50,26 +50,18 @@ would like to subset the data, which data format the data should be extracted to
 and if the user would like to plot the data in the process.
 }
 \examples{
-\dontrun{
 # Download+load data
-fjord <- "kong"
-fl_DownloadFjord(fjord, dirdata = "data/PAR")
-fjorddata <- fl_LoadFjord(fjord, dirdata = "data/PAR", TS = TRUE) # NB: TS = TRUE
+fjord_code <- "kong"
+fl_DownloadFjord(fjord_code)
+fjorddata <- fl_LoadFjord(fjord_code, TS = TRUE) # NB: TS = TRUE
 
-# all months - years 2011 2012
-mts <- flget_PARbottomMonthlyTS(fjorddata, year = 2011:2012, PLOT = TRUE)
+# Years 2003 to 2004 - months July to August
+mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = TRUE)
 print(mts)
-# all years - months July August
-mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, PLOT = TRUE)
-print(mts)
-# years 2003 to 2012 - months July August
-mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2012, PLOT = TRUE)
-print(mts)
-# all months - all years - as a data.frame
-mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "3col")
-str(mts_full, max.level = 0)
-print(names(mts_full))
-}
+# all years March-May - as a data.frame
+mts_spring <- flget_PARbottomMonthlyTS(fjorddata, month = 3:5, mode = "3col")
+str(mts_spring, max.level = 0)
+print(names(mts_spring))
 
 }
 \author{

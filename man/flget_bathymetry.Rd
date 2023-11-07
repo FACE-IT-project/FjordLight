@@ -35,11 +35,10 @@ for how the user would like to subset the data, which data format the data
 should be extracted to, and if the user would like to plot the data in the process.
 }
 \examples{
-\dontrun{
 # Download+load data
-fjord <- "kong"
-fl_DownloadFjord(fjord, dirdata = "data/PAR")
-fjorddata <- fl_LoadFjord(fjord, dirdata = "data/PAR")
+fjord_code <- "kong"
+fl_DownloadFjord(fjord_code)
+fjorddata <- fl_LoadFjord(fjord_code)
 
 # all depths (what = "s" ; s for Sea), as raster
 bathy <- flget_bathymetry(fjorddata, what = "s", mode = "raster", PLOT = TRUE)
@@ -50,7 +49,6 @@ sea <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
 cz <- flget_bathymetry(fjorddata, what = "c", mode = "3col", PLOT = FALSE)
 # you may add letter "l" if you want land elevation
 sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
-}
 
 }
 \author{

@@ -21,9 +21,8 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' fl_DownloadFjord("kong", dirdata = "data/PAR")
-#' }
+#' fjord_code <- "kong"
+#' fl_DownloadFjord(fjord_code)
 #'
 fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	options(timeout = 0)

@@ -22,11 +22,10 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Download+load data
-#' fjord <- "young"
-#' fl_DownloadFjord(fjord, dirdata = "data/PAR")
-#' fjorddata <- fl_LoadFjord(fjord, dirdata = "data/PAR")
+#' fjord_code <- "kong"
+#' fl_DownloadFjord(fjord_code)
+#' fjorddata <- fl_LoadFjord(fjord_code)
 #'
 #' # Load area data
 #' area <- flget_area(fjorddata, mode = "3col")
@@ -34,7 +33,6 @@
 #' sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
 #' # Then combine
 #' sealand_area <- cbind(sealand, area[3])
-#' }
 #'
 flget_area <- function(fjord, mode = "raster") {
 	with(fjord, {

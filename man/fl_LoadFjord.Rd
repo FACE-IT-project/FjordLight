@@ -30,20 +30,21 @@ This functions will load into the R environment the data within one NetCDF
 file that has been downloaded via \code{\link{fl_DownloadFjord}}.
 }
 \examples{
-\dontrun{
 # Choose fjord
-fjord <- "kong"
+fjord_code <- "kong"
 
 # Download data
-fl_DownloadFjord(fjord, dirdata = "data/PAR")
+fl_DownloadFjord(fjord_code)
 
 # Load global, annual, and monthly climatologies
-fjorddata <- fl_LoadFjord(fjord)
+fjorddata <- fl_LoadFjord(fjord_code)
 
 # Load ALL data
 # NB: These may be too large for some laptops
-fjorddata_full <- fl_LoadFjord(fjord, TS = TRUE)
-}
+fjorddata_full <- fl_LoadFjord(fjord_code, TS = TRUE)
+
+# Remove test files
+unlink("./FjordLight.d", recursive = TRUE)
 
 }
 \author{

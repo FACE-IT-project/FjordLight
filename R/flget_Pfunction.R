@@ -42,31 +42,24 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Download+load data
-#' fjord <- "kong"
-#' fl_DownloadFjord(fjord, dirdata = "data/PAR")
-#' fjorddata <- fl_LoadFjord(fjord, dirdata = "data/PAR")
+#' fjord_code <- "kong"
+#' fl_DownloadFjord(fjord_code)
+#' fjorddata <- fl_LoadFjord(fjord_code)
 #'
 #' # Create a function
-#' fG <- flget_Pfunction(fjorddata, "Global")
+#' fG <- flget_Pfunction(fjorddata, "shallow", "Global")
 #' # Then use it with specific PAR thresholds
 #' irradiance_levels <- c(0.1, 1, 10)
 #' fG(irradiance_levels)
 #'
 #' # As a 2 column data.frame
-#' f2012 <- flget_Pfunction(fjorddata, "Yearly", year = 2012, mode = "2col", PLOT = TRUE)
+#' f2012 <- flget_Pfunction(fjorddata, "shallow", "Yearly", year = 2012, mode = "2col", PLOT = TRUE)
 #' str(f2012)
 #'
-#' # plot of 3 P-functions on the same graph
-#' fGlob <- flget_Pfunction(fjorddata, "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
-#'                          Main = paste(fjord, "P-functions"), ylim = c(0, 50))
-#' f2012 <- flget_Pfunction(fjorddata, "Yearly", year = 2012, PLOT = TRUE, add = TRUE,
-#'                          lty = 1, col = 2, lwd = 2)
-#' fJuly <- flget_Pfunction(fjorddata, "Monthly", month = 7, PLOT = TRUE, add = TRUE,
-#'                          lty = 1, col = 3, lwd = 2)
-#' legend("topleft", legend = c("Global", "2012", "July"), lty = 1, col = 1:3, lwd = 2)
-#' }
+#' # Plot a P-function
+#' fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
+#'                          Main = paste(fjord_code, "P-functions"), ylim = c(0, 50))
 #'
 flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
                             mode = "function", PLOT = FALSE, add = FALSE, ...) {

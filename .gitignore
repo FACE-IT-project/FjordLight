@@ -6,3 +6,5 @@ FjordLight.d/
 vignettes/FjordLight.d/
 tests/testthat/Rplots.pdf
 tests/testthat/test_file
+/doc/
+/Meta/

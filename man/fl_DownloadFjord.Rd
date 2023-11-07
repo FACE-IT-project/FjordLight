@@ -27,9 +27,8 @@ retrieve the one file that matches the name provided to it via the \code{fjord}
 argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
-\dontrun{
-fl_DownloadFjord("kong", dirdata = "data/PAR")
-}
+fjord_code <- "kong"
+fl_DownloadFjord(fjord_code)
 
 }
 \author{

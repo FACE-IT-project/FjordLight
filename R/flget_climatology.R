@@ -40,16 +40,15 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Download+load data
-#' fjord <- "kong"
-#' fl_DownloadFjord(fjord, dirdata = "data/PAR")
-#' fjorddata <- fl_LoadFjord(fjord, dirdata = "data/PAR")
+#' fjord_code <- "kong"
+#' fl_DownloadFjord(fjord_code)
+#' fjorddata <- fl_LoadFjord(fjord_code)
 #'
 #' # PAR0m and PARbottom for July
-#' P07 <- flget_climatology(fjorddata, "PAR0m", "Monthly", month = 7, PLOT = TRUE)
+#' P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
 #' print(P07)
-#' Pb7 <- flget_climatology(fjorddata, "PARbottom", "Monthly", month = 7, PLOT = TRUE)
+#' Pb7 <- flget_climatology(fjorddata, "PARbottom", "Clim", month = 7, PLOT = TRUE)
 #' print(Pb7)
 #' # PARbottom Global
 #' PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
@@ -57,7 +56,6 @@
 #' # PAR0m and kdpar for year 2012 as 3 columns data frame
 #' P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
 #' k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
-#' }
 #'
 flget_climatology <- function(fjord, optics = "PARbottom", period = "Global", month = NA, year = NA, mode = "raster", PLOT = FALSE) {
 

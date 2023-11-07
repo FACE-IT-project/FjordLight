@@ -11,6 +11,10 @@ library(devtools)
 library(testthat)
 library(pkgdown)
 
+# This may also be useful
+# For examples: https://thinkr-open.github.io/checkhelper/
+library(checkhelper)
+
 # Disable package build note about not finding local time
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
 
@@ -94,6 +98,12 @@ use_test("pipeline")
 # Give it all a thorough look over with:
 devtools::check()
 # One must have zero errors, warnings, notes
+
+# A better way to check as CRAN
+checkhelper::check_as_cran()
+
+# Check if any fils are created during check
+checkhelper::check_clean_userspace()
 
 
 # Importing data ----------------------------------------------------------
@@ -246,7 +256,7 @@ devtools::check_win_release()
 
 # Speed tests -------------------------------------------------------------
 
-library(heatwaveR)
+library(FjordLight)
 library(profvis)
-profvis(detect_event(ts2clm(sst_WA, climatologyPeriod = c("1982-01-01", "2011-12-31"))))
+profvis(fjorddata <- fl_LoadFjord("kong", TS = TRUE))
 

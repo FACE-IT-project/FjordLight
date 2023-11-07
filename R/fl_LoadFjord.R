@@ -22,20 +22,21 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Choose fjord
-#' fjord <- "kong"
+#' fjord_code <- "kong"
 #'
 #' # Download data
-#' fl_DownloadFjord(fjord, dirdata = "data/PAR")
+#' fl_DownloadFjord(fjord_code)
 #'
 #' # Load global, annual, and monthly climatologies
-#' fjorddata <- fl_LoadFjord(fjord)
+#' fjorddata <- fl_LoadFjord(fjord_code)
 #'
 #' # Load ALL data
 #' # NB: These may be too large for some laptops
-#' fjorddata_full <- fl_LoadFjord(fjord, TS = TRUE)
-#' }
+#' fjorddata_full <- fl_LoadFjord(fjord_code, TS = TRUE)
+#'
+#' # Remove test files
+#' unlink("./FjordLight.d", recursive = TRUE)
 #'
 fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE) {
 	ncfile <- paste(dirdata, paste(fjord, "nc", sep = "."), sep = "/")

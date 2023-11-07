@@ -23,18 +23,16 @@ as well as the surface are in km^2 for the shallow zone (< 50 m deep) and coasta
 zone (< 200 m deep).
 }
 \examples{
-\dontrun{
 # Download+load data
-fjord <- "young"
-fl_DownloadFjord(fjord, dirdata = "data/PAR")
-fjorddata <- fl_LoadFjord(fjord, dirdata = "~/pCloudDrive/FACE-IT_data/PAR/")
+fjord_code <- "kong"
+fl_DownloadFjord(fjord_code)
+fjorddata <- fl_LoadFjord(fjord_code)
 
 # Load geo-parameters
 geo_params <- flget_geoparameters(fjorddata)
 
 # Convert to a data.frame if desired
 geo_params_df <- t(as.data.frame(geo_params))
-}
 
 }
 \author{

@@ -149,4 +149,9 @@ fGlob <- flget_Pfunction(fjorddata, type = "coastal", period = "Global", PLOT = 
                          Main = paste(fjord, "coastal P-functions"), ylim = c(0, 50))
 ```
 
+```{r echo=FALSE}
+# Remove test files
+unlink("./FjordLight.d", recursive = TRUE)
+```
+
 # References

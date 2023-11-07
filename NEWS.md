@@ -1,3 +1,11 @@
+# FjordLight 0.6 (2023-11-07)
+
+* Attempting to get on CRAN
+
+# FjordLight 0.5.9001 (2023-11-07)
+
+* Getting all examples in the documentation to run
+
 # FjordLight 0.5.9000 (2023-11-03)
 
 * Working on getting the testing of all functions covered
