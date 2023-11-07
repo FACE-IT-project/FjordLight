@@ -21,7 +21,7 @@ data should be extracted to, and if the user would like to plot the data in the 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6</span>
       </span>
     </div>
 
@@ -152,24 +152,53 @@ The data.frame will contain the following columns:</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Download+load data</span></span></span>
-<span class="r-in"><span><span class="va">fjord</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"data/PAR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"data/PAR"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
+<span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> kong already downloaded in directory FjordLight.d </span>
+<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># PAR0m and PARbottom for July</span></span></span>
-<span class="r-in"><span><span class="va">P07</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PAR0m"</span>, <span class="st">"Monthly"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">P07</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PAR0m"</span>, <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="flget_climatology-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">P07</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">Pb7</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PARbottom"</span>, <span class="st">"Monthly"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      : RasterLayer </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution : 0.00462, 0.000883  (x, y)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> extent     : 11.1738, 12.65682, 78.85438, 79.11045  (xmin, xmax, ymin, ymax)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> crs        : +proj=longlat +datum=WGS84 +no_defs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> source     : memory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> names      : PAR0m_Jul </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> values     : 11.14298, 32.43196  (min, max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="va">Pb7</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PARbottom"</span>, <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="flget_climatology-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">Pb7</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      : RasterLayer </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution : 0.00462, 0.000883  (x, y)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> extent     : 11.1738, 12.65682, 78.85438, 79.11045  (xmin, xmax, ymin, ymax)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> crs        : +proj=longlat +datum=WGS84 +no_defs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> source     : memory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> names      : PARbottom_Jul </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> values     : 6.354513e-37, 30.41457  (min, max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># PARbottom Global</span></span></span>
 <span class="r-in"><span><span class="va">PbG</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PARbottom"</span>, <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="flget_climatology-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">PbG</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      : RasterLayer </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution : 0.00462, 0.000883  (x, y)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> extent     : 11.1738, 12.65682, 78.85438, 79.11045  (xmin, xmax, ymin, ymax)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> crs        : +proj=longlat +datum=WGS84 +no_defs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> source     : memory</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> names      : PARbottom_Global </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> values     : 2.293755e-24, 18.12253  (min, max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># PAR0m and kdpar for year 2012 as 3 columns data frame</span></span></span>
 <span class="r-in"><span><span class="va">P02012</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PAR0m"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">k2012</span> <span class="op">&lt;-</span> <span class="fu">flget_climatology</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"Kpar"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

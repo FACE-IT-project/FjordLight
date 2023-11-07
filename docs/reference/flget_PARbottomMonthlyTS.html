@@ -22,7 +22,7 @@ and if the user would like to plot the data in the process."><meta property="og:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.5.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6</span>
       </span>
     </div>
 
@@ -138,26 +138,63 @@ or data.frame (<code>mode = "3col"</code>). The data.frame will contain the foll
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="co"># Download+load data</span></span></span>
-<span class="r-in"><span><span class="va">fjord</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"data/PAR"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"data/PAR"</span>, TS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># NB: TS = TRUE</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
+<span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> directory FjordLight.d created</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; downloading fjord kong </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> kong downloaded in directory FjordLight.d </span>
+<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, TS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># NB: TS = TRUE</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># all months - years 2011 2012</span></span></span>
-<span class="r-in"><span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, year <span class="op">=</span> <span class="fl">2011</span><span class="op">:</span><span class="fl">2012</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Years 2003 to 2004 - months July to August</span></span></span>
+<span class="r-in"><span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2004</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="flget_PARbottomMonthlyTS-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># all years - months July August</span></span></span>
-<span class="r-in"><span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># years 2003 to 2012 - months July August</span></span></span>
-<span class="r-in"><span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2012</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># all months - all years - as a data.frame</span></span></span>
-<span class="r-in"><span><span class="va">mts_full</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mts_full</span>, max.level <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mts_full</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> class      : RasterStack </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> dimensions : 290, 321, 93090, 4  (nrow, ncol, ncell, nlayers)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> resolution : 0.00462, 0.000883  (x, y)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> extent     : 11.1738, 12.65682, 78.85438, 79.11045  (xmin, xmax, ymin, ymax)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> crs        : +proj=longlat +datum=WGS84 +no_defs </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> names      : MonthlyPARbottom.2003.07, MonthlyPARbottom.2003.08, MonthlyPARbottom.2004.07, MonthlyPARbottom.2004.08 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> min values :             4.123321e-40,             0.000000e+00,             0.000000e+00,             2.662467e-44 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> max values :                 32.26019,                 19.93828,                 26.65807,                 18.68446 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="co"># all years March-May - as a data.frame</span></span></span>
+<span class="r-in"><span><span class="va">mts_spring</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mts_spring</span>, max.level <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	93090 obs. of  62 variables:</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mts_spring</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "longitude"                "latitude"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "MonthlyPARbottom.2003.03" "MonthlyPARbottom.2003.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "MonthlyPARbottom.2003.05" "MonthlyPARbottom.2004.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "MonthlyPARbottom.2004.04" "MonthlyPARbottom.2004.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "MonthlyPARbottom.2005.03" "MonthlyPARbottom.2005.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "MonthlyPARbottom.2005.05" "MonthlyPARbottom.2006.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "MonthlyPARbottom.2006.04" "MonthlyPARbottom.2006.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "MonthlyPARbottom.2007.03" "MonthlyPARbottom.2007.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "MonthlyPARbottom.2007.05" "MonthlyPARbottom.2008.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "MonthlyPARbottom.2008.04" "MonthlyPARbottom.2008.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "MonthlyPARbottom.2009.03" "MonthlyPARbottom.2009.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "MonthlyPARbottom.2009.05" "MonthlyPARbottom.2010.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "MonthlyPARbottom.2010.04" "MonthlyPARbottom.2010.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "MonthlyPARbottom.2011.03" "MonthlyPARbottom.2011.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "MonthlyPARbottom.2011.05" "MonthlyPARbottom.2012.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "MonthlyPARbottom.2012.04" "MonthlyPARbottom.2012.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "MonthlyPARbottom.2013.03" "MonthlyPARbottom.2013.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "MonthlyPARbottom.2013.05" "MonthlyPARbottom.2014.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "MonthlyPARbottom.2014.04" "MonthlyPARbottom.2014.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "MonthlyPARbottom.2015.03" "MonthlyPARbottom.2015.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "MonthlyPARbottom.2015.05" "MonthlyPARbottom.2016.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "MonthlyPARbottom.2016.04" "MonthlyPARbottom.2016.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "MonthlyPARbottom.2017.03" "MonthlyPARbottom.2017.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "MonthlyPARbottom.2017.05" "MonthlyPARbottom.2018.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "MonthlyPARbottom.2018.04" "MonthlyPARbottom.2018.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "MonthlyPARbottom.2019.03" "MonthlyPARbottom.2019.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "MonthlyPARbottom.2019.05" "MonthlyPARbottom.2020.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "MonthlyPARbottom.2020.04" "MonthlyPARbottom.2020.05"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "MonthlyPARbottom.2021.03" "MonthlyPARbottom.2021.04"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "MonthlyPARbottom.2021.05" "MonthlyPARbottom.2022.03"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "MonthlyPARbottom.2022.04" "MonthlyPARbottom.2022.05"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
