@@ -14,5 +14,10 @@
 #' fl_ListFjords()
 #'
 fl_ListFjords <- function() {
-	sub("\\.nc$", "", unlist(strsplit(RCurl::getURL("ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords/", dirlistonly = TRUE), "\n")))
+  fjord_ftp <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords/"
+  h <- curl::new_handle(dirlistonly = TRUE)
+  con <- curl::curl(fjord_ftp, "r", h)
+  fjord_tbl <- utils::read.table(con, stringsAsFactors = TRUE, fill = TRUE)
+  fjord_tbl$V1 <- sub("\\.nc$", "", fjord_tbl$V1)
+  return(as.vector(fjord_tbl$V1))
 }
