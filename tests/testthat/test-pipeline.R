@@ -1,5 +1,6 @@
 # Test all functions in one script to avoid multiple downloads
 
+if (Sys.getenv('NOT_CRAN') == "true") {
 
 # Downloading -------------------------------------------------------------
 
@@ -167,3 +168,5 @@ test_that("P-functions error messages signal correctly", {
 
 # Remove test files
 unlink("./FjordLight.d", recursive = TRUE)
+
+}

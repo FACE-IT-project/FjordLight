@@ -215,8 +215,9 @@ ggplot2::ggplot(ggplot2_logs) +
 # Run check and make sure there are no ERROR, WARNING, or NOTE
 
 # After that run the following command to check the package on a
-# windows OS if you are not currently running on that
+# Windows or Mac OS if you are not currently running on that
 devtools::check_win_release()
+devtools::check_mac_release()
 
 # Or check specific CRAN flavours via the rhub package
 # https://blog.r-hub.io/2019/04/25/r-devel-linux-x86-64-debian-clang/

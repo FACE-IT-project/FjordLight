@@ -43,10 +43,6 @@
 #' # Years 2003 to 2004 - months July to August
 #' mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = TRUE)
 #' print(mts)
-#' # all years March-May - as a data.frame
-#' mts_spring <- flget_PARbottomMonthlyTS(fjorddata, month = 3:5, mode = "3col")
-#' str(mts_spring, max.level = 0)
-#' print(names(mts_spring))
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
 

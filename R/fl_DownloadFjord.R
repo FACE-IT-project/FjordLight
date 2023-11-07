@@ -37,7 +37,7 @@ fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	localf <- paste(dirdata, ncfile, sep = "/")
 	if(! file.exists(localf)) {
 		cat("---> downloading fjord", fjord, "\n")
-		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf)
+		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
 		cat(fjord, "downloaded in directory", dirdata, "\n")
 	} else {
 		cat(fjord, "already downloaded in directory", dirdata, "\n")
