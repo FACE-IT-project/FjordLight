@@ -6,9 +6,11 @@
 #' should be extracted to, and if the user would like to plot the data in the process.
 #'
 #' @param fjord Expects the object loaded via \code{\link{fl_LoadFjord}}.
-#' @param what The default value \code{"s"} will load all "sea" data, meaning it will filter
-#' out any land pixels. The other options are: \code{"c"} filters out only bathymetry data
-#' at a depth of 200 m to 0 m, and \code{"sl"} loads the entire data layer (all sea and land pixels).
+#' @param what The default value \code{"o"} will load all "ocean" data, meaning it will filter
+#' out any land pixels. The other options are: \code{"c"} filters out only coastal bathymetry
+#' data (depth of 200 m to 0 m), \code{"s"} filters out only shallow bathymetry data
+#' (depth of 50 m to 0 m), and \code{"l"} loads the land data. One may combine \code{"o"},
+#' \code{"c"}, or \code{"s"}, with \code{"l"} (e.g. \code{"ol"}) to load both sea and land data.
 #' @param mode Determines the format of the bathymetry data loaded into the R environment.
 #' The default \code{"raster"} will load the data as a raster format. The other option \code{"3col"}
 #' will load the data as a data.frame with three columns.
@@ -32,18 +34,10 @@
 #' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
 #' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
-#' # all depths (what = "s" ; s for Sea), as raster
-#' bathy <- flget_bathymetry(fjorddata, what = "s", mode = "raster", PLOT = TRUE)
+#' # For all examples, change 'PLOT = TRUE' to visualise the output
 #'
-#' # coastal zone [0-200m] (what = "c" ; c for Coastal), as raster
-#' bathy <- flget_bathymetry(fjorddata, what = "c", mode = "raster", PLOT = TRUE)
-#'
-#' # as 3 columns data frame (mode = "3col" : longitude, latitude, depth)
-#' sea <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
-#' cz <- flget_bathymetry(fjorddata, what = "c", mode = "3col", PLOT = FALSE)
-#'
-#' # you may add letter "l" if you want land elevation
-#' sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
+#' # Shallow and land data (what = "s"; s for shallow), as raster
+#' bathy <- flget_bathymetry(fjorddata, what = "s", mode = "raster", PLOT = FALSE)
 #'
 #' # Remove test files
 #' unlink("test_dir", recursive = TRUE)

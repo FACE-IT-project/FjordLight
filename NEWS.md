@@ -1,6 +1,6 @@
 # FjordLight 0.6 (2023-11-08)
 
-* More CRAN related minor example changes
+* More CRAN related changes
 
 # FjordLight 0.6 (2023-11-07)
 

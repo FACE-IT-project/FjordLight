@@ -34,19 +34,23 @@
 #' unlink("test_dir", recursive = TRUE)
 #'
 flget_area <- function(fjord, mode = "raster") {
-	with(fjord, {
-		proj.lonlat.def = 4326
-		r <- fjord[["area"]]
-		r <- raster::raster(list(x = longitude, y = latitude, z = r))
-		names(r) <- "pixelarea"
-		raster::crs(r) <- proj.lonlat.def
-		if(mode == "raster") {
-			return(r)
-		}
-		if(mode == "3col") {
-			dum <- as.data.frame(cbind(raster::xyFromCell(r, 1:raster::ncell(r)), raster::values(r)))
-			names(dum) <- c("longitude", "latitude", "PixArea_km2")
-			return(dum)
-		}
-	})
+  mat <- fjord[["area"]]
+  if(mode == "raster") {
+    r <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = mat))
+    names(r) <- "pixelarea"
+    raster::crs(r) <- 4326
+    return(r)
+  }
+  if(mode == "3col") {
+    n <- nrow(mat)
+    m <- ncol(mat)
+    row_indices <- rep(1:n, each = m)
+    col_indices <- rep(1:m, times = n)
+    dum <- data.frame(
+      longitude = fjord$longitude[row_indices],
+      latitude = fjord$latitude[col_indices],
+      PixArea_km2 = base::as.vector(t(mat))
+    )
+    return(dum)
+  }
 }
