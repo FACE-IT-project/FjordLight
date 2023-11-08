@@ -238,7 +238,7 @@ rhub::check(platform = "debian-gcc-devel")
 # Once the new version is up on CRAN it is time to re-publish this in a couple of places
 
 # Up first is the Journal of open-source software (JOSS)
-# http://joss.theoj.org/papers/9353247bebdfcc0f7357a759381416bb
+# http://joss.theoj.org
 # Actually, it looks like this doesn't need to be updated with new releases as it is
 # pointed at the following source, which does need updating...
 
@@ -247,7 +247,7 @@ rhub::check(platform = "debian-gcc-devel")
 # https://help.github.com/articles/creating-releases/
 
 # This then should automagically update the version listed on zenodo
-# https://zenodo.org/record/1324309
+# https://zenodo.org/
 # If not then follow these instructions:
 # http://help.zenodo.org/#versioning
 # Or just go to the Zenodo website for heatwaveR and click the big green button 'New version'

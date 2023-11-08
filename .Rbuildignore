@@ -9,6 +9,8 @@
 ^pkgdown$
 ^logo.png
 ^package_development.R
+^paper.md
+^paper.bib
 ^data-raw$
 ^FjordLight.d/
 ^FjordLight.d/kong.nc

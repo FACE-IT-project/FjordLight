@@ -37,12 +37,18 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "kong"
-#' fl_DownloadFjord(fjord_code)
-#' fjorddata <- fl_LoadFjord(fjord_code, TS = TRUE) # NB: TS = TRUE
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#'
+#' # Load ALL data
+#' # NB: These may be too large for some laptops
+#' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
+#' # fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE) # NB: TS = TRUE
 #'
 #' # Years 2003 to 2004 - months July to August
-#' mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
-#' print(mts)
+#' # mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+#'
+#' # Remove test files
+#' unlink("test_dir", recursive = TRUE)
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
 

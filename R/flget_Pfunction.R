@@ -44,11 +44,12 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "kong"
-#' fl_DownloadFjord(fjord_code)
-#' fjorddata <- fl_LoadFjord(fjord_code)
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Create a function
 #' fG <- flget_Pfunction(fjorddata, "shallow", "Global")
+#'
 #' # Then use it with specific PAR thresholds
 #' irradiance_levels <- c(0.1, 1, 10)
 #' fG(irradiance_levels)
@@ -60,6 +61,9 @@
 #' # Plot a P-function
 #' fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
 #'                          Main = paste(fjord_code, "P-functions"), ylim = c(0, 50))
+#'
+#' # Remove test files
+#' unlink("test_dir", recursive = TRUE)
 #'
 flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
                             mode = "function", PLOT = FALSE, add = FALSE, ...) {

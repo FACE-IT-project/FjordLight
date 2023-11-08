@@ -143,13 +143,14 @@ is the default value).</p>
 <span><span class="va">fjord</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span>
 <span></span>
 <span><span class="co"># If the file has already been downloaded a message will be shown</span></span>
-<span><span class="co"># A default directory is created at "~/FjordLight.d"</span></span>
-<span><span class="fu"><a href="../reference/fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span><span class="op">)</span></span>
-<span><span class="co">#&gt; directory FjordLight.d created</span></span>
+<span><span class="co"># If a directory is not provided to 'dirdata' </span></span>
+<span><span class="co"># a default directory will be created at "FjordLight.d"</span></span>
+<span><span class="fu"><a href="../reference/fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; directory test_dir created</span></span>
 <span><span class="co">#&gt; ---&gt; downloading fjord kong </span></span>
-<span><span class="co">#&gt; kong downloaded in directory FjordLight.d</span></span>
+<span><span class="co">#&gt; kong downloaded in directory test_dir</span></span>
 <span><span class="va">WANT_TIME_SERIES</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
-<span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, TS <span class="op">=</span> <span class="va">WANT_TIME_SERIES</span><span class="op">)</span></span>
+<span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span>, TS <span class="op">=</span> <span class="va">WANT_TIME_SERIES</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">fjorddata</span>, list.len <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
 <span><span class="co">#&gt; List of 31</span></span>
 <span><span class="co">#&gt;  $ name                  : chr "kong"</span></span>
@@ -168,15 +169,11 @@ is the default value).</p>
 <span><span class="co">#&gt;  $ MonthlyPARbottom      : num [1:321, 1:290, 1:8, 1:20] NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...</span></span>
 <span><span class="co">#&gt;  $ ClimPARbottom         : num [1:321, 1:290, 1:8] NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ...</span></span>
 <span><span class="co">#&gt;   [list output truncated]</span></span></code></pre></div>
-<p>If you want to download in a custom directory use :</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span> , dirdata <span class="op">=</span> <span class="st">"MyDirectory"</span><span class="op">)</span></span>
-<span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="st">"MyDirectory"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="get-geographic-parameters">Get geographic parameters<a class="anchor" aria-label="anchor" href="#get-geographic-parameters"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/flget_geoparameters.html">flget_geoparameters</a></span><span class="op">(</span><span class="va">fjorddata</span><span class="op">)</span></span>
 <span><span class="co">#&gt; site_average_longitude  site_average_latitude      AreaOfCoastalZone </span></span>
 <span><span class="co">#&gt;                11.8450                78.9800               205.4384 </span></span>
@@ -186,21 +183,21 @@ is the default value).</p>
 <div class="section level3">
 <h3 id="get-bathymetry">Get bathymetry<a class="anchor" aria-label="anchor" href="#get-bathymetry"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># all depths (what = "o" ; o for Ocean), as raster</span></span>
 <span><span class="va">bathy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_bathymetry.html">flget_bathymetry</a></span><span class="op">(</span><span class="va">fjorddata</span>, what <span class="op">=</span> <span class="st">"o"</span>, mode <span class="op">=</span> <span class="st">"raster"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># coastal zone [0-200m] (what = "c" ; c for Coastal), as raster</span></span>
 <span><span class="va">bathy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_bathymetry.html">flget_bathymetry</a></span><span class="op">(</span><span class="va">fjorddata</span>, what <span class="op">=</span> <span class="st">"c"</span>, mode <span class="op">=</span> <span class="st">"raster"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-6-2.png" width="576"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-5-2.png" width="576"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># shallow zone [0-50m] (what = "sl" ; s for Shallow, l to add land), as raster</span></span>
 <span><span class="va">bathy</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_bathymetry.html">flget_bathymetry</a></span><span class="op">(</span><span class="va">fjorddata</span>, what <span class="op">=</span> <span class="st">"sl"</span>, mode <span class="op">=</span> <span class="st">"raster"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-6-3.png" width="576"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-5-3.png" width="576"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># as 3 columns data frame (mode = "3col" : longitude, latitude, depth)</span></span>
 <span><span class="va">sea</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_bathymetry.html">flget_bathymetry</a></span><span class="op">(</span><span class="va">fjorddata</span>, what <span class="op">=</span> <span class="st">"s"</span>, mode <span class="op">=</span> <span class="st">"3col"</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -219,11 +216,11 @@ is the default value).</p>
 <div class="section level3">
 <h3 id="get-climatologies-of-par0m-kpar-and-parbottom">Get climatologies of PAR0m, Kpar, and PARbottom<a class="anchor" aria-label="anchor" href="#get-climatologies-of-par0m-kpar-and-parbottom"></a>
 </h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PAR0m and PARbottom for July</span></span>
 <span><span class="va">P07</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PAR0m"</span>, period <span class="op">=</span> <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-6-1.png" width="576"></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">P07</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class      : RasterLayer </span></span>
 <span><span class="co">#&gt; dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span></span>
@@ -234,8 +231,8 @@ is the default value).</p>
 <span><span class="co">#&gt; names      : PAR0m_Jul </span></span>
 <span><span class="co">#&gt; values     : 11.14298, 32.43196  (min, max)</span></span>
 <span><span class="va">Pb7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PARbottom"</span>, period <span class="op">=</span> <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-7-2.png" width="576"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-6-2.png" width="576"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">Pb7</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class      : RasterLayer </span></span>
 <span><span class="co">#&gt; dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span></span>
@@ -248,8 +245,8 @@ is the default value).</p>
 <span></span>
 <span><span class="co"># PARbottom Global</span></span>
 <span><span class="va">PbG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PARbottom"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-7-3.png" width="576"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-6-3.png" width="576"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">PbG</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class      : RasterLayer </span></span>
 <span><span class="co">#&gt; dimensions : 290, 321, 93090  (nrow, ncol, ncell)</span></span>
@@ -272,7 +269,7 @@ is the default value).</p>
 <span><span class="co">#&gt; 5  11.19459    79.11       NaN</span></span>
 <span><span class="co">#&gt; 6  11.19921    79.11       NaN</span></span></code></pre></div>
 <p>I f you want to group the “3col” data</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># first get pixels area</span></span>
 <span><span class="va">area</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_area.html">flget_area</a></span><span class="op">(</span><span class="va">fjorddata</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span>
 <span><span class="co"># then group 3col data</span></span>
@@ -289,11 +286,11 @@ is the default value).</p>
 <div class="section level3">
 <h3 id="get-monthly-time-series-of-parbottom">Get monthly time series of PARbottom<a class="anchor" aria-label="anchor" href="#get-monthly-time-series-of-parbottom"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Years 2003 to 2004 - months July to August</span></span>
 <span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_PARbottomMonthlyTS.html">flget_PARbottomMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2004</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<p><img src="fl_example_files/figure-html/unnamed-chunk-8-1.png" width="576"></p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class      : RasterBrick </span></span>
 <span><span class="co">#&gt; dimensions : 6, 321, 1926, 4  (nrow, ncol, ncell, nlayers)</span></span>
@@ -304,7 +301,7 @@ is the default value).</p>
 <span><span class="co">#&gt; names      :   layer.1,   layer.2,   layer.3,   layer.4 </span></span>
 <span><span class="co">#&gt; min values : 1.3843774, 0.9039224, 1.3057122, 0.7252699 </span></span>
 <span><span class="co">#&gt; max values :  9.441184,  6.221487,  8.848774,  4.757251</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># All months - all years - as data.frame : columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162</span></span>
 <span><span class="co"># NB: This will create a rather large object in your environment, proceed with caution</span></span>
 <span><span class="va">mts_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_PARbottomMonthlyTS.html">flget_PARbottomMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata</span>, mode <span class="op">=</span> <span class="st">"3col"</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
@@ -312,7 +309,7 @@ is the default value).</p>
 <div class="section level3">
 <h3 id="p-functions">P-functions<a class="anchor" aria-label="anchor" href="#p-functions"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as a function</span></span>
 <span><span class="va">fG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, type <span class="op">=</span> <span class="st">"coastal"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co"># then you can use it; for instance :</span></span>
@@ -330,7 +327,7 @@ is the default value).</p>
 <span><span class="co"># Plot P-functions</span></span>
 <span><span class="va">fGlob</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, type <span class="op">=</span> <span class="st">"coastal"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span>, lty <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">2</span>, </span>
 <span>                         Main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">fjord</span>, <span class="st">"coastal P-functions"</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
+<p><img src="fl_example_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
 </div>
 </div>
 <div class="section level2">

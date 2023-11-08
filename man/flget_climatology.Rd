@@ -61,20 +61,25 @@ data should be extracted to, and if the user would like to plot the data in the 
 \examples{
 # Download+load data
 fjord_code <- "kong"
-fl_DownloadFjord(fjord_code)
-fjorddata <- fl_LoadFjord(fjord_code)
+fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 
 # PAR0m and PARbottom for July
 P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
 print(P07)
 Pb7 <- flget_climatology(fjorddata, "PARbottom", "Clim", month = 7, PLOT = TRUE)
 print(Pb7)
+
 # PARbottom Global
 PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
 print(PbG)
+
 # PAR0m and kdpar for year 2012 as 3 columns data frame
 P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
 k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
+
+# Remove test files
+unlink("test_dir", recursive = TRUE)
 
 }
 \author{

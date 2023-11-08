@@ -16,6 +16,7 @@ bibliography: bibliography.bib
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  # eval = FALSE,
   comment = "#>"
   )
 ```
@@ -48,18 +49,12 @@ fl_ListFjords()
 fjord <- "kong"
 
 # If the file has already been downloaded a message will be shown
-# A default directory is created at "~/FjordLight.d"
-fl_DownloadFjord(fjord)
+# If a directory is not provided to 'dirdata' 
+# a default directory will be created at "FjordLight.d"
+fl_DownloadFjord(fjord, dirdata = "test_dir")
 WANT_TIME_SERIES <- TRUE
-fjorddata <- fl_LoadFjord(fjord, TS = WANT_TIME_SERIES)
+fjorddata <- fl_LoadFjord(fjord, dirdata = "test_dir", TS = WANT_TIME_SERIES)
 str(fjorddata, list.len = 15)
-```
-
-If you want to download in a custom directory use :
-
-```{r eval=FALSE}
-fl_DownloadFjord(fjord , dirdata = "MyDirectory")
-fjorddata <- fl_LoadFjord(fjord, dirdata = "MyDirectory")
 ```
 
 ## Get geographic parameters
@@ -154,7 +149,7 @@ fGlob <- flget_Pfunction(fjorddata, type = "coastal", period = "Global", PLOT = 
 
 ```{r echo=FALSE}
 # Remove test files
-unlink("./FjordLight.d", recursive = TRUE)
+unlink("test_dir", recursive = TRUE)
 ```
 
 # References

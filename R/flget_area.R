@@ -24,15 +24,20 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "kong"
-#' fl_DownloadFjord(fjord_code)
-#' fjorddata <- fl_LoadFjord(fjord_code)
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Load area data
 #' area <- flget_area(fjorddata, mode = "3col")
+#'
 #' # Then load bathymetry
 #' sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
+#'
 #' # Then combine
 #' sealand_area <- cbind(sealand, area[3])
+#'
+#' # Remove test files
+#' unlink("test_dir", recursive = TRUE)
 #'
 flget_area <- function(fjord, mode = "raster") {
 	with(fjord, {

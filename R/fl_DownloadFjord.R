@@ -22,7 +22,10 @@
 #'
 #' @examples
 #' fjord_code <- "kong"
-#' fl_DownloadFjord(fjord_code)
+# fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#'
+#' # Remove test files
+#' unlink("test_dir", recursive = TRUE)
 #'
 fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	options(timeout = 0)

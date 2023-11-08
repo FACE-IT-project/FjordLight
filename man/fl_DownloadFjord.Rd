@@ -28,7 +28,9 @@ argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
 fjord_code <- "kong"
-fl_DownloadFjord(fjord_code)
+
+# Remove test files
+unlink("test_dir", recursive = TRUE)
 
 }
 \author{

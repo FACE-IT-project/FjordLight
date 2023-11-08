@@ -26,17 +26,18 @@
 #' fjord_code <- "kong"
 #'
 #' # Download data
-#' fl_DownloadFjord(fjord_code)
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Load global, annual, and monthly climatologies
-#' fjorddata <- fl_LoadFjord(fjord_code)
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Load ALL data
 #' # NB: These may be too large for some laptops
-#' fjorddata_full <- fl_LoadFjord(fjord_code, TS = TRUE)
+#' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
+#' # fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE)  # NB: TS = TRUE
 #'
 #' # Remove test files
-#' unlink("./FjordLight.d", recursive = TRUE)
+#' unlink("test_dir", recursive = TRUE)
 #'
 fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE) {
 	ncfile <- paste(dirdata, paste(fjord, "nc", sep = "."), sep = "/")

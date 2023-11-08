@@ -110,16 +110,23 @@ data.frame (<code>mode = "3col"</code>). The data.frame will contain the followi
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
 <span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> kong already downloaded in directory FjordLight.d </span>
-<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> directory test_dir created</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; downloading fjord kong </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> kong downloaded in directory test_dir </span>
+<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Load area data</span></span></span>
 <span class="r-in"><span><span class="va">area</span> <span class="op">&lt;-</span> <span class="fu">flget_area</span><span class="op">(</span><span class="va">fjorddata</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Then load bathymetry</span></span></span>
 <span class="r-in"><span><span class="va">sealand</span> <span class="op">&lt;-</span> <span class="fu"><a href="flget_bathymetry.html">flget_bathymetry</a></span><span class="op">(</span><span class="va">fjorddata</span>, what <span class="op">=</span> <span class="st">"sl"</span>, mode <span class="op">=</span> <span class="st">"3col"</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Then combine</span></span></span>
 <span class="r-in"><span><span class="va">sealand_area</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">sealand</span>, <span class="va">area</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Remove test files</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"test_dir"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -37,18 +37,24 @@ should be extracted to, and if the user would like to plot the data in the proce
 \examples{
 # Download+load data
 fjord_code <- "kong"
-fl_DownloadFjord(fjord_code)
-fjorddata <- fl_LoadFjord(fjord_code)
+fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 
 # all depths (what = "s" ; s for Sea), as raster
 bathy <- flget_bathymetry(fjorddata, what = "s", mode = "raster", PLOT = TRUE)
+
 # coastal zone [0-200m] (what = "c" ; c for Coastal), as raster
 bathy <- flget_bathymetry(fjorddata, what = "c", mode = "raster", PLOT = TRUE)
+
 # as 3 columns data frame (mode = "3col" : longitude, latitude, depth)
 sea <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
 cz <- flget_bathymetry(fjorddata, what = "c", mode = "3col", PLOT = FALSE)
+
 # you may add letter "l" if you want land elevation
 sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
+
+# Remove test files
+unlink("test_dir", recursive = TRUE)
 
 }
 \author{

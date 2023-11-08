@@ -20,14 +20,17 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "kong"
-#' fl_DownloadFjord(fjord_code)
-#' fjorddata <- fl_LoadFjord(fjord_code)
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Load geo-parameters
 #' geo_params <- flget_geoparameters(fjorddata)
 #'
 #' # Convert to a data.frame if desired
 #' geo_params_df <- t(as.data.frame(geo_params))
+#'
+#' # Remove test files
+#' unlink("test_dir", recursive = TRUE)
 #'
 flget_geoparameters <- function(fjord) {
   vs <- c("site_average_longitude", "site_average_latitude", "AreaOfCoastalZone", "AreaOfShallowZone")
