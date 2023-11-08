@@ -3,7 +3,9 @@
 [![R-CMD-check](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/FACE-IT-project/FjordLight/branch/main/graph/badge.svg)](https://app.codecov.io/gh/FACE-IT-project/FjordLight?branch=main)
 
-This package was created to aid in accessing the fjord PAR data products created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in prep that will contain more details.
+This package was created to aid in accessing the fjord PAR data product created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in prep that will contain more details.
+
+For a full range of examples for how to use this package, please see this [vignette](https://face-it-project.github.io/FjordLight/articles/fl_example.html).
 
 To install this package please run: 
 

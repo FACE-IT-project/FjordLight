@@ -6,14 +6,12 @@
 # Getting started ---------------------------------------------------------
 
 # These packages are centrally important
-library(usethis)
 library(devtools)
+library(usethis)
 library(testthat)
-library(pkgdown)
-
-# This may also be useful
-# For examples: https://thinkr-open.github.io/checkhelper/
 library(checkhelper)
+library(pkgdown)
+# For examples: https://thinkr-open.github.io/checkhelper/
 
 # Disable package build note about not finding local time
 Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)

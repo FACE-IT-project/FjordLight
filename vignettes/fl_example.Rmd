@@ -95,18 +95,18 @@ str(sea)
 
 ```{r fig.width = 6, fig.height=6}
 # PAR0m and PARbottom for July
-P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
+P07 <- flget_climatology(fjorddata, optics = "PAR0m", period = "Clim", month = 7, PLOT = TRUE)
 print(P07)
-Pb7 <- flget_climatology(fjorddata, "PARbottom", "Clim", month = 7, PLOT = TRUE)
+Pb7 <- flget_climatology(fjorddata, optics = "PARbottom", period = "Clim", month = 7, PLOT = TRUE)
 print(Pb7)
 
 # PARbottom Global
-PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
+PbG <- flget_climatology(fjorddata, optics = "PARbottom", period = "Global", PLOT = TRUE)
 print(PbG)
 
 # PAR0m and Kpar for year 2012 as 3 columns data frame
-P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
-k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
+P02012 <- flget_climatology(fjorddata, optics = "PAR0m", period = "Yearly", year = 2012, mode = "3col")
+k2012 <- flget_climatology(fjorddata, optics = "Kpar", period = "Yearly", year = 2012, mode = "3col")
 head(k2012)
 ```
 
@@ -125,23 +125,26 @@ head(data)
 ```{r fig.width = 6, fig.height=6}
 # Years 2003 to 2004 - months July to August
 mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = TRUE)
+head(mts)
+```
 
+```{r eval=FALSE}
 # All months - all years - as data.frame : columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162
-# NB: This will create a rather large object in your environment
-# mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "3col", PLOT = FALSE)
+# NB: This will create a rather large object in your environment, proceed with caution
+mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "3col", PLOT = FALSE)
 ```
 
 ## P-functions
 
 ```{r fig.width = 6, fig.height=6}
 # as a function
-fG <- flget_Pfunction(fjorddata, period = "Global", plot = FALSE)
+fG <- flget_Pfunction(fjorddata, type = "coastal", period = "Global", plot = FALSE)
 # then you can use it; for instance :
 irradiance_levels <- c(0.1, 1, 10)
 fG(irradiance_levels)
 
 # as a 2 column data.frame
-f2012 <- flget_Pfunction(fjorddata, period = "Yearly", year = 2012, mode = "2col")
+f2012 <- flget_Pfunction(fjorddata, type = "coastal", period = "Yearly", year = 2012, mode = "2col")
 str(f2012)
 
 # Plot P-functions

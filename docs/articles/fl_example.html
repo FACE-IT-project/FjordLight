@@ -221,7 +221,7 @@ is the default value).</p>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PAR0m and PARbottom for July</span></span>
-<span><span class="va">P07</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PAR0m"</span>, <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">P07</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PAR0m"</span>, period <span class="op">=</span> <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fl_example_files/figure-html/unnamed-chunk-7-1.png" width="576"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">P07</span><span class="op">)</span></span>
@@ -233,7 +233,7 @@ is the default value).</p>
 <span><span class="co">#&gt; source     : memory</span></span>
 <span><span class="co">#&gt; names      : PAR0m_Jul </span></span>
 <span><span class="co">#&gt; values     : 11.14298, 32.43196  (min, max)</span></span>
-<span><span class="va">Pb7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PARbottom"</span>, <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">Pb7</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PARbottom"</span>, period <span class="op">=</span> <span class="st">"Clim"</span>, month <span class="op">=</span> <span class="fl">7</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fl_example_files/figure-html/unnamed-chunk-7-2.png" width="576"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">Pb7</span><span class="op">)</span></span>
@@ -247,7 +247,7 @@ is the default value).</p>
 <span><span class="co">#&gt; values     : 6.354513e-37, 30.41457  (min, max)</span></span>
 <span></span>
 <span><span class="co"># PARbottom Global</span></span>
-<span><span class="va">PbG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PARbottom"</span>, <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">PbG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PARbottom"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fl_example_files/figure-html/unnamed-chunk-7-3.png" width="576"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">PbG</span><span class="op">)</span></span>
@@ -261,8 +261,8 @@ is the default value).</p>
 <span><span class="co">#&gt; values     : 2.293755e-24, 18.12253  (min, max)</span></span>
 <span></span>
 <span><span class="co"># PAR0m and Kpar for year 2012 as 3 columns data frame</span></span>
-<span><span class="va">P02012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"PAR0m"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span>
-<span><span class="va">k2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"Kpar"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span>
+<span><span class="va">P02012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"PAR0m"</span>, period <span class="op">=</span> <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span>
+<span><span class="va">k2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_climatology.html">flget_climatology</a></span><span class="op">(</span><span class="va">fjorddata</span>, optics <span class="op">=</span> <span class="st">"Kpar"</span>, period <span class="op">=</span> <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"3col"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">k2012</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   longitude latitude Kpar_2012</span></span>
 <span><span class="co">#&gt; 1  11.17611    79.11       NaN</span></span>
@@ -294,24 +294,34 @@ is the default value).</p>
 <span><span class="va">mts</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_PARbottomMonthlyTS.html">flget_PARbottomMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2004</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fl_example_files/figure-html/unnamed-chunk-9-1.png" width="576"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="co"># All months - all years - as data.frame : columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162</span></span>
-<span><span class="co"># NB: This will create a rather large object in your environment</span></span>
-<span><span class="co"># mts_full &lt;- flget_PARbottomMonthlyTS(fjorddata, mode = "3col", PLOT = FALSE)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span>
+<span><span class="co">#&gt; class      : RasterBrick </span></span>
+<span><span class="co">#&gt; dimensions : 6, 321, 1926, 4  (nrow, ncol, ncell, nlayers)</span></span>
+<span><span class="co">#&gt; resolution : 0.00462, 0.000883  (x, y)</span></span>
+<span><span class="co">#&gt; extent     : 11.1738, 12.65682, 79.10515, 79.11045  (xmin, xmax, ymin, ymax)</span></span>
+<span><span class="co">#&gt; crs        : +proj=longlat +datum=WGS84 +no_defs </span></span>
+<span><span class="co">#&gt; source     : memory</span></span>
+<span><span class="co">#&gt; names      :   layer.1,   layer.2,   layer.3,   layer.4 </span></span>
+<span><span class="co">#&gt; min values : 1.3843774, 0.9039224, 1.3057122, 0.7252699 </span></span>
+<span><span class="co">#&gt; max values :  9.441184,  6.221487,  8.848774,  4.757251</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># All months - all years - as data.frame : columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162</span></span>
+<span><span class="co"># NB: This will create a rather large object in your environment, proceed with caution</span></span>
+<span><span class="va">mts_full</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_PARbottomMonthlyTS.html">flget_PARbottomMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata</span>, mode <span class="op">=</span> <span class="st">"3col"</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="p-functions">P-functions<a class="anchor" aria-label="anchor" href="#p-functions"></a>
 </h3>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># as a function</span></span>
-<span><span class="va">fG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, period <span class="op">=</span> <span class="st">"Global"</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="va">fG</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, type <span class="op">=</span> <span class="st">"coastal"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, plot <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co"># then you can use it; for instance :</span></span>
 <span><span class="va">irradiance_levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="fu">fG</span><span class="op">(</span><span class="va">irradiance_levels</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 18.217188  9.923390  1.926403</span></span>
 <span></span>
 <span><span class="co"># as a 2 column data.frame</span></span>
-<span><span class="va">f2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, period <span class="op">=</span> <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"2col"</span><span class="op">)</span></span>
+<span><span class="va">f2012</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, type <span class="op">=</span> <span class="st">"coastal"</span>, period <span class="op">=</span> <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"2col"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">f2012</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    101 obs. of  2 variables:</span></span>
 <span><span class="co">#&gt;  $ irradianceLevel: num  0.001 0.0011 0.0012 0.00132 0.00145 ...</span></span>
@@ -320,7 +330,7 @@ is the default value).</p>
 <span><span class="co"># Plot P-functions</span></span>
 <span><span class="va">fGlob</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_Pfunction.html">flget_Pfunction</a></span><span class="op">(</span><span class="va">fjorddata</span>, type <span class="op">=</span> <span class="st">"coastal"</span>, period <span class="op">=</span> <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span>, lty <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">2</span>, </span>
 <span>                         Main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">fjord</span>, <span class="st">"coastal P-functions"</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="fl_example_files/figure-html/unnamed-chunk-10-1.png" width="576"></p>
+<p><img src="fl_example_files/figure-html/unnamed-chunk-11-1.png" width="576"></p>
 </div>
 </div>
 <div class="section level2">
