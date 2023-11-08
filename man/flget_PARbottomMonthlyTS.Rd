@@ -51,16 +51,16 @@ and if the user would like to plot the data in the process.
 }
 \examples{
 # Download+load data
-fjord_code <- "kong"
+fjord_code <- "test"
 fl_DownloadFjord(fjord_code, dirdata = "test_dir")
 
 # Load ALL data
 # NB: These may be too large for some laptops
 # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
-# fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE) # NB: TS = TRUE
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE) # NB: TS = TRUE
 
 # Years 2003 to 2004 - months July to August
-# mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
 
 # Remove test files
 unlink("test_dir", recursive = TRUE)

@@ -27,7 +27,8 @@ retrieve the one file that matches the name provided to it via the \code{fjord}
 argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
-fjord_code <- "kong"
+fjord_code <- "test"
+fl_DownloadFjord(fjord_code, dirdata = "test_dir")
 
 # Remove test files
 unlink("test_dir", recursive = TRUE)

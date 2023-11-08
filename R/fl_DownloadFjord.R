@@ -21,8 +21,8 @@
 #' @export
 #'
 #' @examples
-#' fjord_code <- "kong"
-# fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fjord_code <- "test"
+#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Remove test files
 #' unlink("test_dir", recursive = TRUE)
@@ -31,7 +31,13 @@ fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords"
 	fjords <- fl_ListFjords()
-	if(! fjord %in% fjords) stop(paste(fjord, "not available"))
+	if(! fjord %in% fjords){
+	  if(fjord == "test"){
+	    urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/tmpFjords"
+	  } else {
+	    stop(paste(fjord, "not available"))
+	  }
+	}
 	if(! file.exists(dirdata)) {
 		dir.create(dirdata)
 		cat("directory", dirdata, "created\n")
