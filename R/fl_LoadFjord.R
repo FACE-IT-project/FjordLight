@@ -32,8 +32,6 @@
 #' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
 #'
 #' # Load ALL data
-#' # NB: These may be too large for some laptops
-#' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 #' fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE)  # NB: TS = TRUE
 #'
 #' # Remove test files
