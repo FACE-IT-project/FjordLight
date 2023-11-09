@@ -37,7 +37,7 @@
 #' # For all examples, change 'PLOT = TRUE' to visualise the output
 #'
 #' # Shallow and land data (what = "s"; s for shallow), as raster
-#' # bathy <- flget_bathymetry(fjorddata, what = "s", mode = "raster", PLOT = FALSE)
+#' bathy <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
 #'
 #' # Remove test files
 #' unlink("test_dir", recursive = TRUE)

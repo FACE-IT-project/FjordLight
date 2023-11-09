@@ -1,16 +1,24 @@
 Package: FjordLight
 Version: 0.6
-Date: 2023-11-08
-Title: Available Light on the Fjords Floor
+Date: 2023-11-09
+Title: Available light within the water column and seafloor of Arctic Fjords
 Type: Package
-Description: Satellite data collected between 2003 and 2022
-	('SeaWiFS', 'MODIS', 'MERIS', 'VIIRS'),
-	in conjunction with 'IBCAO' 'gridded' 'bathymetry' data (200 m)
-	and Norwegian mapping authority data (50-150 m),
-	are used to estimate the 'irradiance' reaching the bottom of 
-	a series of representative EU Arctic fjords.
-Author: Bernard Gentili <bernard.gentili@orange.fr>, Jean-Pierre Gattuso <gattuso@obs-vlfr.fr>, Robert Schlegel <robert.schlegel@imev-mer.fr>
-Maintainer: Robert Schlegel <robert.schlegel@imev-mer.fr>
+Description: Satellite data collected between 2003 and 2022 (SeaWiFS, MODIS, MERIS, VIIRS),
+	in conjunction with IBCAO gridded bathymetric data (200 m) and Norwegian mapping authority data (50-150 m),
+	are used to estimate the irradiance reaching the bottom of a series of representative EU Arctic fjords. 
+	The dataset on which this package is based, Gentili et al. (2023) 
+	<https://doi.pangaea.de/10.1594/PANGAEA.962895>, is available for direct download via PANGAEA.
+	An Earth System Science Data (ESSD) manuscript, Schlegel et al. (2023, in review), 
+	that provides a detailed explanation of the methodology is currently in review.
+Authors@R: c(person("Bernard", "Gentili", role = c("aut"),
+    email = "bernard.gentili@orange.fr"),
+    person("Jean-Pierre", "Gattuso", role = c("aut"),
+    email = "jean-pierre.gattuso@imev-mer.fr",
+    comment = c(ORCID = "0000-0002-4533-4114")),
+    person("Robert W.", "Schlegel", role = c("aut", "cre"),
+    email = "robwschlegel@gmail.com",
+    comment = c(ORCID = "0000-0002-0705-1287")))
+Maintainer: Robert W. Schlegel <robert.schlegel@imev-mer.fr>
 Depends: R (>= 3.3.0)
 Imports: ncdf4, raster, curl
 License: MIT + file LICENSE

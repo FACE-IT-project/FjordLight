@@ -1,3 +1,5 @@
+url: https://face-it-project.github.io/FjordLight/index.html
+
 navbar:
   structure:
     left:
@@ -11,6 +13,9 @@ navbar:
     reference:
       text: Reference
       href: reference/index.html
+    articles:
+      text: Examples
+      href: articles/fl_example.html
     news:
       text: Changelog
       href: news/index.html
@@ -20,7 +25,7 @@ navbar:
       aria-label: github
 
 reference:
-- title: All functions
+- title: Functions
   contents:
   - '`cs_BuYlRd`'
   - '`cs_blue`'
@@ -35,6 +40,3 @@ reference:
   - '`flget_bathymetry`'
   - '`flget_climatology`'
   - '`flget_geoparameters`'
-
-articles: ~
-
