@@ -4,7 +4,7 @@
 \alias{flplot_bathymetry}
 \title{Plot bathymetry data found within NetCDF files downloaded by \code{FjordLight}.}
 \usage{
-flplot_bathymetry(r, l, name)
+flplot_bathymetry(r, l = NULL, name)
 }
 \arguments{
 \item{r}{The bathymetry data in a raster format.}

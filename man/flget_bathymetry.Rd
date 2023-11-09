@@ -12,23 +12,25 @@ flget_bathymetry(fjord, what = "o", mode = "raster", PLOT = FALSE)
 \item{what}{The default value \code{"o"} will load all "ocean" data, meaning it will filter
 out any land pixels. The other options are: \code{"c"} filters out only coastal bathymetry
 data (depth of 200 m to 0 m), \code{"s"} filters out only shallow bathymetry data
-(depth of 50 m to 0 m), and \code{"l"} loads the land data. One may combine \code{"o"},
+(depth of 50 m to 0 m), and \code{"l"} loads only the land data. One may combine \code{"o"},
 \code{"c"}, or \code{"s"}, with \code{"l"} (e.g. \code{"ol"}) to load both sea and land data.}
 
 \item{mode}{Determines the format of the bathymetry data loaded into the R environment.
-The default \code{"raster"} will load the data as a raster format. The other option \code{"3col"}
+The default \code{"raster"} will load the data as a raster format. The other option \code{"df"}
 will load the data as a data.frame with three columns.}
 
 \item{PLOT}{Boolean argument (default = \code{FALSE}) that tells the function if the user
-would like the loaded bathymetry data to be plotted or not.}
+would like the loaded bathymetry and/or elevation data to be plotted or not.
+NB: this argument will only run if the user chooses \code{mode = "raster"}.}
 }
 \value{
 Depending on which arguments the user chooses, this function will return the
 filtered bathymetry data as a \code{RasterLayer} (\code{mode = "raster"}) or
-data.frame (\code{mode = "3col"}). The data.frame will contain the following columns:
+data.frame (\code{mode = "df"}). The data.frame will contain the following columns:
   \item{longitude}{degree decimals}
   \item{latitude}{degree decimals}
   \item{depth}{metres}
+Note that the depth column will contain both elevation (positive) and depth (negative) values.
 }
 \description{
 This functions will conveniently extract the bathymetry data stored within a
@@ -38,19 +40,26 @@ should be extracted to, and if the user would like to plot the data in the proce
 }
 \examples{
 # Download+load data
-fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+fjord_code <- "kong"
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
-# For all examples, change 'PLOT = TRUE' to visualise the output
+# Shallow data (what = "s"; s for shallow) as a data.frame
+shallow_df <- flget_bathymetry(fjorddata, what = "s", mode = "df")
 
-# Shallow and land data (what = "s"; s for shallow), as raster
-bathy <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
+# Plot all ocean and land data
+\dontrun{
+full_bathy <- flget_bathymetry(fjorddata, what = "ol", mode = "raster", PLOT = TRUE)
+}
 
-# Remove test files
-unlink("test_dir", recursive = TRUE)
+# Plot only land data
+\dontrun{
+land_only <- flget_bathymetry(fjorddata, what = "l", mode = "raster", PLOT =TRUE)
+}
+
+# For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili & Robert Schlegel
 }

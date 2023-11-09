@@ -4,14 +4,13 @@
 \alias{fl_LoadFjord}
 \title{Load fjord PAR data from a NetCDF file downloaded by \code{FjordLight}.}
 \usage{
-fl_LoadFjord(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE)
+fl_LoadFjord(fjord, dirdata = NULL, TS = FALSE, verbose = FALSE)
 }
 \arguments{
 \item{fjord}{Expects a character vector for one of the 8 available fjords.
 See \code{\link{fl_ListFjords}} for the list of possible choices.}
 
-\item{dirdata}{The directory where the user would like to load the data from.
-Default is "FjordLight.d".}
+\item{dirdata}{The directory where the user would like to load the data from.}
 
 \item{TS}{The default, \code{FALSE}, will prevent this function from loading the
 monthly bottom PAR values. Instead it will load all global, annual, and monthly
@@ -30,22 +29,17 @@ This functions will load into the R environment the data within one NetCDF
 file that has been downloaded via \code{\link{fl_DownloadFjord}}.
 }
 \examples{
-# Choose fjord
+# Choose + download fjord
 fjord_code <- "test"
-
-# Download data
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
 
 # Load global, annual, and monthly climatologies
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
 # Load ALL data
-fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE)  # NB: TS = TRUE
-
-# Remove test files
-unlink("test_dir", recursive = TRUE)
+fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE)  # NB: TS = TRUE
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili & Robert Schlegel
 }

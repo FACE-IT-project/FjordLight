@@ -19,7 +19,7 @@ flget_climatology(
 
 \item{optics}{The PAR variable that the user would like to load. The option are:
 \code{"PARbottom"} (default) to load the bottom PAR values, \code{"PAR0m"} surface PAR,
-or \code{"kdpar"} for the extinction coefficient.}
+or \code{"Kpar"} for the extinction coefficient.}
 
 \item{period}{Here the user determines which time period of data should be loaded. To load
 the total average values (default) use \code{"Global"}. One may chose instead to load the
@@ -35,7 +35,7 @@ This argument is ignored if \code{period = "Yearly"}.}
 This argument is ignored if \code{period = "Monthly"}.}
 
 \item{mode}{Determines the format of the data loaded into the R environment.
-The default \code{"raster"} will load the data as a raster format. The other option \code{"3col"}
+The default \code{"raster"} will load the data as a raster format. The other option \code{"df"}
 will load the data as a data.frame with three columns.}
 
 \item{PLOT}{Boolean argument (default = \code{FALSE}) that tells the function if the user
@@ -44,7 +44,7 @@ would like the loaded data to be plotted or not.}
 \value{
 Depending on which arguments the user chooses, this function will return the
 chosen, global, annual, or monthly climatology data as a \code{RasterLayer}
-(\code{mode = "raster"}) or data.frame (\code{mode = "3col"}).
+(\code{mode = "raster"}) or data.frame (\code{mode = "df"}).
 The data.frame will contain the following columns:
   \item{longitude}{degree decimals}
   \item{latitude}{degree decimals}
@@ -61,8 +61,8 @@ data should be extracted to, and if the user would like to plot the data in the 
 \examples{
 # Download+load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
 # PAR0m and PARbottom for July
 P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
@@ -75,11 +75,8 @@ PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
 print(PbG)
 
 # PAR0m and kdpar for year 2012 as 3 columns data frame
-P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "3col")
-k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "3col")
-
-# Remove test files
-unlink("test_dir", recursive = TRUE)
+P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "df")
+k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "df")
 
 }
 \author{

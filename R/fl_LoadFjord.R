@@ -6,7 +6,6 @@
 #' @param fjord Expects a character vector for one of the 8 available fjords.
 #' See \code{\link{fl_ListFjords}} for the list of possible choices.
 #' @param dirdata The directory where the user would like to load the data from.
-#' Default is "FjordLight.d".
 #' @param TS The default, \code{FALSE}, will prevent this function from loading the
 #' monthly bottom PAR values. Instead it will load all global, annual, and monthly
 #' climatology data. Set \code{TS = TRUE} to load all data, but note that these
@@ -17,27 +16,24 @@
 #' @return Data are loaded in as a complex list format. Containing most of the data fields
 #' described in the documentation for \code{\link{fl_DownloadFjord}}.
 #'
-#' @author Bernard Gentili
+#' @author Bernard Gentili & Robert Schlegel
 #'
 #' @export
 #'
 #' @examples
-#' # Choose fjord
+#' # Choose + download fjord
 #' fjord_code <- "test"
-#'
-#' # Download data
-#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Load global, annual, and monthly climatologies
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Load ALL data
-#' fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE)  # NB: TS = TRUE
+#' fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE)  # NB: TS = TRUE
 #'
-#' # Remove test files
-#' unlink("test_dir", recursive = TRUE)
-#'
-fl_LoadFjord <- function(fjord, dirdata = "FjordLight.d", TS = FALSE, verbose = FALSE) {
+fl_LoadFjord <- function(fjord, dirdata = NULL, TS = FALSE, verbose = FALSE) {
+  if(is.null(dirdata)) stop("Please provide the pathway from where you would like to load the data.")
+  if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
 	ncfile <- paste(dirdata, paste(fjord, "nc", sep = "."), sep = "/")
 	nc <- ncdf4::nc_open(ncfile, verbose = verbose)
 	dims <- names(nc$dim)

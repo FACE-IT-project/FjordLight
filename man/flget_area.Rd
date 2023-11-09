@@ -16,7 +16,7 @@ will load the data as a data.frame with three columns.}
 \value{
 Depending on which arguments the user chooses, this function will return the
 surface area data as a \code{RasterLayer} (\code{mode = "raster"}) or
-data.frame (\code{mode = "3col"}). The data.frame will contain the following columns:
+data.frame (\code{mode = "df"}). The data.frame will contain the following columns:
   \item{longitude}{degree decimals}
   \item{latitude}{degree decimals}
   \item{PixelArea_km2}{the surface area of the grid cell [km^2]}
@@ -30,16 +30,16 @@ data with others, e.g. bathymetry data loaded via \code{\link{fl_DownloadFjord}}
 \examples{
 # Download+load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
 # Load area data
-area <- flget_area(fjorddata, mode = "3col")
+area <- flget_area(fjorddata, mode = "df")
 
 # Remove test files
 unlink("test_dir", recursive = TRUE)
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili & Robert Schlegel
 }

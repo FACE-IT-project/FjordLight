@@ -13,14 +13,18 @@
 #'
 #' @author Bernard Gentili
 #'
-flplot_bathymetry <- function(r, l, name) {
+flplot_bathymetry <- function(r,
+                              l = NULL,
+                              name) {
+
 	vr <- raster::values(r)
 	brco <- fl_topocolorscale(vr)
+
 	raster::plot(r, breaks = brco$brks, col = brco$colors,
 	             colNA = "transparent", main = paste(name, names(r)),
 	             legend.width = 1.5, legend.shrink = 1, legend.mar = 10,
 	             legend.args = list(text = "",
 	                                side = 4, cex = 1.5, line = 3.5)
 	)
-	raster::plot(l, add = TRUE, col = grDevices::grey(0:100/100), legend = FALSE)
+	if(!is.null(l))	raster::plot(l, add = TRUE, col = grDevices::grey(0:100/100), legend = FALSE)
 }

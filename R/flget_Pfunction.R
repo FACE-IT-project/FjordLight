@@ -21,7 +21,7 @@
 #' @param mode Determines the basic process that this function performs. The default
 #' \code{mode = "function"} will allow the user to create a function that they can then use
 #' themselves to determine p curves using their own input (see examples). Or to access the
-#' underlying p function data directly set \code{mode = "2col"}.
+#' underlying p function data directly set \code{mode = "df"}.
 #' @param PLOT Boolean argument (default = \code{FALSE}) that tells the function if the user
 #' would like the loaded data to be plotted or not.
 #' @param add Boolean (i.e. \code{TRUE/FALSE}) to tell the function to add the p function plot
@@ -44,8 +44,8 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Create a function
 #' fG <- flget_Pfunction(fjorddata, "shallow", "Global")
@@ -55,15 +55,12 @@
 #' fG(irradiance_levels)
 #'
 #' # As a 2 column data.frame
-#' f2012 <- flget_Pfunction(fjorddata, "shallow", "Yearly", year = 2012, mode = "2col", PLOT = TRUE)
+#' f2012 <- flget_Pfunction(fjorddata, "shallow", "Yearly", year = 2012, mode = "df", PLOT = TRUE)
 #' str(f2012)
 #'
 #' # Plot a P-function
 #' fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
 #'                          Main = paste(fjord_code, "P-functions"), ylim = c(0, 50))
-#'
-#' # Remove test files
-#' unlink("test_dir", recursive = TRUE)
 #'
 flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
                             mode = "function", PLOT = FALSE, add = FALSE, ...) {
@@ -73,7 +70,7 @@ flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = 
   if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
   available.type <- c("coastal", "shallow")
   available.period <- c("Clim", "Yearly", "Global")
-	available.mode <- c("function", "2col")
+	available.mode <- c("function", "df")
 	if(! type %in% available.type) {
 	  cat("wrong type, choose among :", available.type, "\n")
 	  return (invisible(NULL))
@@ -111,7 +108,7 @@ flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = 
 
 		if(PLOT) flplot_Pfunction(irradianceLevel, g, period, month, year, add = add, ...)
 
-		if(mode == "2col") {
+		if(mode == "df") {
 		  layername <- paste("P", type, sep = "")
 		  if(is.na(month) & is.na(year)) layername <- paste(layername, "Global", sep = "_")
 		  if(!is.na(month)) layername <- paste(layername, month.abb[month], sep = "_")

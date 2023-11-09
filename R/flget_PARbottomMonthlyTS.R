@@ -18,14 +18,14 @@
 #' telling it to load all available years of data (i.e. currently 2003:2022).
 #' This is used in combination with \code{month} to determine which monthly data to extract.
 #' @param mode Determines the format of the data loaded into the R environment.
-#' The default \code{"raster"} will load the data as a raster format. The other option \code{"3col"}
+#' The default \code{"raster"} will load the data as a raster format. The other option \code{"df"}
 #' will load the data as a data.frame with three columns.
 #' @param PLOT Boolean argument (default = \code{FALSE}) that tells the function if the user
 #' would like the loaded data to be plotted or not.
 #'
 #' @return Depending on which arguments the user chooses, this function will return the
 #' chosen monthly bottom PAR data as a \code{RasterStack} (\code{mode = "raster"})
-#' or data.frame (\code{mode = "3col"}). The data.frame will contain the following columns:
+#' or data.frame (\code{mode = "df"}). The data.frame will contain the following columns:
 #'   \item{longitude}{degree decimals}
 #'   \item{latitude}{degree decimals}
 #'   \item{PARbottom}{mol photons m-2 d-1}
@@ -37,18 +37,18 @@
 #' @examples
 #' # Download+load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Load ALL data
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir", TS = TRUE) # NB: TS = TRUE
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE) # NB: TS = TRUE
 #'
 #' # Years 2003 to 2004 - months July to August
 #' # NB: These may be too large for some laptops
-#' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
-#' # mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+#' \donttest{
+#' mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+#' }
 #'
-#' # Remove test files
-#' unlink("test_dir", recursive = TRUE)
+#' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 #'
 flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
 
@@ -58,7 +58,7 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 		cat("MonthlyPARbottom monthly time series not loaded\n")
 		return (invisible(NULL))
 	}
-	available.mode <- c("raster", "3col")
+	available.mode <- c("raster", "df")
 	if(! mode %in% available.mode) {
 		cat("wrong mode, choose among :", available.mode, "\n")
 		return (invisible(NULL))
@@ -99,7 +99,7 @@ flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "r
 		if(mode == "raster") {
 			return(s)
 		}
-		if(mode == "3col") {
+		if(mode == "df") {
 			dum <- as.data.frame(cbind(raster::xyFromCell(s, 1:raster::ncell(s)), raster::as.matrix(s)))
 			names(dum) <- c("longitude", "latitude", layernames)
 			return(dum)

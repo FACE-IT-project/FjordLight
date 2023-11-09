@@ -22,12 +22,11 @@
 #'
 #' @examples
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #'
-#' # Remove test files
-#' unlink("test_dir", recursive = TRUE)
+#' # NB: One should provide a permanent directory when downloading a file.
 #'
-fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
+fl_DownloadFjord <- function(fjord, dirdata = NULL) {
 	options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords"
 	fjords <- fl_ListFjords()
@@ -38,17 +37,16 @@ fl_DownloadFjord <- function(fjord, dirdata = "FjordLight.d") {
 	    stop(paste(fjord, "not available"))
 	  }
 	}
-	if(! file.exists(dirdata)) {
-		dir.create(dirdata)
-		cat("directory", dirdata, "created\n")
-	}
+	if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
+	if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
 	ncfile <- paste(fjord, "nc", sep = ".")
 	localf <- paste(dirdata, ncfile, sep = "/")
 	if(! file.exists(localf)) {
-		cat("---> downloading fjord", fjord, "\n")
+		message("---> downloading fjord", fjord, "\n")
 		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
-		cat(fjord, "downloaded in directory", dirdata, "\n")
+		message(fjord, " downloaded in directory ", dirdata)
 	} else {
-		cat(fjord, "already downloaded in directory", dirdata, "\n")
+	  message(fjord, " already downloaded in directory ", dirdata)
 	}
+	return()
 }

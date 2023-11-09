@@ -38,7 +38,7 @@ This argument is ignored if \code{period = "Monthly"}.}
 \item{mode}{Determines the basic process that this function performs. The default
 \code{mode = "function"} will allow the user to create a function that they can then use
 themselves to determine p curves using their own input (see examples). Or to access the
-underlying p function data directly set \code{mode = "2col"}.}
+underlying p function data directly set \code{mode = "df"}.}
 
 \item{PLOT}{Boolean argument (default = \code{FALSE}) that tells the function if the user
 would like the loaded data to be plotted or not.}
@@ -67,8 +67,8 @@ data should be extracted to, and if the user would like to plot the data in the 
 \examples{
 # Download+load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
 # Create a function
 fG <- flget_Pfunction(fjorddata, "shallow", "Global")
@@ -78,15 +78,12 @@ irradiance_levels <- c(0.1, 1, 10)
 fG(irradiance_levels)
 
 # As a 2 column data.frame
-f2012 <- flget_Pfunction(fjorddata, "shallow", "Yearly", year = 2012, mode = "2col", PLOT = TRUE)
+f2012 <- flget_Pfunction(fjorddata, "shallow", "Yearly", year = 2012, mode = "df", PLOT = TRUE)
 str(f2012)
 
 # Plot a P-function
 fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
                          Main = paste(fjord_code, "P-functions"), ylim = c(0, 50))
-
-# Remove test files
-unlink("test_dir", recursive = TRUE)
 
 }
 \author{

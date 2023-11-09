@@ -12,11 +12,14 @@
 #'
 #' @author Bernard Gentili
 #'
-flplot_land <- function(r, name) {
+flplot_land <- function(r,
+                        name) {
+
   raster::plot(r, col = grDevices::terrain.colors(255),
                colNA = "transparent", main = paste(name, names(r)),
                legend.width = 1.5, legend.shrink = 1, legend.mar = 10,
                legend.args = list(text = "",
                                   side = 4, cex = 1.5, line = 3.5)
   )
+
 }

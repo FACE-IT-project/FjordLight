@@ -16,7 +16,6 @@ bibliography: bibliography.bib
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  # eval = FALSE,
   comment = "#>"
   )
 ```
@@ -49,13 +48,21 @@ fl_ListFjords()
 fjord <- "kong"
 
 # If the file has already been downloaded a message will be shown
-# If a directory is not provided to 'dirdata' 
-# a default directory will be created at "FjordLight.d"
-fl_DownloadFjord(fjord, dirdata = "test_dir")
+# NB: For this example we use 'dirdata = tempdir()',
+# but this will not save the data on our computer.
+fl_DownloadFjord(fjord, dirdata = tempdir())
 WANT_TIME_SERIES <- TRUE
-fjorddata <- fl_LoadFjord(fjord, dirdata = "test_dir", TS = WANT_TIME_SERIES)
+fjorddata <- fl_LoadFjord(fjord, dirdata = tempdir(), TS = WANT_TIME_SERIES)
 str(fjorddata, list.len = 15)
 ```
+To save the file to your computer (highly recommended):
+
+```{r eval=FALSE}
+# Note: this will require that a folder named 'data' exists in your current workig directory
+# One may see one's working directory written in small text next to the version of R in the console pane
+fl_DownloadFjord(fjord, dirdata = "data")
+```
+
 
 ## Get geographic parameters
 
@@ -66,24 +73,27 @@ flget_geoparameters(fjorddata)
 ## Get bathymetry
 
 ```{r fig.width = 6, fig.height=6}
-# all depths (what = "o" ; o for Ocean), as raster
-bathy <- flget_bathymetry(fjorddata, what = "o", mode = "raster", PLOT = TRUE)
+# All depths (what = "o" ; o for Ocean), as raster
+all_bathy <- flget_bathymetry(fjorddata, what = "o", mode = "raster", PLOT = TRUE)
 
-# coastal zone [0-200m] (what = "c" ; c for Coastal), as raster
-bathy <- flget_bathymetry(fjorddata, what = "c", mode = "raster", PLOT = TRUE)
+# Coastal zone [0-200m] (what = "c" ; c for Coastal), as raster
+coastal_bathy <- flget_bathymetry(fjorddata, what = "c", mode = "raster", PLOT = TRUE)
 
-# shallow zone [0-50m] (what = "sl" ; s for Shallow, l to add land), as raster
-bathy <- flget_bathymetry(fjorddata, what = "sl", mode = "raster", PLOT = TRUE)
+# Shallow zone [0-50m] (what = "sl" ; s for Shallow, l to add land), as raster
+shallow_land <- flget_bathymetry(fjorddata, what = "sl", mode = "raster", PLOT = TRUE)
 
-# as 3 columns data frame (mode = "3col" : longitude, latitude, depth)
-sea <- flget_bathymetry(fjorddata, what = "s", mode = "3col", PLOT = FALSE)
-cz <- flget_bathymetry(fjorddata, what = "c", mode = "3col", PLOT = FALSE)
+# Just land; note the difference in colour palette
+just_land <- flget_bathymetry(fjorddata, what = "l", mode = "raster", PLOT = TRUE)
+
+# As a data.frame (mode = "df" : longitude, latitude, depth)
+sea <- flget_bathymetry(fjorddata, what = "s", mode = "df", PLOT = FALSE)
+cz <- flget_bathymetry(fjorddata, what = "c", mode = "df", PLOT = FALSE)
 
 # you may add letter "l" if you want land elevation
-sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "3col", PLOT = FALSE)
+sealand <- flget_bathymetry(fjorddata, what = "sl", mode = "df")
 
 # Example of structure
-str(sea)
+str(sealand)
 ```
 
 ## Get climatologies of PAR0m, Kpar, and PARbottom
@@ -99,20 +109,23 @@ print(Pb7)
 PbG <- flget_climatology(fjorddata, optics = "PARbottom", period = "Global", PLOT = TRUE)
 print(PbG)
 
-# PAR0m and Kpar for year 2012 as 3 columns data frame
-P02012 <- flget_climatology(fjorddata, optics = "PAR0m", period = "Yearly", year = 2012, mode = "3col")
-k2012 <- flget_climatology(fjorddata, optics = "Kpar", period = "Yearly", year = 2012, mode = "3col")
-head(k2012)
+# PAR0m, Kpar, and PARbottom for year 2012 as 3 columns data.frame
+P02012 <- flget_climatology(fjorddata, optics = "PAR0m", period = "Yearly", year = 2012, mode = "df")
+k2012 <- flget_climatology(fjorddata, optics = "Kpar", period = "Yearly", year = 2012, mode = "df")
+Pb2012 <- flget_climatology(fjorddata, optics = "PARbottom", period = "Yearly", year = 2012, mode = "df")
+head(Pb2012)
 ```
 
-I f you want to group the "3col" data
+If you want the data as a data.frame:
 
 ```{r}
 # first get pixels area
-area <- flget_area(fjorddata, mode = "3col")
-# then group 3col data
-data <- cbind(sea, area[3], P02012[3], k2012[3])
-head(data)
+area <- flget_area(fjorddata, mode = "df")
+
+# Then bind the data frames and remove rows with missing values
+PAR_area <- cbind(sea, area[3], P02012[3], k2012[3], Pb2012[3])
+PAR_area <- PAR_area[complete.cases(PAR_area),]
+head(PAR_area)
 ```
 
 ## Get monthly time series of PARbottom
@@ -120,36 +133,36 @@ head(data)
 ```{r fig.width = 6, fig.height=6}
 # Years 2003 to 2004 - months July to August
 mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = TRUE)
-head(mts)
+print(mts)
+
+# Or as a data.frame
+mts_2003 <- flget_PARbottomMonthlyTS(fjorddata, year = 2003, PLOT = FALSE, mode = "df")
+head(mts_2003)
 ```
 
 ```{r eval=FALSE}
-# All months - all years - as data.frame : columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162
-# NB: This will create a rather large object in your environment, proceed with caution
-mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "3col", PLOT = FALSE)
+# All months - all years - as data.frame: 
+  # columns = months (8, March to October) * years (20, 2003 to 2022) + 2 (lon lat) = 162
+# NB: This may be too large for some laptops, proceed with caution
+mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "df", PLOT = FALSE)
 ```
 
 ## P-functions
 
 ```{r fig.width = 6, fig.height=6}
-# as a function
+# One may create their own functions
 fG <- flget_Pfunction(fjorddata, type = "coastal", period = "Global", plot = FALSE)
-# then you can use it; for instance :
+# Then you can use it; for instance :
 irradiance_levels <- c(0.1, 1, 10)
 fG(irradiance_levels)
 
-# as a 2 column data.frame
-f2012 <- flget_Pfunction(fjorddata, type = "coastal", period = "Yearly", year = 2012, mode = "2col")
+# Or load the pre-calculated values as a 2 column data.frame
+f2012 <- flget_Pfunction(fjorddata, type = "coastal", period = "Yearly", year = 2012, mode = "df")
 str(f2012)
 
 # Plot P-functions
 fGlob <- flget_Pfunction(fjorddata, type = "coastal", period = "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2, 
                          Main = paste(fjord, "coastal P-functions"), ylim = c(0, 50))
-```
-
-```{r echo=FALSE}
-# Remove test files
-unlink("test_dir", recursive = TRUE)
 ```
 
 # References

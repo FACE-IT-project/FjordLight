@@ -12,36 +12,40 @@
 #'
 #' @return Depending on which arguments the user chooses, this function will return the
 #' surface area data as a \code{RasterLayer} (\code{mode = "raster"}) or
-#' data.frame (\code{mode = "3col"}). The data.frame will contain the following columns:
+#' data.frame (\code{mode = "df"}). The data.frame will contain the following columns:
 #'   \item{longitude}{degree decimals}
 #'   \item{latitude}{degree decimals}
 #'   \item{PixelArea_km2}{the surface area of the grid cell [km^2]}
 #'
-#' @author Bernard Gentili
+#' @author Bernard Gentili & Robert Schlegel
 #'
 #' @export
 #'
 #' @examples
 #' # Download+load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = "test_dir")
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = "test_dir")
+#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Load area data
-#' area <- flget_area(fjorddata, mode = "3col")
+#' area <- flget_area(fjorddata, mode = "df")
 #'
 #' # Remove test files
 #' unlink("test_dir", recursive = TRUE)
 #'
-flget_area <- function(fjord, mode = "raster") {
+flget_area <- function(fjord,
+                       mode = "raster") {
+
   mat <- fjord[["area"]]
+
   if(mode == "raster") {
     r <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = mat))
     names(r) <- "pixelarea"
     raster::crs(r) <- 4326
     return(r)
   }
-  if(mode == "3col") {
+
+  if(mode == "df") {
     n <- nrow(mat)
     m <- ncol(mat)
     row_indices <- rep(1:n, each = m)
@@ -53,4 +57,5 @@ flget_area <- function(fjord, mode = "raster") {
     )
     return(dum)
   }
+
 }

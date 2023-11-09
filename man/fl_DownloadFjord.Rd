@@ -4,7 +4,7 @@
 \alias{fl_DownloadFjord}
 \title{Download fjord PAR data as NetCDF files.}
 \usage{
-fl_DownloadFjord(fjord, dirdata = "FjordLight.d")
+fl_DownloadFjord(fjord, dirdata = NULL)
 }
 \arguments{
 \item{fjord}{Expects a character vector for one of the 8 available fjords.
@@ -28,10 +28,9 @@ argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = "test_dir")
+fl_DownloadFjord(fjord_code, dirdata = tempdir())
 
-# Remove test files
-unlink("test_dir", recursive = TRUE)
+# NB: One should provide a permanent directory when downloading a file.
 
 }
 \author{
