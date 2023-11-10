@@ -66,8 +66,8 @@ data should be extracted to, and if the user would like to plot the data in the 
 <span>  <span class="va">fjord</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"coastal"</span>,</span>
 <span>  period <span class="op">=</span> <span class="st">"Global"</span>,</span>
-<span>  month <span class="op">=</span> <span class="cn">NA</span>,</span>
-<span>  year <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  month <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  year <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mode <span class="op">=</span> <span class="st">"function"</span>,</span>
 <span>  PLOT <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  add <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -109,7 +109,7 @@ This argument is ignored if <code>period = "Monthly"</code>.</p></dd>
 <dd><p>Determines the basic process that this function performs. The default
 <code>mode = "function"</code> will allow the user to create a function that they can then use
 themselves to determine p curves using their own input (see examples). Or to access the
-underlying p function data directly set <code>mode = "2col"</code>.</p></dd>
+underlying p function data directly set <code>mode = "df"</code>.</p></dd>
 
 
 <dt>PLOT</dt>
@@ -145,18 +145,17 @@ be returned (see examples). Or a two column data.frame:</p>
 </dl></div>
     <div id="author">
     <h2>Author</h2>
-    <p>Bernard Gentili</p>
+    <p>Bernard Gentili &amp; Robert Schlegel</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
 <span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"test"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> directory test_dir created</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; downloading fjord test </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> test downloaded in directory test_dir </span>
-<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> test already downloaded in directory /tmp/RtmpLes1g7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a function</span></span></span>
 <span class="r-in"><span><span class="va">fG</span> <span class="op">&lt;-</span> <span class="fu">flget_Pfunction</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"shallow"</span>, <span class="st">"Global"</span><span class="op">)</span></span></span>
@@ -167,7 +166,7 @@ be returned (see examples). Or a two column data.frame:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 36.354034 19.763483  3.899282</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># As a 2 column data.frame</span></span></span>
-<span class="r-in"><span><span class="va">f2012</span> <span class="op">&lt;-</span> <span class="fu">flget_Pfunction</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"shallow"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"2col"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">f2012</span> <span class="op">&lt;-</span> <span class="fu">flget_Pfunction</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"shallow"</span>, <span class="st">"Yearly"</span>, year <span class="op">=</span> <span class="fl">2012</span>, mode <span class="op">=</span> <span class="st">"df"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="flget_Pfunction-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">f2012</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	101 obs. of  2 variables:</span>
@@ -178,9 +177,6 @@ be returned (see examples). Or a two column data.frame:</p>
 <span class="r-in"><span><span class="va">fGlob</span> <span class="op">&lt;-</span> <span class="fu">flget_Pfunction</span><span class="op">(</span><span class="va">fjorddata</span>, <span class="st">"coastal"</span>, <span class="st">"Global"</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span>, lty <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>                         Main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">fjord_code</span>, <span class="st">"P-functions"</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">50</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="flget_Pfunction-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Remove test files</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"test_dir"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

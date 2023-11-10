@@ -98,7 +98,7 @@ This is used in combination with <code>month</code> to determine which monthly d
 
 <dt>mode</dt>
 <dd><p>Determines the format of the data loaded into the R environment.
-The default <code>"raster"</code> will load the data as a raster format. The other option <code>"3col"</code>
+The default <code>"raster"</code> will load the data as a raster format. The other option <code>"df"</code>
 will load the data as a data.frame with three columns.</p></dd>
 
 
@@ -113,7 +113,7 @@ would like the loaded data to be plotted or not.</p></dd>
 
 <p>Depending on which arguments the user chooses, this function will return the
 chosen monthly bottom PAR data as a <code>RasterStack</code> (<code>mode = "raster"</code>)
-or data.frame (<code>mode = "3col"</code>). The data.frame will contain the following columns:</p>
+or data.frame (<code>mode = "df"</code>). The data.frame will contain the following columns:</p>
 <dl><dt>longitude</dt>
 <dd><p>degree decimals</p></dd>
 
@@ -126,28 +126,36 @@ or data.frame (<code>mode = "3col"</code>). The data.frame will contain the foll
 </dl></div>
     <div id="author">
     <h2>Author</h2>
-    <p>Bernard Gentili</p>
+    <p>Bernard Gentili &amp; Robert Schlegel</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
 <span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"test"</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> directory test_dir created</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---&gt; downloading fjord test </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> test downloaded in directory test_dir </span>
+<span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> test already downloaded in directory /tmp/RtmpLes1g7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Load ALL data</span></span></span>
-<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="st">"test_dir"</span>, TS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># NB: TS = TRUE</span></span></span>
+<span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, TS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># NB: TS = TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Load a small subset as a data.frame</span></span></span>
+<span class="r-in"><span><span class="va">mts_single</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">6</span>, year <span class="op">=</span> <span class="fl">2016</span>, mode <span class="op">=</span> <span class="st">"df"</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Years 2003 to 2004 - months July to August</span></span></span>
-<span class="r-in"><span><span class="co"># NB: These may be too large for some laptops</span></span></span>
-<span class="r-in"><span><span class="co"># For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html</span></span></span>
-<span class="r-in"><span><span class="co"># mts &lt;- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)</span></span></span>
+<span class="r-in"><span><span class="co"># NB: This may be too large for smaller laptops</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">mts_many</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2004</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Remove test files</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"test_dir"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># May also plot the data</span></span></span>
+<span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+<span class="r-in"><span><span class="va">mts_plot</span> <span class="op">&lt;-</span> <span class="fu">flget_PARbottomMonthlyTS</span><span class="op">(</span><span class="va">fjorddata</span>, month <span class="op">=</span> <span class="fl">6</span><span class="op">:</span><span class="fl">9</span>, year <span class="op">=</span> <span class="fl">2010</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="flget_PARbottomMonthlyTS-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

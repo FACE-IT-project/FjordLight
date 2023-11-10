@@ -32,7 +32,7 @@
 #'
 #' @examples
 #' # Download+load data
-#' fjord_code <- "kong"
+#' fjord_code <- "test"
 #' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 #'
