@@ -19,4 +19,6 @@ test_that("Bathymetry retrieval works correctly", {
   expect_s3_class(flget_bathymetry(dat_no_TS, what = "ol", mode = "df"), "data.frame")
   expect_s3_class(flget_bathymetry(dat_no_TS, what = "o", mode = "df"), "data.frame")
   expect_s3_class(flget_bathymetry(dat_no_TS, what = "l", mode = "df"), "data.frame")
+  expect_s3_class(flget_bathymetry(dat_no_TS, what = "s", mode = "df"), "data.frame")
+  expect_s3_class(flget_bathymetry(dat_no_TS, what = "c", mode = "df"), "data.frame")
 })
