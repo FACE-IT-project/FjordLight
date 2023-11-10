@@ -36,9 +36,6 @@ fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 # Load area data
 area <- flget_area(fjorddata, mode = "df")
 
-# Remove test files
-unlink("test_dir", recursive = TRUE)
-
 }
 \author{
 Bernard Gentili & Robert Schlegel

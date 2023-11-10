@@ -21,12 +21,21 @@
 #'
 #' @author Bernard Gentili
 #'
-flplot_Pfunction <- function(irrLev, g, period, month, year, Main = NULL, add = add, ...) {
+flplot_Pfunction <- function(irrLev,
+                             g,
+                             period,
+                             month,
+                             year,
+                             Main = NULL,
+                             add = add,
+                             ...) {
+
 	if(is.null(Main)) {
 		Main <- paste("Pfunction", period)
-		if(!is.na(month)) Main = paste("Pfunction", month.name[month])
-		if(!is.na(year)) Main = paste("Pfunction", year)
+		if(!is.null(month)) Main = paste("Pfunction", month.name[month])
+		if(!is.null(year)) Main = paste("Pfunction", year)
 	}
+
 	if(add) {
 		graphics::lines(irrLev, g, ...)
 	} else {
@@ -35,4 +44,5 @@ flplot_Pfunction <- function(irrLev, g, period, month, year, Main = NULL, add = 
 		     ylab = expression("% of the surface receiving more than E"),
 		     main = Main, log = "x", type = "l", ...)
 	}
+
 }

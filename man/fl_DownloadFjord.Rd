@@ -27,10 +27,13 @@ retrieve the one file that matches the name provided to it via the \code{fjord}
 argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
+# Choose a fjord
 fjord_code <- "test"
+
+# Download it
+# NB: One should provide a permanent directory when downloading a file.
 fl_DownloadFjord(fjord_code, dirdata = tempdir())
 
-# NB: One should provide a permanent directory when downloading a file.
 
 }
 \author{

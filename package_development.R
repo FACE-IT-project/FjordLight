@@ -82,7 +82,7 @@ use_package(package = "example_package")
 use_testthat()
 
 # Then to test a function:
-use_test("pipeline")
+use_test("fl_LoadFjord")
 
 # After creating this documentation one will need to edit it
 # Example:

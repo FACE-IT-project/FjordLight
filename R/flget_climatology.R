@@ -46,77 +46,83 @@
 #' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # PAR0m and PARbottom for July
+#' \donttest{
 #' P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
-#' print(P07)
 #' Pb7 <- flget_climatology(fjorddata, "PARbottom", "Clim", month = 7, PLOT = TRUE)
-#' print(Pb7)
+#' }
 #'
 #' # PARbottom Global
+#' \donttest{
 #' PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
-#' print(PbG)
+#' }
 #'
 #' # PAR0m and kdpar for year 2012 as 3 columns data frame
 #' P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "df")
 #' k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "df")
 #'
-flget_climatology <- function(fjord, optics = "PARbottom", period = "Global", month = NA, year = NA, mode = "raster", PLOT = FALSE) {
+flget_climatology <- function(fjord,
+                              optics = "PARbottom",
+                              period = "Global",
+                              month = NULL,
+                              year = NULL,
+                              mode = "raster",
+                              PLOT = FALSE) {
 
   Months <- 3:10; Years <- 2003:2022
 
-  if(!is.na(month) & !is.na(year)) stop("You have to indicate month or year, not both")
+  if(!is.null(month) & !is.null(year)) stop("You have to indicate month or year, not both")
   available.optics <- c("PARbottom", "PAR0m", "Kpar")
   available.period <- c("Clim", "Yearly", "Global")
   available.mode <- c("raster", "df")
-  if(! mode %in% available.mode) {
-    stop("Wrong mode, choose among: 'raster', 'df'")
-  }
-  if(! optics %in% available.optics) {
-    stop("Wrong optics, choose among: 'PARbottom', 'PAR0m', 'Kpar'")
-  }
-  if(! period %in% available.period) {
-    stop("Wrong period, choose among: 'Clim', 'Yearly', 'Global'")
-  }
+  if(! mode %in% available.mode) stop("Wrong mode, choose among: 'raster', 'df'")
+  if(! optics %in% available.optics) stop("Wrong optics, choose among: 'PARbottom', 'PAR0m', 'Kpar'")
+  if(! period %in% available.period) stop("Wrong period, choose among: 'Clim', 'Yearly', 'Global'")
 
-  with(fjord, {
-    if(period == "Clim")
-      if(!is.na(month)){
-        if(!(month %in% Months)) stop(paste("bad month", ": available months", paste(Months, collapse = " ")))
-      } else {
-        stop("You have to indicate the month")
-      }
-
-    if(period == "Yearly")
-      if(!is.na(year)){
-        if(!(year %in% Years)) stop(paste("bad year", ": available years", paste(Years, collapse = " ")))
-      } else {
-        stop("You have to indicate the year")
-      }
-    varname <- paste(period, optics, sep = "")
-    layername <- optics
-    if(is.na(month) & is.na(year)) layername <- paste(layername, "Global", sep = "_")
-    if(!is.na(month)) layername <- paste(layername, month.abb[month], sep = "_")
-    if(!is.na(year)) layername <- paste(layername, year, sep = "_")
-
-    proj.lonlat.def <- 4326
-
-    g <- fjord[[varname]]
-    if(!is.na(month) & is.na(year)) g <- g[, , Months == month]
-    if(is.na(month) & !is.na(year)) g <- g[, , Years == year]
-    r <- raster::raster(list(x = longitude, y = latitude, z = g))
-    names(r) <- layername
-    raster::crs(r) <- proj.lonlat.def
-    if(PLOT) {
-      l <- fjord[["elevation"]]
-      l <- raster::raster(list(x = longitude, y = latitude, z = l))
-      flplot_climatology(r, l, name, optics, period, month, year)
+  if(period == "Clim") {
+    if(is.null(month)) stop("Please indicate the month")
+    if(length(month) > 1) stop("Please select a single month")
+    if(!(month %in% Months)) {
+      stop(paste("Bad month: available months", paste(Months, collapse = " ")))
     }
-    if(mode == "raster") {
-      return(r)
+  }
+
+  if(period == "Yearly") {
+    if(is.null(year)) stop("Please indicate the year")
+    if(length(year) > 1) stop("Please select a single year")
+    if(!(year %in% Years)){
+      stop(paste("Bad year: available years", paste(Years, collapse = " ")))
     }
-    if(mode == "df") {
-      dum <- as.data.frame(cbind(raster::xyFromCell(r, 1:raster::ncell(r)), raster::values(r)))
-      names(dum) <- c("longitude", "latitude", layername)
-      return(dum)
-    }
-  })
+  }
+
+  varname <- paste(period, optics, sep = "")
+  layername <- optics
+  if(is.null(month) & is.null(year)) layername <- paste(layername, "Global", sep = "_")
+  if(!is.null(month)) layername <- paste(layername, month.abb[month], sep = "_")
+  if(!is.null(year)) layername <- paste(layername, year, sep = "_")
+
+  g <- fjord[[varname]]
+  if(!is.null(month) & is.null(year)) g <- g[, , Months == month]
+  if(is.null(month) & !is.null(year)) g <- g[, , Years == year]
+
+  r <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = g))
+  names(r) <- layername
+  raster::crs(r) <- 4326
+
+  if(PLOT) {
+    l <- fjord[["elevation"]]
+    fjord_name <- fjord[["name"]]
+    l <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = l))
+    flplot_climatology(r, l, fjord_name, optics, period, month, year)
+  }
+
+  if(mode == "raster") {
+    return(r)
+  }
+
+  if(mode == "df") {
+    dum <- as.data.frame(cbind(raster::xyFromCell(r, 1:raster::ncell(r)), raster::values(r)))
+    names(dum) <- c("longitude", "latitude", layername)
+    return(dum)
+  }
+
 }

@@ -17,10 +17,17 @@
 #'
 #' @author Bernard Gentili
 #'
-flplot_climatology <- function(r, l, name, optics, period, month, year) {
+flplot_climatology <- function(r,
+                               l,
+                               name,
+                               optics,
+                               period,
+                               month,
+                               year) {
+
   Main <- paste(name, optics, period)
-  if(!is.na(month)) Main = paste(name, optics, month.name[month])
-  if(!is.na(year)) Main = paste(name, optics, year)
+  if(!is.null(month)) Main = paste(name, optics, month.name[month])
+  if(!is.null(year)) Main = paste(name, optics, year)
   if(optics == "PAR0m") {
     vr <- raster::values(r)
     brks <- seq(0, 45, 5)

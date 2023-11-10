@@ -8,8 +8,8 @@ flget_Pfunction(
   fjord,
   type = "coastal",
   period = "Global",
-  month = NA,
-  year = NA,
+  month = NULL,
+  year = NULL,
   mode = "function",
   PLOT = FALSE,
   add = FALSE,
@@ -87,5 +87,5 @@ fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, c
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili & Robert Schlegel
 }

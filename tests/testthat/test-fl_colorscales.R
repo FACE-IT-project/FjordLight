@@ -1,4 +1,4 @@
-# tests for colourscale functions
+# Tests for colourscale functions
 
 test_that("fl_topocolorscale works", {
   scale_test <- fl_topocolorscale(-10)

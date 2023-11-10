@@ -21,14 +21,18 @@
 #' @export
 #'
 #' @examples
+#' # Choose a fjord
 #' fjord_code <- "test"
+#'
+#' # Download it
+#' # NB: One should provide a permanent directory when downloading a file.
 #' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #'
-#' # NB: One should provide a permanent directory when downloading a file.
 #'
-fl_DownloadFjord <- function(fjord, dirdata = NULL) {
+fl_DownloadFjord <- function(fjord,
+                             dirdata = NULL) {
 	options(timeout = 0)
-	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c_Fjords"
+	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
 	fjords <- fl_ListFjords()
 	if(! fjord %in% fjords){
 	  if(fjord == "test"){

@@ -30,7 +30,7 @@
 #'   \item{latitude}{degree decimals}
 #'   \item{PARbottom}{mol photons m-2 d-1}
 #'
-#' @author Bernard Gentili
+#' @author Bernard Gentili & Robert Schlegel
 #'
 #' @export
 #'
@@ -42,67 +42,75 @@
 #' # Load ALL data
 #' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE) # NB: TS = TRUE
 #'
+#' # Load a small subset as a data.frame
+#' mts_single <- flget_PARbottomMonthlyTS(fjorddata, month = 6, year = 2016, mode = "df", PLOT = FALSE)
+#'
 #' # Years 2003 to 2004 - months July to August
-#' # NB: These may be too large for some laptops
+#' # NB: This may be too large for smaller laptops
 #' \donttest{
-#' mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+#' mts_many <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+#' }
+#'
+#' # May also plot the data
+#' \donttest{
+#' mts_plot <- flget_PARbottomMonthlyTS(fjorddata, month = 6:9, year = 2010, PLOT = TRUE)
 #' }
 #'
 #' # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 #'
-flget_PARbottomMonthlyTS <- function(fjord, month = NULL, year = NULL, mode = "raster", PLOT = FALSE) {
+flget_PARbottomMonthlyTS <- function(fjord,
+                                     month = NULL,
+                                     year = NULL,
+                                     mode = "raster",
+                                     PLOT = FALSE) {
 
   Months <- 3:10; Years <- 2003:2022
 
-  if(is.null(fjord$MonthlyPARbottom)) {
-		cat("MonthlyPARbottom monthly time series not loaded\n")
-		return (invisible(NULL))
-	}
+  if(is.null(fjord$MonthlyPARbottom)) stop("MonthlyPARbottom time series not loaded")
 	available.mode <- c("raster", "df")
-	if(! mode %in% available.mode) {
-		cat("wrong mode, choose among :", available.mode, "\n")
-		return (invisible(NULL))
+	if(! mode %in% available.mode) stop("Wrong mode, choose among: 'raster', 'df'")
+
+	if(!is.null(month)){
+	  if(!all(month %in% Months)) stop(paste("Bad month(s)", ": available months", paste(Months, collapse = " ")))
+	} else {
+	  month <- Months
 	}
-	with(fjord, {
-		if(!is.null(month)){
-			if(!all(month %in% Months)) return(paste("bad month(s)", ": available months", paste(Months, collapse = " ")))
-		} else {
-			month <- Months
-		}
 
-		if(!is.null(year)){
-			if(!all(year %in% Years)) return(paste("bad year(s)", ": available years", paste(Years, collapse = " ")))
-		} else {
-			year <- Years
-		}
-		varname <- "MonthlyPARbottom"
+	if(!is.null(year)){
+	  if(!all(year %in% Years)) stop(paste("Bad year(s)", ": available years", paste(Years, collapse = " ")))
+	} else {
+	  year <- Years
+	}
 
-		proj.lonlat.def = 4326
+	g <- fjord[["MonthlyPARbottom"]]
+	s <- raster::stack()
+	layernames <- NULL
+	for(y in year) {
+	  for(m in month) {
+	    h <- g[, , Months == m, Years == y]
+	    r <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = h))
+	    layername <- paste("MonthlyPARbottom", formatC(y, format = "d", width = 4, flag = "0"),
+	                       formatC(m, format = "d", width = 2, flag = "0"), sep = ".")
+	    layernames <- append(layernames, layername)
+	    names(r) <- layername
+	    s <- raster::stack(s, r)
+	  }
+	}
 
-		g <- fjord[[varname]]
-		s <- raster::stack()
-		layernames <- NULL
-		for(y in year) {
-			for(m in month) {
-				h <- g[, , Months == m, Years == y]
-				r <- raster::raster(list(x = longitude, y = latitude, z = h))
-				layername <- paste(varname, formatC(y, format = "d", width = 4, flag = "0"),
-				                   formatC(m, format = "d", width = 2, flag = "0"), sep = ".")
-				layernames <- append(layernames, layername)
-				names(r) <- layername
-				s <- raster::stack(s, r)
-			}
-		}
-		if(PLOT) {
-			flplot_PARbottomMonthlyTS(s)
-		}
-		if(mode == "raster") {
-			return(s)
-		}
-		if(mode == "df") {
-			dum <- as.data.frame(cbind(raster::xyFromCell(s, 1:raster::ncell(s)), raster::as.matrix(s)))
-			names(dum) <- c("longitude", "latitude", layernames)
-			return(dum)
-		}
-	})
+	raster::crs(s) <- 4326
+
+	if(PLOT) {
+	  flplot_PARbottomMonthlyTS(s)
+	}
+
+	if(mode == "raster") {
+	  return(s)
+	}
+
+	if(mode == "df") {
+	  dum <- as.data.frame(cbind(raster::xyFromCell(s, 1:raster::ncell(s)), raster::as.matrix(s)))
+	  names(dum) <- c("longitude", "latitude", layernames)
+	  return(dum)
+	}
+
 }

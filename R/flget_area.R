@@ -30,9 +30,6 @@
 #' # Load area data
 #' area <- flget_area(fjorddata, mode = "df")
 #'
-#' # Remove test files
-#' unlink("test_dir", recursive = TRUE)
-#'
 flget_area <- function(fjord,
                        mode = "raster") {
 

@@ -40,12 +40,12 @@
 #' shallow_df <- flget_bathymetry(fjorddata, what = "s", mode = "df")
 #'
 #' # Plot all ocean and land data
-#' \dontrun{
+#' \donttest{
 #' full_bathy <- flget_bathymetry(fjorddata, what = "ol", mode = "raster", PLOT = TRUE)
 #' }
 #'
 #' # Plot only land data
-#' \dontrun{
+#' \donttest{
 #' land_only <- flget_bathymetry(fjorddata, what = "l", mode = "raster", PLOT =TRUE)
 #' }
 #'

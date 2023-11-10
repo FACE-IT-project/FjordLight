@@ -37,7 +37,7 @@
 #'   These values show the percent of the fjord (filtered for pixels with a depth of 200 m or shallower) that
 #'   received at least the amount of irradiance indicated in the \code{irradianceLevel} column.}
 #'
-#' @author Bernard Gentili
+#' @author Bernard Gentili & Robert Schlegel
 #'
 #' @export
 #'
@@ -62,65 +62,61 @@
 #' fGlob <- flget_Pfunction(fjorddata, "coastal", "Global", PLOT = TRUE, lty = 1, col = 1, lwd = 2,
 #'                          Main = paste(fjord_code, "P-functions"), ylim = c(0, 50))
 #'
-flget_Pfunction <- function(fjord, type = "coastal", period = "Global", month = NA, year = NA,
-                            mode = "function", PLOT = FALSE, add = FALSE, ...) {
+flget_Pfunction <- function(fjord,
+                            type = "coastal",
+                            period = "Global",
+                            month = NULL,
+                            year = NULL,
+                            mode = "function",
+                            PLOT = FALSE,
+                            add = FALSE,
+                            ...) {
 
   Months <- 3:10; Years <- 2003:2022
 
-  if(!is.na(month) & !is.na(year)) return("You have to indicate month or year, not both")
+  if(!is.null(month) & !is.null(year)) stop("You have to indicate month or year, not both")
   available.type <- c("coastal", "shallow")
   available.period <- c("Clim", "Yearly", "Global")
 	available.mode <- c("function", "df")
-	if(! type %in% available.type) {
-	  cat("wrong type, choose among :", available.type, "\n")
-	  return (invisible(NULL))
-	}
-	if(! mode %in% available.mode) {
-		cat("wrong mode, choose among :", available.mode, "\n")
-		return (invisible(NULL))
-	}
-	if(! period %in% available.period) {
-		cat("wrong period, choose among :", available.period, "\n")
-		return (invisible(NULL))
-	}
-	with(fjord, {
-		if(period == "Clim") {
-			if(!is.na(month)){
-				if(!(month %in% Months)) return(paste("bad month", ": available months", paste(Months, collapse = " ")))
-			} else {
-				return("you have to indicate the month\n")
-			}
-		}
+	if(! type %in% available.type) stop("Wrong type, choose among: 'coastal', 'shallow'")
+	if(! period %in% available.period) stop("Wrong period, choose among: 'Clim', 'Yearly', 'Global'")
+	if(! mode %in% available.mode) stop("Wrong mode, choose among: 'function', 'df'")
 
-		if(period == "Yearly") {
-			if(!is.na(year)){
-				if(!(year %in% Years)) return(paste("bad year", ": available years", paste(Years, collapse = " ")))
-			} else {
-				return("you have to indicate the year\n")
-			}
-		}
-	  varname <- paste(period, "P", type, sep = "")
-		g <- fjord[[varname]]
-		if(period != "Global") {
-			if(!is.na(month) & is.na(year)) g <- g[, Months == month]
-			if(is.na(month) & !is.na(year)) g <- g[, Years == year]
-		}
+	if(period == "Clim") {
+	  if(is.null(month)) stop("Please indicate the month")
+	  if(length(month) > 1) stop("Please select a single month")
+	  if(!(month %in% Months)) stop(paste("Bad month: available months", paste(Months, collapse = " ")))
+	}
 
-		if(PLOT) flplot_Pfunction(irradianceLevel, g, period, month, year, add = add, ...)
+	if(period == "Yearly") {
+	  if(is.null(year)) stop("Please indicate the year")
+	  if(length(year) > 1) stop("Please select a single year")
+	  if(!(year %in% Years)) stop(paste("Bad year: available years", paste(Years, collapse = " ")))
+	}
 
-		if(mode == "df") {
-		  layername <- paste("P", type, sep = "")
-		  if(is.na(month) & is.na(year)) layername <- paste(layername, "Global", sep = "_")
-		  if(!is.na(month)) layername <- paste(layername, month.abb[month], sep = "_")
-		  if(!is.na(year)) layername <- paste(layername, year, sep = "_")
-		  ret <- data.frame(irradianceLevel, g)
-		  names(ret) <- c("irradianceLevel", layername)
-		  return(ret)
-		}
-		if(mode == "function") {
-			f1 <- approxfun(log10(irradianceLevel), g, rule = 1)
-			f2 <- function(level) f1(log10(level))
-			return(f2)
-		}
-	})
+	varname <- paste(period, "P", type, sep = "")
+	g <- fjord[[varname]]
+	if(period != "Global") {
+	  if(!is.null(month) & is.null(year)) g <- g[, Months == month]
+	  if(is.null(month) & !is.null(year)) g <- g[, Years == year]
+	}
+
+	if(PLOT) flplot_Pfunction(fjord$irradianceLevel, g, period, month, year, add = add, ...)
+
+	if(mode == "df") {
+	  layername <- paste("P", type, sep = "")
+	  if(is.null(month) & is.null(year)) layername <- paste(layername, "Global", sep = "_")
+	  if(!is.null(month)) layername <- paste(layername, month.abb[month], sep = "_")
+	  if(!is.null(year)) layername <- paste(layername, year, sep = "_")
+	  ret <- data.frame(fjord$irradianceLevel, g)
+	  names(ret) <- c("irradianceLevel", layername)
+	  return(ret)
+	}
+
+	if(mode == "function") {
+	  f1 <- stats::approxfun(log10(fjord$irradianceLevel), g, rule = 1)
+	  f2 <- function(level) f1(log10(level))
+	  return(f2)
+	}
+
 }

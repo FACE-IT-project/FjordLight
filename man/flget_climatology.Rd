@@ -8,8 +8,8 @@ flget_climatology(
   fjord,
   optics = "PARbottom",
   period = "Global",
-  month = NA,
-  year = NA,
+  month = NULL,
+  year = NULL,
   mode = "raster",
   PLOT = FALSE
 )
@@ -65,14 +65,15 @@ fl_DownloadFjord(fjord_code, dirdata = tempdir())
 fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
 
 # PAR0m and PARbottom for July
+\donttest{
 P07 <- flget_climatology(fjorddata, "PAR0m", "Clim", month = 7, PLOT = TRUE)
-print(P07)
 Pb7 <- flget_climatology(fjorddata, "PARbottom", "Clim", month = 7, PLOT = TRUE)
-print(Pb7)
+}
 
 # PARbottom Global
+\donttest{
 PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
-print(PbG)
+}
 
 # PAR0m and kdpar for year 2012 as 3 columns data frame
 P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "df")

@@ -57,15 +57,23 @@ fl_DownloadFjord(fjord_code, dirdata = tempdir())
 # Load ALL data
 fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE) # NB: TS = TRUE
 
+# Load a small subset as a data.frame
+mts_single <- flget_PARbottomMonthlyTS(fjorddata, month = 6, year = 2016, mode = "df", PLOT = FALSE)
+
 # Years 2003 to 2004 - months July to August
-# NB: These may be too large for some laptops
+# NB: This may be too large for smaller laptops
 \donttest{
-mts <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+mts_many <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
+}
+
+# May also plot the data
+\donttest{
+mts_plot <- flget_PARbottomMonthlyTS(fjorddata, month = 6:9, year = 2010, PLOT = TRUE)
 }
 
 # For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili & Robert Schlegel
 }
