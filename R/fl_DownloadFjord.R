@@ -46,11 +46,10 @@ fl_DownloadFjord <- function(fjord,
 	ncfile <- paste(fjord, "nc", sep = ".")
 	localf <- paste(dirdata, ncfile, sep = "/")
 	if(! file.exists(localf)) {
-		message("---> downloading fjord", fjord, "\n")
+		message("---> downloading fjord ", fjord)
 		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
 		message(fjord, " downloaded in directory ", dirdata)
 	} else {
 	  message(fjord, " already downloaded in directory ", dirdata)
 	}
-	return()
 }
