@@ -1,7 +1,7 @@
 Package: FjordLight
 Version: 0.6
-Date: 2023-11-09
-Title: Available light within the water column and seafloor of Arctic Fjords
+Date: 2023-11-10
+Title: Available Light Within the Water Column and Seafloor of Arctic Fjords
 Type: Package
 Description: Satellite data collected between 2003 and 2022 (SeaWiFS, MODIS, MERIS, VIIRS),
 	in conjunction with IBCAO gridded bathymetric data (200 m) and Norwegian mapping authority data (50-150 m),
@@ -16,7 +16,7 @@ Authors@R: c(person("Bernard", "Gentili", role = c("aut"),
     email = "jean-pierre.gattuso@imev-mer.fr",
     comment = c(ORCID = "0000-0002-4533-4114")),
     person("Robert W.", "Schlegel", role = c("aut", "cre"),
-    email = "robwschlegel@gmail.com",
+    email = "robert.schlegel@imev-mer.fr",
     comment = c(ORCID = "0000-0002-0705-1287")))
 Maintainer: Robert W. Schlegel <robert.schlegel@imev-mer.fr>
 Depends: R (>= 3.3.0)
