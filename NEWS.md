@@ -1,10 +1,6 @@
-# FjordLight 0.6 (2023-11-08)
+# FjordLight 0.6 (2023-11-07 to 10)
 
-* More CRAN related changes
-
-# FjordLight 0.6 (2023-11-07)
-
-* Attempting to get on CRAN
+* Changes relayed to CRAN process
 
 # FjordLight 0.5.9001 (2023-11-07)
 
