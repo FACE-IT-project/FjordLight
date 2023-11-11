@@ -3,11 +3,9 @@ Version: 0.6
 Date: 2023-11-10
 Title: Available Light Within the Water Column and Seafloor of Arctic Fjords
 Type: Package
-Description: Satellite data collected between 2003 and 2022 (SeaWiFS, MODIS, MERIS, VIIRS),
-	in conjunction with IBCAO gridded bathymetric data (200 m) and Norwegian mapping authority data (50-150 m),
+Description: Satellite data collected between 2003 and 2022,
+	in conjunction with gridded bathymetric data (50-150 m resolution),
 	are used to estimate the irradiance reaching the bottom of a series of representative EU Arctic fjords. 
-	The dataset on which this package is based, Gentili et al. (2023) 
-	<https://doi.pangaea.de/10.1594/PANGAEA.962895>, is available for direct download via PANGAEA.
 	An Earth System Science Data (ESSD) manuscript, Schlegel et al. (2023, in review), 
 	that provides a detailed explanation of the methodology is currently in review.
 Authors@R: c(person("Bernard", "Gentili", role = c("aut"),

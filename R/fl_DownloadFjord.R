@@ -31,7 +31,6 @@
 #'
 fl_DownloadFjord <- function(fjord,
                              dirdata = NULL) {
-	options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
 	fjords <- fl_ListFjords()
 	if(! fjord %in% fjords){
