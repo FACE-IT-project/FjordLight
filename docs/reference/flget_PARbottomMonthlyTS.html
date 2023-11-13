@@ -22,7 +22,7 @@ and if the user would like to plot the data in the process."><meta property="og:
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6</span>
       </span>
     </div>
 
@@ -134,7 +134,7 @@ or data.frame (<code>mode = "df"</code>). The data.frame will contain the follow
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Download+load data</span></span></span>
 <span class="r-in"><span><span class="va">fjord_code</span> <span class="op">&lt;-</span> <span class="st">"test"</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> test already downloaded in directory /tmp/RtmpD5kZ4A</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> test already downloaded in directory /tmp/RtmpurURS9</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Load ALL data</span></span></span>
 <span class="r-in"><span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, TS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># NB: TS = TRUE</span></span></span>
