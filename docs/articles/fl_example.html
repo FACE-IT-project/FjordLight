@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.6.1</span>
       </span>
     </div>
 
@@ -138,7 +138,7 @@ is the default value).</p>
 <span><span class="co"># but this will not save the data on our computer.</span></span>
 <span><span class="fu"><a href="../reference/fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ---&gt; downloading fjord kong</span></span>
-<span><span class="co">#&gt; kong downloaded in directory /tmp/Rtmp8s4JWt</span></span>
+<span><span class="co">#&gt; kong downloaded in directory /tmp/RtmpCoTLNQ</span></span>
 <span><span class="va">WANT_TIME_SERIES</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
 <span><span class="va">fjorddata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fl_LoadFjord.html">fl_LoadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, TS <span class="op">=</span> <span class="va">WANT_TIME_SERIES</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">fjorddata</span>, list.len <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
