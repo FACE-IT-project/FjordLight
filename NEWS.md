@@ -1,6 +1,11 @@
-# FjordLight 0.6 (2023-11-07 to 11)
+# FjordLight 0.6.1 (2023-11-13)
+
+* Change to download function to allow downloading over slow connection speed
+
+# FjordLight 0.6 (2023-11-12)
 
 * Changes related to CRAN process
+* Accepted on CRAN
 
 # FjordLight 0.5.9001 (2023-11-07)
 
