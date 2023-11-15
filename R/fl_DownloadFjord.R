@@ -37,11 +37,7 @@ fl_DownloadFjord <- function(fjord,
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
 	fjords <- fl_ListFjords()
 	if(! fjord %in% fjords){
-	  if(fjord == "test"){
-	    urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/tmpFjords"
-	  } else {
-	    stop(paste(fjord, "not available"))
-	  }
+	  stop(paste(fjord, "not available"))
 	}
 	if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
 	if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")

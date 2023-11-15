@@ -1,3 +1,7 @@
+# FjordLight 0.6.2 (2023-11-15)
+
+* Changed testing structure to prevent future CRAN ERROR issues if FTP structure is changed
+
 # FjordLight 0.6.1 (2023-11-13)
 
 * Change to download function to allow downloading over slow connection speed
