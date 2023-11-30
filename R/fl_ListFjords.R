@@ -11,14 +11,20 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' fl_ListFjords()
+#' }
 #'
 fl_ListFjords <- function() {
   fjord_ftp <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords/"
-  h <- curl::new_handle(dirlistonly = TRUE)
-  con <- curl::curl(fjord_ftp, "r", h)
-  fjord_tbl <- utils::read.table(con)
-  base::close(con)
-  fjord_tbl$V1 <- sub("\\.nc$", "", fjord_tbl$V1)
-  return(as.vector(fjord_tbl$V1))
+  if(curl::has_internet()) {
+    h <- curl::new_handle(dirlistonly = TRUE)
+    con <- curl::curl(fjord_ftp, "r", h)
+    fjord_tbl <- utils::read.table(con)
+    base::close(con)
+    fjord_tbl$V1 <- sub("\\.nc$", "", fjord_tbl$V1)
+    return(as.vector(fjord_tbl$V1))
+  } else {
+    stop("Please check your internet connection.")
+  }
 }
