@@ -100,7 +100,7 @@ devtools::check()
 # A better way to check as CRAN
 checkhelper::check_as_cran()
 
-# Check if any fils are created during check
+# Check if any files are created during check
 checkhelper::check_clean_userspace()
 
 
