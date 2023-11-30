@@ -21,15 +21,15 @@
 #' @export
 #'
 #' @examples
-#' # Choose + download fjord
+#' # Choose fjord
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #'
 #' # Load global, annual, and monthly climatologies
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 #'
 #' # Load ALL data
-#' fjorddata_full <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE)  # NB: TS = TRUE
+#' fjorddata_full <- fl_LoadFjord(fjord_code,
+#'                                dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE)
 #'
 fl_LoadFjord <- function(fjord, dirdata = NULL, TS = FALSE, verbose = FALSE) {
   if(is.null(dirdata)) stop("Please provide the pathway from where you would like to load the data.")

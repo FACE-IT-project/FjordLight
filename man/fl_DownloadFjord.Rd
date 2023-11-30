@@ -32,8 +32,9 @@ fjord_code <- "test"
 
 # Download it
 # NB: One should provide a permanent directory when downloading a file.
+\donttest{
 fl_DownloadFjord(fjord_code, dirdata = tempdir())
-
+}
 
 }
 \author{

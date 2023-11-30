@@ -2,9 +2,8 @@
 # This also tests flplot_PARbottomMonthlyTS
 
 test_that("flget_PARbottomMonthlyTS functions correctly", {
-  fl_DownloadFjord(fjord = "test", tempdir())
-  dat_no_TS <- fl_LoadFjord("test", dirdata = tempdir())
-  dat_TS <- fl_LoadFjord("test", dirdata = tempdir(), TS = TRUE)
+  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"))
+  dat_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE)
 
   expect_error(flget_PARbottomMonthlyTS(dat_no_TS), "MonthlyPARbottom time series not loaded")
   expect_error(flget_PARbottomMonthlyTS(dat_TS, mode = 1), "Wrong mode, choose among: 'raster', 'df'")

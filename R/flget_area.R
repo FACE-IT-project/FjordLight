@@ -22,10 +22,9 @@
 #' @export
 #'
 #' @examples
-#' # Download+load data
+#' # Load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 #'
 #' # Load area data
 #' area <- flget_area(fjorddata, mode = "df")

@@ -37,23 +37,18 @@ With 64 GB of RAM (a typical desktop) your computer should have no problem loadi
 # Workflow
 
 ## List of available fjords
-```{r}
+```{r eval=FALSE}
 fl_ListFjords()
 ```
 
-## Download a fjord and load it as a list
+## Download a fjord
 
-```{r}
+```{r eval=FALSE}
 # Choose a fjord from the list above
 fjord <- "kong"
 
 # If the file has already been downloaded a message will be shown
-# NB: For this example we use 'dirdata = tempdir()',
-# but this will not save the data on our computer.
-fl_DownloadFjord(fjord, dirdata = tempdir())
-WANT_TIME_SERIES <- TRUE
-fjorddata <- fl_LoadFjord(fjord, dirdata = tempdir(), TS = WANT_TIME_SERIES)
-str(fjorddata, list.len = 15)
+fl_DownloadFjord(fjord)
 ```
 To save the file to your computer (highly recommended):
 
@@ -61,6 +56,18 @@ To save the file to your computer (highly recommended):
 # Note: this will require that a folder named 'data' exists in your current workig directory
 # One may see one's working directory written in small text next to the version of R in the console pane
 fl_DownloadFjord(fjord, dirdata = "data")
+```
+
+For the purposes of this vignette we will use the small toy dataset that is included within __`FJordLight`__:
+
+```{r}
+# Chose to load all of the monthly bottom PAR values or not
+WANT_TIME_SERIES <- TRUE
+
+# Load he data
+fjord <- "test"
+fjorddata <- fl_LoadFjord(fjord, dirdata = system.file("extdata", package = "FjordLight"), TS = WANT_TIME_SERIES)
+str(fjorddata, list.len = 15)
 ```
 
 

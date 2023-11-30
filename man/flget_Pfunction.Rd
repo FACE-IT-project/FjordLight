@@ -65,10 +65,9 @@ There are options for how the user would like to subset the data, which data for
 data should be extracted to, and if the user would like to plot the data in the process.
 }
 \examples{
-# Download+load data
+# Load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = tempdir())
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 
 # Create a function
 fG <- flget_Pfunction(fjorddata, "shallow", "Global")

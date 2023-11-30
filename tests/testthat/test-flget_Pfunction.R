@@ -2,8 +2,7 @@
 # This also tests flplot_Pfunction
 
 test_that("Various P-functions calls work as expected", {
-  fl_DownloadFjord(fjord = "test", tempdir())
-  dat_no_TS <- fl_LoadFjord("test", tempdir())
+  dat_no_TS <- fl_LoadFjord("test", system.file("extdata", package = "FjordLight"))
 
   expect_type(flget_Pfunction(dat_no_TS), "closure")
 
@@ -19,9 +18,9 @@ test_that("Various P-functions calls work as expected", {
   expect_error(flget_Pfunction(dat_no_TS, period = "Clim", month = 6:8),
                "Please select a single month")
   expect_error(flget_Pfunction(dat_no_TS, period = "Clim", month = 1),
-               "Bad month: available months 3 4 5 6 7 8 9 10")
+               "Bad month: available months 3 4 5 6 7 8 9")
   expect_error(flget_Pfunction(dat_no_TS, period = "Clim", month = "banana"),
-               "Bad month: available months 3 4 5 6 7 8 9 10")
+               "Bad month: available months 3 4 5 6 7 8 9")
 
   expect_error(flget_Pfunction(dat_no_TS, period = "Yearly"),
                "Please indicate the year")

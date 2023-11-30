@@ -15,7 +15,9 @@ Run this to determine which character vectors to use when downloading data
 via \code{\link{fl_DownloadFjord}}, or a range of other uses within \code{FjordLight}.
 }
 \examples{
+\donttest{
 fl_ListFjords()
+}
 
 }
 \author{

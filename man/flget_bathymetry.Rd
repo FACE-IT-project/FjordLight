@@ -39,10 +39,9 @@ for how the user would like to subset the data, which data format the data
 should be extracted to, and if the user would like to plot the data in the process.
 }
 \examples{
-# Download+load data
+# Load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = tempdir())
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 
 # Shallow data (what = "s"; s for shallow) as a data.frame
 shallow_df <- flget_bathymetry(fjorddata, what = "s", mode = "df")
@@ -57,7 +56,7 @@ full_bathy <- flget_bathymetry(fjorddata, what = "ol", mode = "raster", PLOT = T
 land_only <- flget_bathymetry(fjorddata, what = "l", mode = "raster", PLOT =TRUE)
 }
 
-# For more examples: https://face-it-project.github.io/FjordLight/articles/fl_example.html
+# For more examples see: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 
 }
 \author{

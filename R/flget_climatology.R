@@ -40,10 +40,9 @@
 #' @export
 #'
 #' @examples
-#' # Download+load data
+#' # Load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 #'
 #' # PAR0m and PARbottom for July
 #' \donttest{
@@ -60,6 +59,8 @@
 #' P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "df")
 #' k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "df")
 #'
+#' # For more examples see: https://face-it-project.github.io/FjordLight/articles/fl_example.html
+#'
 flget_climatology <- function(fjord,
                               optics = "PARbottom",
                               period = "Global",
@@ -68,7 +69,12 @@ flget_climatology <- function(fjord,
                               mode = "raster",
                               PLOT = FALSE) {
 
-  Months <- 3:10; Years <- 2003:2022
+  time_base <- strsplit(fjord$glob_attributes$available_months_by_year, " / ")
+  time_df <- as.data.frame(time_base, col.names = "col")
+
+  Years <- as.numeric(substr(time_df$col, start = 1, stop = 4))
+  Months <- strsplit(trimws(substring(time_base[[1]], 7), "both"), " ")
+  Months <- as.numeric(Months[which.max(lengths(Months))][[1]])
 
   if(!is.null(month) & !is.null(year)) stop("You have to indicate month or year, not both")
   available.optics <- c("PARbottom", "PAR0m", "Kpar")

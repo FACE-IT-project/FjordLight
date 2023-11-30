@@ -50,21 +50,17 @@ would like to subset the data, which data format the data should be extracted to
 and if the user would like to plot the data in the process.
 }
 \examples{
-# Download+load data
-fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = tempdir())
-
 # Load ALL data
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE) # NB: TS = TRUE
+fjord_code <- "test"
+fjorddata <- fl_LoadFjord(fjord_code,
+                          dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE)
 
 # Load a small subset as a data.frame
 mts_single <- flget_PARbottomMonthlyTS(fjorddata, month = 6, year = 2016, mode = "df", PLOT = FALSE)
 
 # Years 2003 to 2004 - months July to August
 # NB: This may be too large for smaller laptops
-\donttest{
 mts_many <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
-}
 
 # May also plot the data
 \donttest{

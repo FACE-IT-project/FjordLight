@@ -26,8 +26,9 @@
 #'
 #' # Download it
 #' # NB: One should provide a permanent directory when downloading a file.
+#' \donttest{
 #' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#'
+#' }
 #'
 fl_DownloadFjord <- function(fjord,
                              dirdata = NULL) {
@@ -35,19 +36,21 @@ fl_DownloadFjord <- function(fjord,
   on.exit(options(opt_orig))
   options(timeout = 0)
 	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
-	fjords <- fl_ListFjords()
-	if(! fjord %in% fjords){
-	  stop(paste(fjord, "not available"))
-	}
-	if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
-	if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
-	ncfile <- paste(fjord, "nc", sep = ".")
-	localf <- paste(dirdata, ncfile, sep = "/")
-	if(! file.exists(localf)) {
-		message("---> downloading fjord ", fjord)
-		utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
-		message(fjord, " downloaded in directory ", dirdata)
-	} else {
-	  message(fjord, " already downloaded in directory ", dirdata)
+	if(curl::has_internet()){
+	  fjords <- fl_ListFjords()
+	  if(! fjord %in% fjords){
+	    stop(paste(fjord, "not available"))
+	  }
+	  if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
+	  if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
+	  ncfile <- paste(fjord, "nc", sep = ".")
+	  localf <- paste(dirdata, ncfile, sep = "/")
+	  if(! file.exists(localf)) {
+	    message("---> downloading fjord ", fjord)
+	    utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
+	    message(fjord, " downloaded in directory ", dirdata)
+	  } else {
+	    message(fjord, " already downloaded in directory ", dirdata)
+	  }
 	}
 }

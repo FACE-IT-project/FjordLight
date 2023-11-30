@@ -2,8 +2,7 @@
 # This also tests flplot_bathymetry and flplot_land
 
 test_that("Bathymetry retrieval works correctly", {
-  fl_DownloadFjord(fjord = "test", tempdir())
-  dat_no_TS <- fl_LoadFjord("test", dirdata = tempdir())
+  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"))
 
   expect_error(flget_bathymetry(dat_no_TS, what = "banana"),
                "Ensure that 'what' is one of the following options: 'o', 'ol', 'c', 'cl', 's', 'sl', 'l'")

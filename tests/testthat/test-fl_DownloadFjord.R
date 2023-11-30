@@ -1,6 +1,7 @@
 # Tests for fl_DownloadFjord
 
 test_that("fl_DownloadFjord error messages signal correctly", {
+  skip_if_offline()
   expect_error(fl_DownloadFjord(fjord = "banana"), "banana not available")
   expect_error(fl_DownloadFjord(fjord = "test"),
                "Please provide the pathway to where you would like to download the data.")
@@ -9,14 +10,10 @@ test_that("fl_DownloadFjord error messages signal correctly", {
 })
 
 test_that("fl_DownloadFjord gets the 'test.nc' file only once", {
+  skip_if_offline()
   test_dl <- fl_DownloadFjord(fjord = "test", tempdir())
   test_dl <- fl_DownloadFjord(fjord = "test", tempdir())
   expect_type(test_dl, "NULL")
-})
-
-test_that("fl_DownloadFjord gets the most current real data files", {
-  test_kong <- fl_DownloadFjord(fjord = "kong", tempdir())
-  fjord_kong <- fl_LoadFjord("kong", TS = FALSE, tempdir())
-  expect_type(test_kong, "NULL")
-  expect_length(fjord_kong$glob_attributes$available_months_by_year, 1)
+  fjord_test <- fl_LoadFjord("test", TS = FALSE, tempdir())
+  expect_length(fjord_test$glob_attributes$available_months_by_year, 1)
 })

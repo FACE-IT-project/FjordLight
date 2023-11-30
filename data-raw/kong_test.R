@@ -3,4 +3,4 @@
 
 # usethis::use_data(DATASET, overwrite = TRUE)
 
-fl_DownloadFjord("kong", "~/FjordLight/tests/testthat/test_file")
+fl_DownloadFjord("test", "~/FjordLight/inst/extdata/")

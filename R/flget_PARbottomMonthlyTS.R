@@ -35,21 +35,17 @@
 #' @export
 #'
 #' @examples
-#' # Download+load data
-#' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#'
 #' # Load ALL data
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir(), TS = TRUE) # NB: TS = TRUE
+#' fjord_code <- "test"
+#' fjorddata <- fl_LoadFjord(fjord_code,
+#'                           dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE)
 #'
 #' # Load a small subset as a data.frame
 #' mts_single <- flget_PARbottomMonthlyTS(fjorddata, month = 6, year = 2016, mode = "df", PLOT = FALSE)
 #'
 #' # Years 2003 to 2004 - months July to August
 #' # NB: This may be too large for smaller laptops
-#' \donttest{
 #' mts_many <- flget_PARbottomMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
-#' }
 #'
 #' # May also plot the data
 #' \donttest{
@@ -64,7 +60,12 @@ flget_PARbottomMonthlyTS <- function(fjord,
                                      mode = "raster",
                                      PLOT = FALSE) {
 
-  Months <- 3:10; Years <- 2003:2022
+  time_base <- strsplit(fjord$glob_attributes$available_months_by_year, " / ")
+  time_df <- as.data.frame(time_base, col.names = "col")
+
+  Years <- as.numeric(substr(time_df$col, start = 1, stop = 4))
+  Months <- strsplit(trimws(substring(time_base[[1]], 7), "both"), " ")
+  Months <- as.numeric(Months[which.max(lengths(Months))][[1]])
 
   if(is.null(fjord$MonthlyPARbottom)) stop("MonthlyPARbottom time series not loaded")
 	available.mode <- c("raster", "df")

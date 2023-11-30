@@ -59,10 +59,9 @@ There are options for how the user would like to subset the data, which data for
 data should be extracted to, and if the user would like to plot the data in the process.
 }
 \examples{
-# Download+load data
+# Load data
 fjord_code <- "test"
-fl_DownloadFjord(fjord_code, dirdata = tempdir())
-fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 
 # PAR0m and PARbottom for July
 \donttest{
@@ -78,6 +77,8 @@ PbG <- flget_climatology(fjorddata, "PARbottom", "Global", PLOT = TRUE)
 # PAR0m and kdpar for year 2012 as 3 columns data frame
 P02012 <- flget_climatology(fjorddata, "PAR0m", "Yearly", year = 2012, mode = "df")
 k2012 <- flget_climatology(fjorddata, "Kpar", "Yearly", year = 2012, mode = "df")
+
+# For more examples see: https://face-it-project.github.io/FjordLight/articles/fl_example.html
 
 }
 \author{

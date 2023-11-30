@@ -18,10 +18,9 @@
 #' @export
 #'
 #' @examples
-#' # Download+load data
+#' # Load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 #'
 #' # Load geo-parameters
 #' geo_params <- flget_geoparameters(fjorddata)

@@ -42,10 +42,9 @@
 #' @export
 #'
 #' @examples
-#' # Download+load data
+#' # Load data
 #' fjord_code <- "test"
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
-#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = tempdir())
+#' fjorddata <- fl_LoadFjord(fjord_code, dirdata = system.file("extdata", package = "FjordLight"))
 #'
 #' # Create a function
 #' fG <- flget_Pfunction(fjorddata, "shallow", "Global")
@@ -72,7 +71,12 @@ flget_Pfunction <- function(fjord,
                             add = FALSE,
                             ...) {
 
-  Months <- 3:10; Years <- 2003:2022
+  time_base <- strsplit(fjord$glob_attributes$available_months_by_year, " / ")
+  time_df <- as.data.frame(time_base, col.names = "col")
+
+  Years <- as.numeric(substr(time_df$col, start = 1, stop = 4))
+  Months <- strsplit(trimws(substring(time_base[[1]], 7), "both"), " ")
+  Months <- as.numeric(Months[which.max(lengths(Months))][[1]])
 
   if(!is.null(month) & !is.null(year)) stop("You have to indicate month or year, not both")
   available.type <- c("coastal", "shallow")
