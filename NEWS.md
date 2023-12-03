@@ -1,3 +1,7 @@
+# FjordLight 0.7.0 (2023-12-03)
+
+* Updated logo
+
 # FjordLight 0.7.0 (2023-11-30)
 
 * Functions now detect the available years and months of data within the dataset and warn users accordingly
