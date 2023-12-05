@@ -148,15 +148,18 @@ use_readme_md()
 usethis::use_github_action(name = "check-standard")
 
 # Pop in your build status from GitHub actions by copying the output from the above line
-# [![R-CMD-check](https://github.com/robwschlegel/heatwaveR/workflows/R-CMD-check/badge.svg)](https://github.com/robwschlegel/heatwaveR/actions)
+# [![R-CMD-check](https://github.com/face-it-project/FjordLight/workflows/R-CMD-check/badge.svg)](https://github.com/face-it-project/FjordLight/actions)
 
 # Add a coverage status badge
 use_coverage(type = "codecov")
 # Looks like:
-# [![Coverage status](https://codecov.io/gh/robwschlegel/heatwaveR/branch/master/graph/badge.svg)](https://codecov.io/github/robwschlegel/heatwaveR?branch=master)
+# [![Coverage status](https://codecov.io/gh/face-it-project/FjordLight/branch/master/graph/badge.svg)](https://codecov.io/github/face-it-project/FjordLight?branch=master)
 
 # Then add a code of conduct:
 use_code_of_conduct(contact = "robert.schlegel@imev-mer.fr")
+
+# Once the package is on CRAN
+# [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/FjordLight)](https://cran.r-project.org/package=FjordLight)
 
 
 # Vignettes ---------------------------------------------------------------

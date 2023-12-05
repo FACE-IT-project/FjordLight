@@ -1,13 +1,18 @@
 # FjordLight <img src="logo.png" width=200 align="right" />
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/FjordLight)](https://cran.r-project.org/package=FjordLight)
 [![R-CMD-check](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FACE-IT-project/FjordLight/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/FACE-IT-project/FjordLight/branch/main/graph/badge.svg)](https://app.codecov.io/gh/FACE-IT-project/FjordLight?branch=main)
 
-This package was created to aid in accessing the fjord PAR data product created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in prep that will contain more details.
+This package is designed to aid the user in accessing and working with the fjord PAR data product created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in review that contains details on the creation of these data.
 
 For a full range of examples for how to use this package, please see this [vignette](https://face-it-project.github.io/FjordLight/articles/fl_example.html).
 
-To install this package please run: 
+The package may be installed via CRAN using:
+
+`install.packages("FjordLight")`
+
+or via GitHub using: 
 
 `devtools::install_github("FACE-IT-project/FjordLight")`
 
