@@ -19,6 +19,18 @@ Sys.setenv('_R_CHECK_SYSTEM_CLOCK_' = 0)
 # edit_r_profile()
 # create_package("FjordLight")
 
+# For the hex sticker
+library(openai) # For interfacing with DALL-E
+library(magick) # For visualising and saving results
+library(showtext) # For adding text
+library(cropcircles) # For creating the hex sticker
+
+# For creating the final hex
+library(ggplot2)
+library(ggpath)
+library(ggtext)
+library(glue)
+
 
 # Next steps --------------------------------------------------------------
 
@@ -191,6 +203,104 @@ use_news_md()
 # fledge::finalize_version()
 #
 # fledge::tag_version(force = TRUE)
+
+
+# Hex sticker -------------------------------------------------------------
+
+## Get API key for DALL-E
+# Follow instructions here:
+# https://irudnyts.github.io/openai/
+
+# Save key in a private folder and load for use
+load("~/pCloudDrive/R/openAI_key.RData")
+
+Sys.setenv(
+  OPENAI_API_KEY = openAI_key
+)
+
+# If you run out of credits, try HotPot AI: https://hotpot.ai/art-generator?s=site-menu
+# There is a limit of 10 free images per day
+
+## Create image
+
+# An idea...
+x <- create_image('Light entering an Arctic fjord.')
+
+# What do we have?
+# NB: Images don't last forever. Save them locally if you want to keep them.
+x1_local <- image_read(x$data$url)
+
+# Save it
+image_write(image = x1_local, path = "~/pCloudDrive/R/images/fjord_light.png")
+
+## Prep text
+
+# See all possible fonts from Google
+font_families_google()
+
+# choose a font from Google Fonts
+font_add_google("Bangers", "bangers")
+font_add_google("Roboto", "rob")
+font_add_google("Baskervville", "bask")
+font_add_google("Fuzzy Bubbles", "fuzz")
+font_add_google("Raleway", "rale")
+showtext_auto()
+ft <- "bangers"
+ft1 <- "rale"
+txt <- "white"
+
+# fontawesome fonts (optional - this adds the git logo - download from https://fontawesome.com/)
+font_add("fa-brands", regular = "~/pCloudDrive/R/fonts/fontawesome-free-6.4.0-web/webfonts/fa-brands-400.ttf")
+
+# package name and github repo
+pkg_name <- "Fjord\nLight"
+git_name <- "face-it-project/FjordLight"
+
+## Crop image
+
+# Load image as necessary
+x_image <- image_read("~/pCloudDrive/R/images/fjord_light.png")
+
+# Hex crop
+img_cropped <- hex_crop(
+  images = x_image,
+  border_colour = "grey20",
+  border_size = 24,
+  just = "top"
+)
+
+## Plot and save
+# NB: Limits are fixed between 0 and 1 to make it easy to position text and other elements
+
+# Plot
+ggplot() +
+
+  # The image
+  geom_from_path(aes(0.5, 0.5, path = img_cropped)) +
+
+  # package name
+  ## Shadow text
+  # annotate("text", x = 0.12, y = 0.55, label = pkg_name, family = ft1, size = 24,
+  #          fontface = "bold", colour = "black", angle = 0, hjust = 0, lineheight = 0.25) +
+  ## Main text
+  # annotate("text", x = 0.32, y = 0.2, label = pkg_name, family = ft1, size = 16,
+  #          fontface = "bold", colour = "steelblue3", angle = 0, hjust = 0, lineheight = 0.25) +
+
+  annotate("text", x = 0.255, y = 0.25, label = "Fjord", family = ft1, size = 14,
+           fontface = "bold", colour = "grey20", angle = 0, hjust = 0, lineheight = 0.25) +
+  annotate("text", x = 0.355, y = 0.16, label = "Light", family = ft1, size = 8,
+           fontface = "bold", colour = "white", angle = 0, hjust = 0, lineheight = 0.25) +
+
+  # add github directory + logo - remove if not wanted
+  # annotate("richtext", x = 0.05, y = 0.28, family = ft1, size = 5.5, angle = -31, colour = txt, hjust = 0,
+  #          label = glue("<span style='font-family:fa-brands; color:{txt}'>&#xf09b;&nbsp;</span> {git_name}"),
+  #          label.color = NA, fill = NA) +
+
+  # Remove themes and set limits
+  xlim(0, 1) + ylim(0, 1) + theme_void() + coord_fixed()
+
+# Play with width/height to get text to fit accordingly
+ggsave("logo.png", height = 2, width = 2)
 
 
 # Package logs ------------------------------------------------------------
