@@ -1,3 +1,7 @@
+# FjordLight 0.7.1 (2024-01-19)
+
+* Changed download source from LOV FTP to PANGAEA
+
 # FjordLight 0.7.0 (2023-12-29)
 
 * Updated logo
