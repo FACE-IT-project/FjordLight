@@ -6,8 +6,12 @@
 #'
 #' @param fjord Expects a character vector for one of the 8 available fjords.
 #' See \code{\link{fl_ListFjords}} for the list of possible choices.
+#' @param monthly The layer of monthly data the user wants to download. The default "PAR_B"
+#' will download monthly bottom PAR data. The other option "K_PAR" will download monthly
+#' values for the light extinction coefficient (i.e.  K_PAR) in the water column.
+#' Note that if monthly K_PAR data are chosen, the file will be saved as e.g.
+#' "kong_MonthlyKpar.nc", whereas PAR_B data will be saved simply as e.g. "kong.nc"
 #' @param dirdata The directory where the user would like to download the data.
-#' Default is "FjordLight.d".
 #'
 #' @return The downloaded NetCDF file contains the following variables:
 #'   \item{bathymetry}{depth [m]}
@@ -16,7 +20,7 @@
 #'   \item{AreaOfCoastalZone}{Surface of Sea floor with a depth of between 0 and 200 meters [km2]}
 #'   etc...
 #'
-#' @author Bernard Gentili
+#' @author Bernard Gentili and Robert Schlegel
 #'
 #' @export
 #'
@@ -31,11 +35,12 @@
 #' }
 #'
 fl_DownloadFjord <- function(fjord,
+                             monthly = "PAR_B",
                              dirdata = NULL) {
   opt_orig <- options()
   on.exit(options(opt_orig))
   options(timeout = 0)
-	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
+	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_MonthlyKpar/"
 	urlpangaea <- "https://download.pangaea.de/dataset/962895/files"
 	dlnote <- "Please check your internet connection."
 	if(curl::has_internet()){
@@ -45,14 +50,22 @@ fl_DownloadFjord <- function(fjord,
 	  }
 	  if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
 	  if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
-	  ncfile <- paste(fjord, "nc", sep = ".")
+	  if(monthly == "PAR_B"){
+	    ncfile <- paste(fjord, "nc", sep = ".")
+	    ncurl <- urlpangaea
+	  } else if(monthly == "K_PAR"){
+	    ncfile <- paste0(fjord,"_MonthlyKpar.nc")
+	    ncurl <- urlobsvlfr
+	  } else {
+	    stop("Please ensure the 'monthly' value is either 'PAR_B' or 'K_PAR'")
+	  }
 	  localf <- paste(dirdata, ncfile, sep = "/")
 	  if(! file.exists(localf)) {
 	    message("---> downloading fjord ", fjord)
-	    utils::download.file(paste(urlpangaea, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
-	    dlnote <- paste0(fjord, " downloaded in directory ", dirdata)
+	    utils::download.file(paste(ncurl, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
+	    dlnote <- paste0(ncfile, " downloaded in directory ", dirdata)
 	  } else {
-	    dlnote <- paste0(fjord, " already downloaded in directory ", dirdata)
+	    dlnote <- paste0(ncfile, " already downloaded in directory ", dirdata)
 	  }
 	}
 	message(dlnote)

@@ -4,14 +4,19 @@
 \alias{fl_DownloadFjord}
 \title{Download fjord PAR data as NetCDF files.}
 \usage{
-fl_DownloadFjord(fjord, dirdata = NULL)
+fl_DownloadFjord(fjord, monthly = "PAR_B", dirdata = NULL)
 }
 \arguments{
 \item{fjord}{Expects a character vector for one of the 8 available fjords.
 See \code{\link{fl_ListFjords}} for the list of possible choices.}
 
-\item{dirdata}{The directory where the user would like to download the data.
-Default is "FjordLight.d".}
+\item{monthly}{The layer of monthly data the user wants to download. The default "PAR_B"
+will download monthly bottom PAR data. The other option "K_PAR" will download monthly
+values for the light extinction coefficient (i.e.  K_PAR) in the water column.
+Note that if monthly K_PAR data are chosen, the file will be saved as e.g.
+"kong_MonthlyKpar.nc", whereas PAR_B data will be saved simply as e.g. "kong.nc"}
+
+\item{dirdata}{The directory where the user would like to download the data.}
 }
 \value{
 The downloaded NetCDF file contains the following variables:
@@ -38,5 +43,5 @@ fl_DownloadFjord(fjord_code, dirdata = tempdir())
 
 }
 \author{
-Bernard Gentili
+Bernard Gentili and Robert Schlegel
 }

@@ -7,6 +7,8 @@ test_that("fl_DownloadFjord error messages signal correctly", {
                "Please provide the pathway to where you would like to download the data.")
   expect_error(fl_DownloadFjord(fjord = "test", dirdata = "mango"),
                "Please ensure that the chosen directory exists.")
+  expect_error(fl_DownloadFjord(fjord = "kong", dirdata = tempdir(), monthly = "kiwi"),
+               "Please ensure the 'monthly' value is either 'PAR_B' or 'K_PAR'")
 })
 
 test_that("fl_DownloadFjord gets the 'kong.nc' file only once", {
@@ -15,5 +17,13 @@ test_that("fl_DownloadFjord gets the 'kong.nc' file only once", {
   test_dl <- fl_DownloadFjord(fjord = "kong", tempdir())
   expect_type(test_dl, "NULL")
   fjord_test <- fl_LoadFjord("kong", TS = FALSE, tempdir())
+  expect_length(fjord_test$glob_attributes$available_months_by_year, 1)
+})
+
+test_that("fl_DownloadFjord gets K_PAR data files", {
+  skip_if_offline()
+  test_dl <- fl_DownloadFjord(fjord = "kong", monthly = "K_PAR", tempdir())
+  expect_type(test_dl, "NULL")
+  fjord_test <- fl_LoadFjord("kong_MonthlyKpar", TS = FALSE, tempdir())
   expect_length(fjord_test$glob_attributes$available_months_by_year, 1)
 })
