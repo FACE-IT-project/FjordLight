@@ -2,7 +2,7 @@
 # This also tests flplot_climatology
 
 test_that("flget_climatology functions correctly", {
-  dat_no_TS <- fl_LoadFjord("test", system.file("extdata", package = "FjordLight"))
+  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"))
 
   expect_s4_class(flget_climatology(dat_no_TS), "RasterLayer")
 

@@ -40,7 +40,7 @@ fl_DownloadFjord <- function(fjord,
   opt_orig <- options()
   on.exit(options(opt_orig))
   options(timeout = 0)
-	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_MonthlyKpar/"
+	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_MonthlyKpar"
 	urlpangaea <- "https://download.pangaea.de/dataset/962895/files"
 	dlnote <- "Please check your internet connection."
 	if(curl::has_internet()){

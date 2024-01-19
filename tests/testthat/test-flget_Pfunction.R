@@ -2,7 +2,7 @@
 # This also tests flplot_Pfunction
 
 test_that("Various P-functions calls work as expected", {
-  dat_no_TS <- fl_LoadFjord("test", system.file("extdata", package = "FjordLight"))
+  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"))
 
   expect_type(flget_Pfunction(dat_no_TS), "closure")
 

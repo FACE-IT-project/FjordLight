@@ -1,6 +1,7 @@
 # FjordLight 0.7.1 (2024-01-19)
 
 * Changed download source from LOV FTP to PANGAEA
+* Added option to download and load monthly K_PAR files
 
 # FjordLight 0.7.0 (2023-12-29)
 

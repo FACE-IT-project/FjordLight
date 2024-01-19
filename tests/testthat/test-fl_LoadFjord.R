@@ -8,7 +8,7 @@ test_that("loading errors are correct", {
 })
 
 test_that("loading with and without TS works", {
-  test_NO_TS <- fl_LoadFjord("test", system.file("extdata", package = "FjordLight"))
+  test_NO_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"))
   expect_type(test_NO_TS, "list")
   expect_equal(length(test_NO_TS$longitude), 7)
   expect_equal(round(test_NO_TS$AreaOfShallowZone), 106)
