@@ -2,6 +2,7 @@
 
 * Changed download source from LOV FTP to PANGAEA
 * Added option to download and load monthly K_PAR files
+* Updated citation to show CRAN
 
 # FjordLight 0.7.0 (2023-12-29)
 
