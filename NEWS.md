@@ -1,3 +1,7 @@
+# FjordLight 0.7.0 (2023-12-29)
+
+* Updated logo
+
 # FjordLight 0.7.0 (2023-12-05)
 
 * Published package on zenodo
