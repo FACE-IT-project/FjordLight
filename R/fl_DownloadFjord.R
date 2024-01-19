@@ -22,7 +22,7 @@
 #'
 #' @examples
 #' # Choose a fjord
-#' fjord_code <- "test"
+#' fjord_code <- "kong"
 #'
 #' # Download it
 #' # NB: One should provide a permanent directory when downloading a file.
@@ -35,7 +35,7 @@ fl_DownloadFjord <- function(fjord,
   opt_orig <- options()
   on.exit(options(opt_orig))
   options(timeout = 0)
-	# urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords" # Old FTP server access
+	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
 	urlpangaea <- "https://download.pangaea.de/dataset/962895/files"
 	dlnote <- "Please check your internet connection."
 	if(curl::has_internet()){

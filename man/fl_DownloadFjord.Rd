@@ -28,7 +28,7 @@ argument. Note that these files can be multiple gigabytes in size.
 }
 \examples{
 # Choose a fjord
-fjord_code <- "test"
+fjord_code <- "kong"
 
 # Download it
 # NB: One should provide a permanent directory when downloading a file.

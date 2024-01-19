@@ -9,11 +9,11 @@ test_that("fl_DownloadFjord error messages signal correctly", {
                "Please ensure that the chosen directory exists.")
 })
 
-test_that("fl_DownloadFjord gets the 'test.nc' file only once", {
+test_that("fl_DownloadFjord gets the 'kong.nc' file only once", {
   skip_if_offline()
-  test_dl <- fl_DownloadFjord(fjord = "test", tempdir())
-  test_dl <- fl_DownloadFjord(fjord = "test", tempdir())
+  test_dl <- fl_DownloadFjord(fjord = "kong", tempdir())
+  test_dl <- fl_DownloadFjord(fjord = "kong", tempdir())
   expect_type(test_dl, "NULL")
-  fjord_test <- fl_LoadFjord("test", TS = FALSE, tempdir())
+  fjord_test <- fl_LoadFjord("kong", TS = FALSE, tempdir())
   expect_length(fjord_test$glob_attributes$available_months_by_year, 1)
 })
