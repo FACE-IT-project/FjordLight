@@ -35,7 +35,9 @@ fl_DownloadFjord <- function(fjord,
   opt_orig <- options()
   on.exit(options(opt_orig))
   options(timeout = 0)
-	urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords"
+	# urlobsvlfr <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords" # Old FTP server access
+	urlpangaea <- "https://download.pangaea.de/dataset/962895/files"
+	dlnote <- "Please check your internet connection."
 	if(curl::has_internet()){
 	  fjords <- fl_ListFjords()
 	  if(! fjord %in% fjords){
@@ -47,10 +49,11 @@ fl_DownloadFjord <- function(fjord,
 	  localf <- paste(dirdata, ncfile, sep = "/")
 	  if(! file.exists(localf)) {
 	    message("---> downloading fjord ", fjord)
-	    utils::download.file(paste(urlobsvlfr, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
-	    message(fjord, " downloaded in directory ", dirdata)
+	    utils::download.file(paste(urlpangaea, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
+	    dlnote <- paste0(fjord, " downloaded in directory ", dirdata)
 	  } else {
-	    message(fjord, " already downloaded in directory ", dirdata)
+	    dlnote <- paste0(fjord, " already downloaded in directory ", dirdata)
 	  }
 	}
+	message(dlnote)
 }
