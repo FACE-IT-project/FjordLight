@@ -3,4 +3,5 @@
 
 # usethis::use_data(DATASET, overwrite = TRUE)
 
-fl_DownloadFjord("test", "~/FjordLight/inst/extdata/")
+# NB: The test files must be received directly from Bernard
+# fl_DownloadFjord("test", "~/FjordLight/inst/extdata/")

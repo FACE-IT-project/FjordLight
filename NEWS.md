@@ -1,3 +1,8 @@
+# FjordLight 0.7.1.9000 (2024-01-22)
+
+* Added function to access monthly K_PAR data
+* Added function to plot monthly K_PAR data
+
 # FjordLight 0.7.1 (2024-01-19)
 
 * Changed download source from LOV FTP to PANGAEA
