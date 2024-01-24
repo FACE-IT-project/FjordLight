@@ -49,6 +49,9 @@
     <loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_topocolorscale.html</loc>
   </url>
   <url>
+    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_KPARMonthlyTS.html</loc>
+  </url>
+  <url>
     <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_PARbottomMonthlyTS.html</loc>
   </url>
   <url>
@@ -65,6 +68,9 @@
   </url>
   <url>
     <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_geoparameters.html</loc>
+  </url>
+  <url>
+    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_KPARMonthlyTS.html</loc>
   </url>
   <url>
     <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_PARbottomMonthlyTS.html</loc>

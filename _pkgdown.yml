@@ -35,6 +35,7 @@ reference:
   - '`fl_LoadFjord`'
   - '`fl_topocolorscale`'
   - '`flget_PARbottomMonthlyTS`'
+  - '`flget_KPARMonthlyTS`'
   - '`flget_Pfunction`'
   - '`flget_area`'
   - '`flget_bathymetry`'

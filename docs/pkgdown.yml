@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   fl_example: fl_example.html
-last_built: 2024-01-19T14:33Z
+last_built: 2024-01-24T09:05Z
 urls:
   reference: https://face-it-project.github.io/FjordLight/index.html/reference
   article: https://face-it-project.github.io/FjordLight/index.html/articles
