@@ -20,9 +20,8 @@ test_that("loading with and without TS works", {
 test_that("loading monthly K_PAR works", {
   test_NO_TS <- fl_LoadFjord("test", "K_PAR", system.file("extdata", package = "FjordLight"))
   expect_type(test_NO_TS, "list")
-  expect_equal(length(test_NO_TS$longitude), 7)
-  expect_equal(round(test_NO_TS$AreaOfShallowZone), 106)
+  expect_equal(length(test_NO_TS$glob_attributes), 0)
   test_TS <- fl_LoadFjord("test", "K_PAR", dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE)
   expect_type(test_TS, "list")
-  expect_type(test_TS$MonthlyPARbottom, "double")
+  expect_type(test_TS$MonthlyKpar, "double")
 })

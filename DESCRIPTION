@@ -1,6 +1,6 @@
 Package: FjordLight
-Version: 0.7.1
-Date: 2024-01-19
+Version: 0.7.1.9001
+Date: 2024-01-24
 Title: Available Light Within the Water Column and Seafloor of Arctic Fjords
 Type: Package
 Description: Satellite data collected between 2003 and 2022,
@@ -22,7 +22,7 @@ Imports: ncdf4, raster, curl
 License: MIT + file LICENSE
 Encoding: UTF-8
 URL: https://github.com/FACE-IT-project/FjordLight, http://obs-vlfr.fr/Pfunction/, www.obs-vlfr.fr, https://doi.pangaea.de/10.1594/PANGAEA.910898
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 NeedsCompilation: no
 Suggests: 
     knitr,

@@ -9,7 +9,7 @@ test_that("flget_PARbottomMonthlyTS functions correctly", {
   expect_error(flget_PARbottomMonthlyTS(dat_TS, mode = 1), "Wrong mode, choose among: 'raster', 'df'")
   expect_error(flget_PARbottomMonthlyTS(dat_TS, mode = "banana"), "Wrong mode, choose among: 'raster', 'df'")
 
-  # NB: Error messages are generated from objects so don't passs correctly through testthat
+  # NB: Error messages are generated from objects so don't pass correctly through testthat
   expect_error(flget_PARbottomMonthlyTS(dat_TS, month = 1))
   expect_error(flget_PARbottomMonthlyTS(dat_TS, month = 1:6))
   expect_error(flget_PARbottomMonthlyTS(dat_TS, month = "banana"))
