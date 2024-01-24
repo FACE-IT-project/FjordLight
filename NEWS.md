@@ -1,4 +1,4 @@
-# FjordLight 0.7.1.9001 (2024-01-22)
+# FjordLight 0.7.1.9001 (2024-01-24)
 
 * Added testing file for monthly K_PAR data
 * Increasing codecov back to 100%

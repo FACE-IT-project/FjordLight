@@ -86,7 +86,7 @@ flget_KPARMonthlyTS <- function(fjord,
   for(y in year) {
     for(m in month) {
       h <- g[, , Months == m, Years == y]
-      if(!is.matrix(h)) h <- h[,,1]
+      # if(!is.matrix(h)) h <- h[,,1]
       r <- raster::raster(list(x = fjord$longitude, y = fjord$latitude, z = h))
       layername <- paste("MonthlyKpar", formatC(y, format = "d", width = 4, flag = "0"),
                          formatC(m, format = "d", width = 2, flag = "0"), sep = ".")
