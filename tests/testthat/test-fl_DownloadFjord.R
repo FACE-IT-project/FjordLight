@@ -22,8 +22,6 @@ test_that("fl_DownloadFjord gets the 'kong.nc' file only once", {
 
 test_that("fl_DownloadFjord gets K_PAR data files", {
   skip_if_offline()
-  expect_error(fl_DownloadFjord(fjord = "kong", monthly = "banana", tempdir()),
-               "Please ensure the 'monthly' value is either 'PAR_B' or 'K_PAR")
   test_dl <- fl_DownloadFjord(fjord = "kong", monthly = "K_PAR", tempdir())
   expect_type(test_dl, "NULL")
   fjord_test <- fl_LoadFjord("kong", "K_PAR", TS = FALSE, tempdir())

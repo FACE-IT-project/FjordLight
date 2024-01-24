@@ -5,6 +5,8 @@ test_that("loading errors are correct", {
                "Please provide the pathway from where you would like to load the data.")
   expect_error(fl_LoadFjord("test", dirdata = "guava"),
                "Please ensure that the chosen directory exists.")
+  expect_error(fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), monthly = "banana"),
+               "Please ensure the 'monthly' value is either 'PAR_B' or 'K_PAR'")
 })
 
 test_that("loading with and without TS works", {
