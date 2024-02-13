@@ -1,3 +1,8 @@
+# FjordLight 0.7.1.9002 (2024-02-13)
+
+* Added new download and load options for 'ClimSD' and YearlySD' files
+* Corrected minor y-axis label issues
+
 # FjordLight 0.7.1.9001 (2024-01-24)
 
 * Added testing file for monthly K_PAR data

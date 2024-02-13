@@ -32,7 +32,7 @@ flplot_climatology <- function(r,
     vr <- raster::values(r)
     brks <- seq(0, 45, 5)
     cols <- cs_BuYlRd(length(brks) - 1)
-    text.leg <- expression(PAR*"("*0*"-)"~(mol.photons~m^2~day^-1))
+    text.leg <- expression("PAR(0"^"-"*")"~"[mol.photons m"^-2~day^-1*"]")
     lab.breaks <- c("", brks[-c(1, length(brks))], "")
   }
   if(optics == "PARbottom"){

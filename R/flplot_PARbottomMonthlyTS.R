@@ -21,7 +21,7 @@ flplot_PARbottomMonthlyTS <- function(r) {
   vr <- raster::values(r)
   brks <- seq(-5, 2, 1)
   cols <- c("#2166AC", "#4393C3", "#92C5DE", "#FDDBC7", "#F4A582", "#D6604D", "#B2182B")
-  text = expression(mol.photons~m^2~day^-1)
+  text = expression(mol.photons~m^-2~day^-1)
   lab.breaks = c("", as.character(10^seq(-4, 1, 1)), "")
   vr[vr < brks[2]] <- brks[1]; vr[vr > brks[length(brks) - 1]] <- brks[length(brks)]; raster::values(r) <- vr
   names(r) <- sub("MonthlyPARbottom", "Pb", names(r))

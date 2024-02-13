@@ -2,8 +2,8 @@
 # This also tests flplot_KPARMonthlyTS
 
 test_that("flget_KPARMonthlyTS functions correctly", {
-  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), monthly = "K_PAR")
-  dat_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE, monthly = "K_PAR")
+  dat_no_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), layer = "K_PAR")
+  dat_TS <- fl_LoadFjord("test", dirdata = system.file("extdata", package = "FjordLight"), TS = TRUE, layer = "K_PAR")
 
   expect_error(flget_KPARMonthlyTS(dat_no_TS), "MonthlyKpar time series not loaded")
   expect_error(flget_KPARMonthlyTS(dat_TS, mode = 1), "Wrong mode, choose among: 'raster', 'df'")

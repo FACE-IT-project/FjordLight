@@ -54,7 +54,7 @@ and if the user would like to plot the data in the process.
 fjord_code <- "test"
 fjorddata <- fl_LoadFjord(fjord_code,
                          dirdata = system.file("extdata", package = "FjordLight"),
-                         TS = TRUE, monthly = "K_PAR")
+                         TS = TRUE, layer = "K_PAR")
 
 # Load a small subset as a data.frame
 mts_single <- flget_KPARMonthlyTS(fjorddata, month = 6, year = 2016, mode = "df", PLOT = FALSE)

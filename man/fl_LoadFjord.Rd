@@ -6,7 +6,7 @@
 \usage{
 fl_LoadFjord(
   fjord,
-  monthly = "PAR_B",
+  layer = "PAR_B",
   dirdata = NULL,
   TS = FALSE,
   verbose = FALSE
@@ -16,11 +16,13 @@ fl_LoadFjord(
 \item{fjord}{Expects a character vector for one of the 8 available fjords.
 See \code{\link{fl_ListFjords}} for the list of possible choices.}
 
-\item{monthly}{The layer of monthly data the user wants to load. The default "PAR_B"
-will load monthly bottom PAR data. The other option "K_PAR" will load monthly
-values for the light extinction coefficient (i.e.  K_PAR) in the water column.
-Note that the K_PAR files are a slimmed down version of the PAR_B files and do not
-contain global values.}
+\item{layer}{The layer of data the user wants to load. The default "PAR_B"
+will load monthly bottom PAR data. The other options, "K_PAR" will load monthly
+values for the light extinction coefficient (i.e.  K_PAR) in the water column,
+"ClimSD" will load the standard deviation values for the monthly climatologies,
+and "YearlySD" will load the standard deviation values for the yearly climatologies.
+Note that only the PAR_B files and do not contain all global values and metadata.
+The other files are in supplement to the PAR_B files.}
 
 \item{dirdata}{The directory where the user would like to load the data from.}
 
