@@ -6,7 +6,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10259129.svg)](https://doi.org/10.5281/zenodo.10259129)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/FjordLight)](https://cran.r-project.org/package=FjordLight)
 
-This package is designed to aid the user in accessing and working with the fjord PAR data product created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in review that contains details on the creation of these data.
+This package is designed to aid the user in accessing and working with the Arctic fjord PAR data product created for the [FACE-IT project](https://www.face-it-project.eu/). An ESSD paper is currently in review that contains details on the creation of these data.
 
 For a full range of examples for how to use this package, please see this [vignette](https://face-it-project.github.io/FjordLight/articles/fl_example.html).
 

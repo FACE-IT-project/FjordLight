@@ -22,17 +22,18 @@ knitr::opts_chunk$set(
 
 # Overview
 
-The __`FjordLight`__ package has been built explicitly to facilitate the use of Arctic fjord PAR dataset developed via the [FACE-IT project](https://www.face-it-project.eu/). FACE-IT has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement no. 869154. This dataset was a development of that created by @gattuso2020global.
+The __`FjordLight`__ package has been built explicitly to facilitate the use of the Arctic fjord PAR dataset developed via the [FACE-IT project](https://www.face-it-project.eu/) as an extension of the work by @gattuso2020global. FACE-IT has received funding from the European Union's Horizon 2020 research and innovation programme under grant agreement no. 869154.
 
 Below one will find a range of examples that should help to clarify the useful order of these functions in a workflow. All of these examples are also available within the help files for the given functions.
 
 ```{r setup}
 library(FjordLight)
+library(raster)
 ```
 
 # Caveat emptor
 
-With 64 GB of RAM (a typical desktop) your computer should have no problem loading the data, even with the most extensive fjords. With 4 GB (a typical laptop) you can only handle the smaller fjords: 'kong', 'young', and 'nuup'. However if you do not need the monthly `PARbottom` time series, the package should work with all fjords. In this case, when calling the `fl_LoadFjord()` function, set the `TS` argument to `FALSE` (this is the default value).
+With 64 GB of RAM (a typical desktop) your computer should have no problem loading the data, even with the most extensive fjords. With 4 GB (a typical laptop) you can only handle the smaller fjords: 'kong', 'young', and 'nuup'. However, if you do not need the monthly `PARbottom` or `KPAR` time series, any computer should be able to load all fjords. In this case, when calling the `fl_LoadFjord()` function, set the `TS` argument to `FALSE` (this is the default value).
 
 # Workflow
 
@@ -43,18 +44,15 @@ fl_ListFjords()
 
 ## Download a fjord
 
+To save a file to your computer:
+
 ```{r eval=FALSE}
 # Choose a fjord from the list above
 fjord <- "kong"
 
-# If the file has already been downloaded a message will be shown
-fl_DownloadFjord(fjord)
-```
-To save the file to your computer (highly recommended):
-
-```{r eval=FALSE}
-# Note: this will require that a folder named 'data' exists in your current workig directory
+# Note: this will require that a folder named 'data' exists in your current working directory
 # One may see one's working directory written in small text next to the version of R in the console pane
+# If the file has already been downloaded a message will be shown
 fl_DownloadFjord(fjord, dirdata = "data")
 ```
 
@@ -64,7 +62,7 @@ For the purposes of this vignette we will use the small toy dataset that is incl
 # Chose to load all of the monthly bottom PAR values or not
 WANT_TIME_SERIES <- TRUE
 
-# Load he data
+# Load the data
 fjord <- "test"
 fjorddata <- fl_LoadFjord(fjord, dirdata = system.file("extdata", package = "FjordLight"), TS = WANT_TIME_SERIES)
 str(fjorddata, list.len = 15)
@@ -109,6 +107,8 @@ str(sealand)
 # PAR0m and PARbottom for July
 P07 <- flget_climatology(fjorddata, optics = "PAR0m", period = "Clim", month = 7, PLOT = TRUE)
 print(P07)
+Pk7 <- flget_climatology(fjorddata, optics = "Kpar", period = "Clim", month = 7, PLOT = TRUE)
+print(Pk7)
 Pb7 <- flget_climatology(fjorddata, optics = "PARbottom", period = "Clim", month = 7, PLOT = TRUE)
 print(Pb7)
 
@@ -153,6 +153,136 @@ head(mts_2003)
 # NB: This may be too large for some laptops, proceed with caution
 mts_full <- flget_PARbottomMonthlyTS(fjorddata, mode = "df", PLOT = FALSE)
 ```
+
+## Get monthly time series of KPAR
+
+As an addendum to the original monthly bottom PAR data, data for K~PAR~ at the same spatial and temporal resolution were made available as a separate set of files. To download and work with these files one follows a similar workflow to that shown above:
+
+```{r eval=FALSE}
+# Choose a fjord from the possible options
+fjord <- "kong"
+
+# Note: this will require that a folder named 'data' exists in your current working directory
+# One may see one's working directory written in small text next to the version of R in the console pane
+# If the file has already been downloaded a message will be shown
+fl_DownloadFjord(fjord, layer = "K_PAR" dirdata = "data")
+```
+
+For the purposes of this vignette we will use the `KPAR` test file included with the package.
+
+```{r}
+# Chose to load all of the monthly bottom PAR values or not
+WANT_TIME_SERIES <- TRUE
+
+# Load the data
+fjord <- "test"
+fjorddata_KPAR <- fl_LoadFjord(fjord, layer = "K_PAR", dirdata = system.file("extdata", package = "FjordLight"), TS = WANT_TIME_SERIES)
+str(fjorddata_KPAR, list.len = 15)
+```
+
+Note that these files do not contain global attributes because they are a supplement to the original bottom PAR files.
+
+Once the data have been loaded they may be worked with in the same way as the bottom PAR monthly time series data by changing the use of the function `flget_PARbottomMonthlyTS()` to `flget_KPARMonthlyTS()`.
+
+```{r}
+# Years 2003 to 2004 - months July to August
+mts_KPAR <- flget_KPARMonthlyTS(fjorddata_KPAR, month = 7:8, year = 2003:2004, PLOT = TRUE)
+print(mts)
+
+# Or as a data.frame
+mts_KPAR_2003 <- flget_KPARMonthlyTS(fjorddata_KPAR, year = 2003, PLOT = FALSE, mode = "df")
+head(mts_2003)
+```
+
+## Standard deviations for climatologies
+
+Also appended to the original bottom PAR dataset have been files that document the standard deviation (SD) for the monthly and annual climatologies. These may be downloaded/loaded by using the argument `layer = "ClimSD"` or `layer = "YearlySD"` in the corresponding functions as seen below:
+
+```{r eval=FALSE}
+# Choose a fjord from the possible options
+fjord <- "kong"
+
+# Note: this will require that a folder named 'data' exists in your current working directory
+# One may see one's working directory written in small text next to the version of R in the console pane
+# If the file has already been downloaded a message will be shown
+fl_DownloadFjord(fjord, layer = "ClimSD", dirdata = "data")
+fl_DownloadFjord(fjord, layer = "YearlySD", dirdata = "data")
+```
+
+As with the other examples above, for this vignette we will proceed with the pre-packaged example files. Note however that there are no time series data in these files, so we do not need to specificy this argument (default behaviour is `FALSE`).
+
+```{r}
+# Monthly climatology SD
+fjorddata_ClimSD <- fl_LoadFjord(fjord, layer = "ClimSD", dirdata = system.file("extdata", package = "FjordLight"))
+str(fjorddata_ClimSD, list.len = 15)
+fjorddata_YearlySD <- fl_LoadFjord(fjord, layer = "YearlySD", dirdata = system.file("extdata", package = "FjordLight"))
+str(fjorddata_YearlySD, list.len = 15)
+```
+
+To extract and work with the monthly climatology SD data one may then follow these steps:
+
+```{r}
+# Determine coordinates
+lon <- fjorddata$longitude
+lat <- fjorddata$latitude
+str(lon); str(lat)
+
+# Select a month
+month <- 8 # August
+im <- which(fjorddata$Months == month)
+print(im)
+
+# PAR0m Standard Deviation
+PAR0mSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_ClimSD$ClimPAR0mSD[, , im]))
+plot(PAR0mSD, main = paste("PAR0m StDev", month.abb[month]))
+
+# kdpar Standard Deviation
+KparSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_ClimSD$ClimKparSD[, , im]))
+plot(KparSD, main = paste("Kpar StDev", month.abb[month]))
+
+# PARbottom Standard Deviation
+PARbottomSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_ClimSD$ClimPARbottomSD[, , im]))
+plot(PARbottomSD, main = paste("PARbottom StDev", month.abb[month]))
+
+# PARbottom
+PAR0m <- flget_climatology(fjorddata, optics = "PAR0m", period = "Clim", month = month, PLOT = TRUE)
+
+VarCoef <- PAR0mSD / PAR0m
+plot(VarCoef, main = "PAR0m Coefficient of Variation")
+```
+
+Likewise, for the yearly climatology SD data:
+
+```{r}
+# Determine coordinates
+lon <- fjorddata$longitude
+lat <- fjorddata$latitude
+str(lon); str(lat)
+
+# Choose a year
+year <- 2007
+iy <- which(fjorddata$Years == year)
+print(iy)
+
+# PAR0m Standard Deviation
+PAR0mSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_YearlySD$YearlyPAR0mSD[, , iy]))
+plot(PAR0mSD, main = paste("PAR0m StDev", year))
+
+# kdpar Standard Deviation
+KparSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_YearlySD$YearlyKparSD[, , iy]))
+plot(KparSD, main = paste("Kpar StDev", year))
+
+# PARbottom Standard Deviation
+PARbottomSD <- raster::raster(list(x = lon, y = lat, z = fjorddata_YearlySD$YearlyPARbottomSD[, , iy]))
+plot(PARbottomSD, main = paste("PARbottom StDev", year))
+
+# PARbottom
+PAR0m <- flget_climatology(fjorddata, optics = "PAR0m", period = "Yearly", year = year, PLOT = TRUE)
+
+VarCoef <- PAR0mSD / PAR0m
+plot(VarCoef, main = "PAR0m Coefficient of Variation")
+```
+
 
 ## P-functions
 

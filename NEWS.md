@@ -2,6 +2,7 @@
 
 * Added new download and load options for 'ClimSD' and YearlySD' files
 * Corrected minor y-axis label issues
+* Updated and expanded examples vignette
 
 # FjordLight 0.7.1.9001 (2024-01-24)
 

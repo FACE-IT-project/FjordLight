@@ -46,7 +46,7 @@ flplot_climatology <- function(r,
     brks <- seq(-5, 2, 1)
     #	cols <- cs_blye(length(brks) - 1)
     cols <- c("#2166AC", "#4393C3", "#92C5DE", "#FDDBC7", "#F4A582", "#D6604D", "#B2182B")
-    text.leg<- expression(PAR[bottom]~(mol.photons~m^2~day^-1))
+    text.leg<- expression(PAR[bottom]~(mol.photons~m^-2~day^-1))
     lab.breaks <- c("", as.character(10^seq(-4, 1, 1)), "")
   }
   if(optics == "Kpar"){
