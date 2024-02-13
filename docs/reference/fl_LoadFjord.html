@@ -18,7 +18,7 @@ file that has been downloaded via fl_DownloadFjord."><meta property="og:image" c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1.9002</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@ file that has been downloaded via <code><a href="fl_DownloadFjord.html">fl_Downl
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fl_LoadFjord</span><span class="op">(</span></span>
 <span>  <span class="va">fjord</span>,</span>
-<span>  monthly <span class="op">=</span> <span class="st">"PAR_B"</span>,</span>
+<span>  layer <span class="op">=</span> <span class="st">"PAR_B"</span>,</span>
 <span>  dirdata <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  TS <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
@@ -74,12 +74,14 @@ file that has been downloaded via <code><a href="fl_DownloadFjord.html">fl_Downl
 See <code><a href="fl_ListFjords.html">fl_ListFjords</a></code> for the list of possible choices.</p></dd>
 
 
-<dt>monthly</dt>
-<dd><p>The layer of monthly data the user wants to load. The default "PAR_B"
-will load monthly bottom PAR data. The other option "K_PAR" will load monthly
-values for the light extinction coefficient (i.e.  K_PAR) in the water column.
-Note that the K_PAR files are a slimmed down version of the PAR_B files and do not
-contain global values.</p></dd>
+<dt>layer</dt>
+<dd><p>The layer of data the user wants to load. The default "PAR_B"
+will load monthly bottom PAR data. The other options, "K_PAR" will load monthly
+values for the light extinction coefficient (i.e.  K_PAR) in the water column,
+"ClimSD" will load the standard deviation values for the monthly climatologies,
+and "YearlySD" will load the standard deviation values for the yearly climatologies.
+Note that only the PAR_B files and do not contain all global values and metadata.
+The other files are in supplement to the PAR_B files.</p></dd>
 
 
 <dt>dirdata</dt>

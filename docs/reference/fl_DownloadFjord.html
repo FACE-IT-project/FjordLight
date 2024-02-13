@@ -19,7 +19,7 @@ argument. Note that these files can be multiple gigabytes in size."><meta proper
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">FjordLight</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1.9002</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@ argument. Note that these files can be multiple gigabytes in size.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fl_DownloadFjord</span><span class="op">(</span><span class="va">fjord</span>, monthly <span class="op">=</span> <span class="st">"PAR_B"</span>, dirdata <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fl_DownloadFjord</span><span class="op">(</span><span class="va">fjord</span>, layer <span class="op">=</span> <span class="st">"PAR_B"</span>, dirdata <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,12 +70,16 @@ argument. Note that these files can be multiple gigabytes in size.</p>
 See <code><a href="fl_ListFjords.html">fl_ListFjords</a></code> for the list of possible choices.</p></dd>
 
 
-<dt>monthly</dt>
-<dd><p>The layer of monthly data the user wants to download. The default "PAR_B"
-will download monthly bottom PAR data. The other option "K_PAR" will download monthly
-values for the light extinction coefficient (i.e.  K_PAR) in the water column.
+<dt>layer</dt>
+<dd><p>The layer of data the user wants to download. The default "PAR_B"
+will download monthly bottom PAR data, "K_PAR" will download monthly
+values for the light extinction coefficient (i.e. K_PAR) in the water column,
+"ClimSD" will download the standard deviations for the monthly climatologies, and
+"YearlySD" will download the standard deviations for the yearly climatologies.
 Note that if monthly K_PAR data are chosen, the file will be saved as e.g.
-"kong_MonthlyKpar.nc", whereas PAR_B data will be saved simply as e.g. "kong.nc"</p></dd>
+"kong_MonthlyKpar.nc". "ClimSD" and "YearlySD" data will also have this character
+string appended to the file name. Whereas PAR_B data will be saved simply as e.g.
+"kong.nc". NB: Only the "PAR_B" data contain the full list of metadata variables.</p></dd>
 
 
 <dt>dirdata</dt>
@@ -116,7 +120,7 @@ Note that if monthly K_PAR data are chosen, the file will be saved as e.g.
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">fl_DownloadFjord</span><span class="op">(</span><span class="va">fjord_code</span>, dirdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ---&gt; downloading fjord kong</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> kong.nc downloaded in directory /tmp/RtmpZREMob</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> kong.nc downloaded in directory /tmp/RtmpkNVZm3</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
