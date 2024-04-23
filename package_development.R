@@ -11,7 +11,6 @@ library(usethis)
 library(testthat)
 library(checkhelper)
 library(pkgdown)
-library(qpdf) # Seems to be required for vignette
 # For examples: https://thinkr-open.github.io/checkhelper/
 
 # Disable package build note about not finding local time
