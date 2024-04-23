@@ -1,3 +1,8 @@
+# FjordLight 0.8 (2024-04-23)
+
+* Updated URL to download all files from PANGAEA
+* Uploaded to CRAN
+
 # FjordLight 0.7.1.9002 (2024-02-13)
 
 * Added new download and load options for 'ClimSD' and YearlySD' files

@@ -45,9 +45,7 @@ fl_DownloadFjord <- function(fjord,
   on.exit(options(opt_orig))
   options(timeout = 0)
 	urlpangaea <- "https://download.pangaea.de/dataset/962895/files"
-	urlobsvlfr_Kpar <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_MonthlyKpar"
-	urlobsvlfr_ClimSD <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_ClimSD"
-	urlobsvlfr_YearlySD <- "ftp://ftp.obs-vlfr.fr/pub/gentili/NC_c2_Fjords_YearlySD"
+	urlpangaea_addendum <- "https://download.pangaea.de/dataset/965460/files"
 	dlnote <- "Please check your internet connection."
 	if(curl::has_internet()){
 	  fjords <- fl_ListFjords()
@@ -56,18 +54,16 @@ fl_DownloadFjord <- function(fjord,
 	  }
 	  if(is.null(dirdata)) stop("Please provide the pathway to where you would like to download the data.")
 	  if(! file.exists(dirdata)) stop("Please ensure that the chosen directory exists.")
+	  ncurl <- urlpangaea_addendum
 	  if(layer == "PAR_B"){
 	    ncfile <- paste(fjord, "nc", sep = ".")
 	    ncurl <- urlpangaea
 	  } else if(layer == "K_PAR"){
 	    ncfile <- paste0(fjord,"_MonthlyKpar.nc")
-	    ncurl <- urlobsvlfr_Kpar
 	  } else if(layer == "ClimSD"){
 	    ncfile <- paste0(fjord,"_ClimSD.nc")
-	    ncurl <- urlobsvlfr_ClimSD
 	  } else if(layer == "YearlySD"){
 	    ncfile <- paste0(fjord,"_YearlySD.nc")
-	    ncurl <- urlobsvlfr_YearlySD
 	  } else {
 	    stop("Please ensure the 'layer' value is either 'PAR_B', 'K_PAR', 'ClimSD', or 'YearlySD'")
 	  }
