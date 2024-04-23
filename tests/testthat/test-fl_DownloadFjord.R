@@ -3,9 +3,9 @@
 test_that("fl_DownloadFjord error messages signal correctly", {
   skip_if_offline()
   expect_error(fl_DownloadFjord(fjord = "banana"), "banana not available")
-  expect_error(fl_DownloadFjord(fjord = "test"),
+  expect_error(fl_DownloadFjord(fjord = "kong"),
                "Please provide the pathway to where you would like to download the data.")
-  expect_error(fl_DownloadFjord(fjord = "test", dirdata = "mango"),
+  expect_error(fl_DownloadFjord(fjord = "kong", dirdata = "mango"),
                "Please ensure that the chosen directory exists.")
   expect_error(fl_DownloadFjord(fjord = "kong", layer = "kiwi", dirdata = tempdir()),
                "Please ensure the 'layer' value is either 'PAR_B', 'K_PAR', 'ClimSD', or 'YearlySD'")

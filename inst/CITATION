@@ -9,6 +9,6 @@ bibentry(bibtype = "Manual",
                           email = "robwschlegel@gmail.com")),
     	 year    = "2023",
 	 note	 = "R package version 0.8",
-    	 url     = "https://cran.r-project.org/web/packages/FjordLight/index.html"
+    	 url     = "https://CRAN.R-project.org/package=FjordLight"
 )
 

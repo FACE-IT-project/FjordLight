@@ -46,10 +46,10 @@
 #'
 #' # Years 2003 to 2004 - months July to August
 #' # NB: This may be too large for smaller laptops
+#' \donttest{
 #' mts_many <- flget_KPARMonthlyTS(fjorddata, month = 7:8, year = 2003:2004, PLOT = FALSE)
 #'
 #' # May also plot the data
-#' \donttest{
 #' mts_plot <- flget_KPARMonthlyTS(fjorddata, month = 6:9, year = 2010, PLOT = TRUE)
 #' }
 #'
