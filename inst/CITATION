@@ -1,5 +1,5 @@
 bibentry(bibtype = "Manual",
-    	 title   = "{FjordLight}: Available Light Within the Water Column and Seafloor of Arctic Fjords",
+    	 title   = "{FjordLight}: Available Light Within the Water Column and on the Seafloor of Arctic Fjords",
     	 author  = c(person(given = c("Bernard"),
                           family = "Gentili"),
                    person(given = c("Jean-Pierre"),
@@ -7,8 +7,8 @@ bibentry(bibtype = "Manual",
                    person(given = c("Robert", "W."),
                           family = "Schlegel",
                           email = "robwschlegel@gmail.com")),
-    	 year    = "2023",
-	 note	 = "R package version 0.8",
+    	 year    = "2024",
+	 note	 = "R package version 1.0.0",
     	 url     = "https://CRAN.R-project.org/package=FjordLight"
 )
 

@@ -1,3 +1,8 @@
+# FjordLight 1.0.0 (2024-07-30)
+
+* Updated to final stable v1.0.0 release
+* Uploaded to CRAN
+
 # FjordLight 0.8 (2024-04-23)
 
 * Updated URL to download all files from PANGAEA
