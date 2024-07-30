@@ -1,93 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/404.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/articles/fl_example.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/index.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_BuYlRd.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_blue.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_blye.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_DownloadFjord.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_ListFjords.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_LoadFjord.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_topocolorscale.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_KPARMonthlyTS.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_PARbottomMonthlyTS.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_Pfunction.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_area.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_bathymetry.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_climatology.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_geoparameters.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_KPARMonthlyTS.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_PARbottomMonthlyTS.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_Pfunction.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_bathymetry.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_climatology.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_land.html</loc>
-  </url>
-  <url>
-    <loc>https://face-it-project.github.io/FjordLight/index.html/reference/index.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/404.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/LICENSE-text.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/LICENSE.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/articles/fl_example.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/articles/index.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/authors.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/index.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/news/index.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_BuYlRd.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_blue.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/cs_blye.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_DownloadFjord.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_ListFjords.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_LoadFjord.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/fl_topocolorscale.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_KPARMonthlyTS.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_PARbottomMonthlyTS.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_Pfunction.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_area.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_bathymetry.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_climatology.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flget_geoparameters.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_KPARMonthlyTS.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_PARbottomMonthlyTS.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_Pfunction.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_bathymetry.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_climatology.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/flplot_land.html</loc></url>
+<url><loc>https://face-it-project.github.io/FjordLight/index.html/reference/index.html</loc></url>
 </urlset>
+

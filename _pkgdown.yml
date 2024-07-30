@@ -1,3 +1,7 @@
+template:
+  bootstrap: 5
+  bootswatch: yeti
+
 url: https://face-it-project.github.io/FjordLight/index.html
 
 navbar:
