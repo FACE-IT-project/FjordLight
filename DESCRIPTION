@@ -21,7 +21,7 @@ Depends: R (>= 3.3.0)
 Imports: ncdf4, raster, curl
 License: MIT + file LICENSE
 Encoding: UTF-8
-URL: https://face-it-project.github.io/FjordLight/index.html, https://www.obs-vlfr.fr, https://doi.pangaea.de/10.1594/PANGAEA.910898, https://doi.pangaea.de/10.1594/PANGAEA.965460
+URL: https://face-it-project.github.io/FjordLight/index.html, https://doi.pangaea.de/10.1594/PANGAEA.910898, https://doi.pangaea.de/10.1594/PANGAEA.965460
 RoxygenNote: 7.3.2
 NeedsCompilation: no
 Suggests: 
