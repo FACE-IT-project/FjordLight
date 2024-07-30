@@ -309,9 +309,9 @@ ggsave("logo.png", height = 2, width = 2)
 # Package logs ------------------------------------------------------------
 
 # An example of how to check package downloads
-ggplot2_logs <- cranlogs::cran_downloads(packages = c("ggplot2", "dplyr"),
+FjordLight_logs <- cranlogs::cran_downloads(packages = c("FjordLight"),
                                          when = "last-month")
-ggplot2::ggplot(ggplot2_logs) +
+ggplot2::ggplot(FjordLight_logs) +
   ggplot2::geom_line(aes(date, count, col = package)) +
   viridis::scale_color_viridis(discrete = TRUE)
 

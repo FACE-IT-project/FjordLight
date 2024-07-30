@@ -14,9 +14,9 @@ Authors@R: c(person("Bernard", "Gentili", role = c("aut"),
     email = "jean-pierre.gattuso@imev-mer.fr",
     comment = c(ORCID = "0000-0002-4533-4114")),
     person("Robert W.", "Schlegel", role = c("aut", "cre"),
-    email = "robert.schlegel@imev-mer.fr",
+    email = "robwschlegel@gmail.com",
     comment = c(ORCID = "0000-0002-0705-1287")))
-Maintainer: Robert W. Schlegel <robert.schlegel@imev-mer.fr>
+Maintainer: Robert W. Schlegel <robwschlegel@gmail.com>
 Depends: R (>= 3.3.0)
 Imports: ncdf4, raster, curl
 License: MIT + file LICENSE
