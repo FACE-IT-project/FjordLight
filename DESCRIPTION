@@ -1,6 +1,6 @@
 Package: FjordLight
-Version: 1.0.0
-Date: 2024-07-30
+Version: 1.0.1
+Date: 2024-08-19
 Title: Available Light Within the Water Column and on the Seafloor of Arctic Fjords
 Type: Package
 Description: Satellite data collected between 2003 and 2022,

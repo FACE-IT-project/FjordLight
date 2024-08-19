@@ -1,3 +1,7 @@
+# FjordLight 1.0.1 (2024-08-19)
+
+* Added additional layer of error catching for 503 issue when PANGAEA servers are temporarily down
+
 # FjordLight 1.0.0 (2024-07-30)
 
 * Updated to final stable v1.0.0 release

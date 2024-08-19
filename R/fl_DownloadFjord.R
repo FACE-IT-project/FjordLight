@@ -30,12 +30,12 @@
 #'
 #' @examples
 #' # Choose a fjord
-#' fjord_code <- "kong"
+# fjord_code <- "kong"
 #'
 #' # Download it
 #' # NB: One should provide a permanent directory when downloading a file.
 #' \donttest{
-#' fl_DownloadFjord(fjord_code, dirdata = tempdir())
+# fl_DownloadFjord(fjord_code, dirdata = tempdir())
 #' }
 #'
 fl_DownloadFjord <- function(fjord,
@@ -70,8 +70,11 @@ fl_DownloadFjord <- function(fjord,
 	  localf <- paste(dirdata, ncfile, sep = "/")
 	  if(! file.exists(localf)) {
 	    message("---> downloading fjord ", fjord)
-	    utils::download.file(paste(ncurl, ncfile, sep = "/"), localf, method = "auto", mode = "wb")
 	    dlnote <- paste0(ncfile, " downloaded in directory ", dirdata)
+	    suppressWarnings(
+	    tryCatch({utils::download.file(paste(ncurl, ncfile, sep = "/"), localf, method = "auto", mode = "wb")},
+	             error = function(e) {dlnote <<- "Error downloading file"})
+	    )
 	  } else {
 	    dlnote <- paste0(ncfile, " already downloaded in directory ", dirdata)
 	  }
