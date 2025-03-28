@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="FjordLight Example">
 <meta name="description" content="This vignette walks the user through a viable workflow for using the functions within this package to work with the PAR dataset.">
 <meta property="og:description" content="This vignette walks the user through a viable workflow for using the functions within this package to work with the PAR dataset.">
@@ -330,13 +330,14 @@ that is included within <strong><code>FJordLight</code></strong>:</p>
 K<sub>PAR</sub> at the same spatial and temporal resolution were made
 available as a separate set of files. To download and work with these
 files one follows a similar workflow to that shown above:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># Choose a fjord from the possible options</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>fjord <span class="ot">&lt;-</span> <span class="st">"kong"</span></span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># Note: this will require that a folder named 'data' exists in your current working directory</span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co"># One may see one's working directory written in small text next to the version of R in the console pane</span></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a><span class="co"># If the file has already been downloaded a message will be shown</span></span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="fu">fl_DownloadFjord</span>(fjord, <span class="at">layer =</span> <span class="st">"K_PAR"</span> <span class="at">dirdata =</span> <span class="st">"data"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Choose a fjord from the possible options</span></span>
+<span><span class="va">fjord</span> <span class="op">&lt;-</span> <span class="st">"kong"</span></span>
+<span></span>
+<span><span class="co"># Note: this will require that a folder named 'data' exists in your current working directory</span></span>
+<span><span class="co"># One may see one's working directory written in small text next to the version of R in the console pane</span></span>
+<span><span class="co"># If the file has already been downloaded a message will be shown</span></span>
+<span><span class="fu"><a href="../reference/fl_DownloadFjord.html">fl_DownloadFjord</a></span><span class="op">(</span><span class="va">fjord</span>, layer <span class="op">=</span> <span class="st">"K_PAR"</span>, dirdata <span class="op">=</span> <span class="st">"data"</span><span class="op">)</span></span></code></pre></div>
 <p>For the purposes of this vignette we will use the <code>KPAR</code>
 test file included with the package.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -382,40 +383,40 @@ the function <code><a href="../reference/flget_PARbottomMonthlyTS.html">flget_PA
 <span><span class="va">mts_KPAR</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_KPARMonthlyTS.html">flget_KPARMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata_KPAR</span>, month <span class="op">=</span> <span class="fl">7</span><span class="op">:</span><span class="fl">8</span>, year <span class="op">=</span> <span class="fl">2003</span><span class="op">:</span><span class="fl">2004</span>, PLOT <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fl_example_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mts</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">mts_KPAR</span><span class="op">)</span></span>
 <span><span class="co">#&gt; class      : RasterStack </span></span>
 <span><span class="co">#&gt; dimensions : 6, 7, 42, 4  (nrow, ncol, ncell, nlayers)</span></span>
 <span><span class="co">#&gt; resolution : 0.231, 0.04415  (x, y)</span></span>
 <span><span class="co">#&gt; extent     : 11.06061, 12.67761, 78.83274, 79.09764  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; crs        : +proj=longlat +datum=WGS84 +no_defs </span></span>
-<span><span class="co">#&gt; names      : MonthlyPARbottom.2003.07, MonthlyPARbottom.2003.08, MonthlyPARbottom.2004.07, MonthlyPARbottom.2004.08 </span></span>
-<span><span class="co">#&gt; min values :             1.068990e-31,             7.400259e-34,             4.697414e-36,             1.141482e-26 </span></span>
-<span><span class="co">#&gt; max values :                14.620255,                 7.802111,                11.695462,                 6.851761</span></span>
+<span><span class="co">#&gt; names      : MonthlyKpar.2003.07, MonthlyKpar.2003.08, MonthlyKpar.2004.07, MonthlyKpar.2004.08 </span></span>
+<span><span class="co">#&gt; min values :           0.2088218,           0.2751349,           0.2618170,           0.2434709 </span></span>
+<span><span class="co">#&gt; max values :           0.6373444,           0.8177702,           0.7454887,           0.5678355</span></span>
 <span></span>
 <span><span class="co"># Or as a data.frame</span></span>
 <span><span class="va">mts_KPAR_2003</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/flget_KPARMonthlyTS.html">flget_KPARMonthlyTS</a></span><span class="op">(</span><span class="va">fjorddata_KPAR</span>, year <span class="op">=</span> <span class="fl">2003</span>, PLOT <span class="op">=</span> <span class="cn">FALSE</span>, mode <span class="op">=</span> <span class="st">"df"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mts_2003</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   longitude latitude MonthlyPARbottom.2003.03 MonthlyPARbottom.2003.04</span></span>
-<span><span class="co">#&gt; 1  11.17611 79.07557                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 2  11.40711 79.07557             2.639961e-23             7.544333e-21</span></span>
-<span><span class="co">#&gt; 3  11.63811 79.07557             2.984594e-05             3.859223e-04</span></span>
-<span><span class="co">#&gt; 4  11.86911 79.07557                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 5  12.10011 79.07557                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 6  12.33111 79.07557                      NaN                      NaN</span></span>
-<span><span class="co">#&gt;   MonthlyPARbottom.2003.05 MonthlyPARbottom.2003.06 MonthlyPARbottom.2003.07</span></span>
-<span><span class="co">#&gt; 1                      NaN                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 2             1.394341e-18             1.029682e-16             1.952332e-18</span></span>
-<span><span class="co">#&gt; 3             4.468472e-04             1.784186e-03             5.850928e-04</span></span>
-<span><span class="co">#&gt; 4                      NaN                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 5                      NaN                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 6                      NaN                      NaN                      NaN</span></span>
-<span><span class="co">#&gt;   MonthlyPARbottom.2003.08 MonthlyPARbottom.2003.09</span></span>
-<span><span class="co">#&gt; 1                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 2             1.323424e-23             3.074024e-14</span></span>
-<span><span class="co">#&gt; 3             8.365609e-05             1.874313e-04</span></span>
-<span><span class="co">#&gt; 4                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 5                      NaN                      NaN</span></span>
-<span><span class="co">#&gt; 6                      NaN                      NaN</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mts_KPAR_2003</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   longitude latitude MonthlyKpar.2003.03 MonthlyKpar.2003.04</span></span>
+<span><span class="co">#&gt; 1  11.17611 79.07557                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 2  11.40711 79.07557           0.2336252           0.2336884</span></span>
+<span><span class="co">#&gt; 3  11.63811 79.07557           0.2319816           0.2130110</span></span>
+<span><span class="co">#&gt; 4  11.86911 79.07557                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 5  12.10011 79.07557                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 6  12.33111 79.07557                 NaN                 NaN</span></span>
+<span><span class="co">#&gt;   MonthlyKpar.2003.05 MonthlyKpar.2003.06 MonthlyKpar.2003.07</span></span>
+<span><span class="co">#&gt; 1                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 2           0.2209665           0.1999744           0.2632420</span></span>
+<span><span class="co">#&gt; 3           0.2370346           0.2068441           0.2342429</span></span>
+<span><span class="co">#&gt; 4                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 5                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 6                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt;   MonthlyKpar.2003.08 MonthlyKpar.2003.09 MonthlyKpar.2003.10</span></span>
+<span><span class="co">#&gt; 1                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 2           0.3237852           0.2224025           0.2336252</span></span>
+<span><span class="co">#&gt; 3           0.3147747           0.2206951           0.2320950</span></span>
+<span><span class="co">#&gt; 4                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 5                 NaN                 NaN                 NaN</span></span>
+<span><span class="co">#&gt; 6                 NaN                 NaN                 NaN</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="standard-deviations-for-climatologies">Standard deviations for climatologies<a class="anchor" aria-label="anchor" href="#standard-deviations-for-climatologies"></a>
@@ -636,7 +637,7 @@ Radiation on the Seafloor.”</span> <em>Earth System Science Data</em> 12
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>

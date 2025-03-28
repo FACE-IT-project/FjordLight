@@ -165,7 +165,7 @@ fjord <- "kong"
 # Note: this will require that a folder named 'data' exists in your current working directory
 # One may see one's working directory written in small text next to the version of R in the console pane
 # If the file has already been downloaded a message will be shown
-fl_DownloadFjord(fjord, layer = "K_PAR" dirdata = "data")
+fl_DownloadFjord(fjord, layer = "K_PAR", dirdata = "data")
 ```
 
 For the purposes of this vignette we will use the `KPAR` test file included with the package.
@@ -187,11 +187,11 @@ Once the data have been loaded they may be worked with in the same way as the bo
 ```{r}
 # Years 2003 to 2004 - months July to August
 mts_KPAR <- flget_KPARMonthlyTS(fjorddata_KPAR, month = 7:8, year = 2003:2004, PLOT = TRUE)
-print(mts)
+print(mts_KPAR)
 
 # Or as a data.frame
 mts_KPAR_2003 <- flget_KPARMonthlyTS(fjorddata_KPAR, year = 2003, PLOT = FALSE, mode = "df")
-head(mts_2003)
+head(mts_KPAR_2003)
 ```
 
 ## Standard deviations for climatologies

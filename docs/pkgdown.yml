@@ -1,9 +1,9 @@
-pandoc: 3.1.11
-pkgdown: 2.1.0
+pandoc: '3.2'
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   fl_example: fl_example.html
-last_built: 2024-08-19T05:57Z
+last_built: 2025-03-28T14:06Z
 urls:
   reference: https://face-it-project.github.io/FjordLight/index.html/reference
   article: https://face-it-project.github.io/FjordLight/index.html/articles
